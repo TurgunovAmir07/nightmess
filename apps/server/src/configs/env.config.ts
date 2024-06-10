@@ -2,6 +2,7 @@ import { ENodeEnv } from '@/common/enums'
 import { envValidateZod } from '@/core/utils'
 import { getArrayEnum } from '@/core/utils'
 import { ConfigModuleOptions } from '@nestjs/config'
+import { join } from 'path'
 import { z } from 'zod'
 
 // !   пофиксить any
@@ -27,5 +28,6 @@ const environmentVariables = z.object({
 
 export const EnvConfigOptions: ConfigModuleOptions = {
 	validate: envValidateZod(environmentVariables),
-	isGlobal: true
+	isGlobal: true,
+	envFilePath: join(__dirname, '../../../../', `/.env`)
 }
