@@ -23,7 +23,8 @@ const environmentVariables = z.object({
 		.enum(['true', 'false'])
 		.default('false')
 		.transform(value => value === 'true'),
-	NODE_ENV: z.enum(nodeEnvArray).optional()
+	NODE_ENV: z.enum(nodeEnvArray).optional(),
+	BOT_TOKEN: z.string()
 })
 
 export const EnvConfigOptions: ConfigModuleOptions = {
