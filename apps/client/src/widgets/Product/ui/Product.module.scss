@@ -1,0 +1,65 @@
+.root {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  &__name {
+    font-family: 'Panton';
+    color: #e9c2c1;
+    font-size: 14px;
+
+    &__showcase {
+      color: #fff;
+      font-size: 10px;
+      margin-top: -10px;
+    }
+
+    @media (max-width: 355px) {
+      &__showcase {
+        font-size: 9px;
+      }
+    }
+    @media (max-width: 325px) {
+      &__showcase {
+        font-size: 8px;
+      }
+    }
+  }
+
+  &__icon {
+    width: 120px;
+
+    &__showcase {
+      width: 70px;
+    }
+
+    @media (max-width: 375px) {
+      &__showcase {
+        width: 60px;
+      }
+    }
+    @media (max-width: 355px) {
+      &__showcase {
+        width: 55px;
+      }
+    }
+    @media (max-width: 355px) {
+      &__showcase {
+        width: 50px;
+      }
+    }
+  }
+
+  &__price {
+    font-size: 14px;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 325px) {
+  .root {
+    gap: 15px;
+  }
+}

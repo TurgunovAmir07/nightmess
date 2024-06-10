@@ -1,0 +1,16 @@
+.root {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+  &__text {
+    background: inherit;
+    border: none;
+    top: -100px;
+    right: 20px;
+    position: absolute;
+    width: fit-content;
+    cursor: pointer;
+  }
+}

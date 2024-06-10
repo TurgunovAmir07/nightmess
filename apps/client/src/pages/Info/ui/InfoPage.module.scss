@@ -1,0 +1,67 @@
+.root {
+  padding-bottom: 20px;
+  background-image: url(/EYES_BACK.png);
+  min-height: 100dvh;
+  background-size: cover;
+
+  &__wrapper {
+    margin-top: 60px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__text {
+      text-align: center;
+      font-family: 'Panton';
+      color: #dec2c1;
+      font-size: 20px;
+
+      &_small {
+        text-align: center;
+        font-family: 'Panton';
+        color: #dec2c1;
+        font-size: 14px;
+      }
+      &_small:nth-child(7) {
+        text-align: center;
+        font-family: 'Panton';
+        color: #b31d12;
+        font-size: 14px;
+      }
+
+      &_info {
+        font-family: 'Tilda Sans';
+        font-size: 20px;
+        font-weight: 900;
+      }
+    }
+
+    &_title {
+      padding: 20px 0;
+      color: #b31d12;
+      font-family: 'Panton';
+      font-size: 26px;
+    }
+
+    &_link {
+      text-decoration: none;
+      color: #dec2c1;
+      font-family: 'Panton';
+      font-size: 26px;
+
+      &_img {
+        padding: 0 8px;
+        max-width: 40px;
+      }
+      &_review {
+        padding: 0 8px;
+        max-width: 20px;
+      }
+      &_offerta {
+        padding: 0 8px;
+        max-width: 30px;
+      }
+    }
+  }
+}

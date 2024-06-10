@@ -1,0 +1,14 @@
+.root {
+  width: fit-content;
+  height: 50px;
+  padding: 20px;
+
+  &__text {
+    padding-top: 10px;
+    background: inherit;
+    border: none;
+    text-align: center;
+    width: fit-content;
+    cursor: pointer;
+  }
+}

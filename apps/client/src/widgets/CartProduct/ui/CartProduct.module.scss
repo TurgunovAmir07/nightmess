@@ -1,0 +1,71 @@
+.root {
+  display: grid;
+  padding: 20px 5px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  position: relative;
+
+  &__img {
+    max-width: 70px;
+  }
+
+  &__info {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+
+    &__wrapper {
+      &__name {
+        font-size: 12px;
+        font-family: 'Panton';
+      }
+      &__size {
+        font-family: 'Tilda Sans';
+        font-weight: 600;
+      }
+    }
+
+    &__quontity {
+      display: flex;
+      gap: 5px;
+      align-content: end;
+      font-family: 'Panton';
+
+      &__btn {
+        border: none;
+        background: inherit;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        &_img {
+          max-width: 10px;
+        }
+
+        &__disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  &__price {
+    text-align: end;
+    align-content: end;
+    font-weight: 800;
+    font-size: 13px;
+    font-family: 'Tilda Sans';
+  }
+
+  &__delete {
+    cursor: pointer;
+
+    &_img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      max-width: 13px;
+    }
+  }
+}
