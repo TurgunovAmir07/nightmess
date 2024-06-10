@@ -1,0 +1,61 @@
+.root {
+  display: grid;
+  gap: 50px;
+  padding: 0 35px;
+
+  &_title {
+    text-align: center;
+    font-family: 'Panton';
+    font-size: 20px;
+  }
+
+  &__button {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+
+    &_text {
+      color: rgb(255, 188, 105);
+      font-family: 'Panton';
+      font-size: 20px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+
+    &_button {
+      text-align: center;
+    }
+
+    &__button {
+      background-color: inherit;
+      border: none;
+      cursor: pointer;
+
+      &_text {
+        color: rgb(255, 188, 105);
+        font-family: 'Panton';
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 410px) {
+  .root {
+    padding: 0 26px;
+  }
+}
+@media (max-width: 385px) {
+  .root {
+    padding: 0 14px;
+  }
+}
+@media (max-width: 361px) {
+  .root {
+    padding: 0 1px;
+  }
+}
