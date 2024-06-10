@@ -1,4 +1,4 @@
 export enum ENodeEnv {
-	DEVELOPMENT = 'development',
-	PRODUCTION = 'production'
+	development = 'development',
+	production = 'production'
 }
