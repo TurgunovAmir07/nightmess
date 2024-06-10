@@ -1,0 +1,33 @@
+.root {
+  cursor: pointer;
+  margin-top: -20px;
+
+  &__btn {
+    background-image: url(/CRAFT_COVER.png);
+    background-size: cover;
+    background-color: inherit;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    height: 80px;
+    width: 175px;
+
+    &_text {
+      font-size: 18px;
+      padding: 20px;
+    }
+
+    @media (max-width: 375px) {
+      &_text {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @media (max-width: 375px) {
+    &__btn {
+      height: 70px;
+      width: 155px;
+    }
+  }
+}

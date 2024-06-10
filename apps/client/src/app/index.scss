@@ -1,0 +1,75 @@
+body {
+  background: #2d0d24;
+}
+
+@font-face {
+  src: url('/fonts/PixelAnchorJack.ttf');
+  font-family: 'Pixel Anchor-Jack';
+  format: 'truetype';
+}
+
+@font-face {
+  src: url('/fonts/Panton.ttf');
+  font-family: 'Panton';
+  format: 'truetype';
+}
+
+@font-face {
+  src: url('/fonts/TildaSans.ttf');
+  font-family: 'Tilda Sans';
+  format: 'truetype';
+}
+
+@font-face {
+  src: url('/fonts/PixelCyr.ttf');
+  font-family: 'Pixel Cyr';
+  format: 'truetype';
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Pixel Anchor-Jack';
+}
+
+h1 {
+  font-family: 'Panton' !important;
+}
+
+input[type='radio']:checked {
+  accent-color: #000;
+}
+
+.swiper-slide {
+  text-align: center;
+}
+
+.swiper-pagination {
+  margin-top: 20px;
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-3d {
+  .swiper-slide-shadow-left {
+    background: inherit;
+  }
+  .swiper-slide-shadow-right {
+    background: inherit;
+  }
+}
+
+.swiper-pagination-bullet {
+  opacity: 1;
+  transition: all;
+  transition-duration: 500ms;
+  background-color: #00ba24;
+  border-radius: 0;
+
+  &-active {
+    background-color: #fff;
+    height: 15px;
+  }
+}
