@@ -9,10 +9,18 @@ export class UserRepository {
 		@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>
 	) {}
 
-	public async getByTgId(tg_id: number) {
+	public async getByTgId(tg_id: string) {
 		return this.userRepository.findOne({
 			where: {
 				tg_id
+			}
+		})
+	}
+
+	public async getById(id: number) {
+		return this.userRepository.findOne({
+			where: {
+				id
 			}
 		})
 	}
@@ -21,5 +29,9 @@ export class UserRepository {
 		return this.userRepository.create({
 			...user
 		})
+	}
+
+	public async update(user: DeepPartial<UserEntity>) {
+		return this.userRepository.save({ ...user })
 	}
 }

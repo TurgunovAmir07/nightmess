@@ -32,7 +32,7 @@ export class UserEntity extends BaseEntity {
 	@Column({
 		unique: true
 	})
-	public readonly tg_id: number
+	public readonly tg_id: string
 
 	@Column({
 		unique: true,
