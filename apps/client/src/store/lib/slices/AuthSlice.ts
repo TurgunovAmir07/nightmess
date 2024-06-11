@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { authApi } from '../../api'
+import { authApi } from '@/store'
 import { TypeRootState, UserModel } from '@/store'
 
 interface InitialState {
