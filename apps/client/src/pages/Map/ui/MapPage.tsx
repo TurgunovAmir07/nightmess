@@ -1,5 +1,5 @@
-import { Container } from '../../../shared'
-import { Header } from '../../../widgets/Header'
+import { Container } from '@/shared'
+import { Header } from '@/widgets/Header'
 import cl from './MapPage.module.scss'
 
 export const MapPage = () => {

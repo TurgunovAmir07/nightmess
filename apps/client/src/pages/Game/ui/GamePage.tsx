@@ -1,18 +1,18 @@
 import { useState } from 'react'
-import { Container } from '../../../shared'
-import { Swiper } from '../../../widgets/Swiper'
-import { Topbar } from '../../../widgets/Topbar'
+import { Container } from '@/shared'
+import { Swiper } from '@/widgets/Swiper'
+import { Topbar } from '@/widgets/Topbar'
 import cl from './GamePage.module.scss'
-import { Points } from '../../../widgets/Points'
+import { Points } from '@/widgets/Points'
 import {
 	CartButton,
 	CraftButton,
 	HomeButton,
 	InventoryButton,
 	ShopButton
-} from '../../../features'
-import { Stars } from '../../../widgets/Stars'
-import { Skills } from '../../../widgets/Skills'
+} from '@/features'
+import { Stars } from '@/widgets/Stars'
+import { Skills } from '@/widgets/Skills'
 
 export const GamePage = () => {
 	// use outlet component

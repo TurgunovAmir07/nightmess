@@ -7,10 +7,10 @@ import {
 	OAuthVkPopup,
 	Auth,
 	OAuthGoogle
-} from '../../../features'
-import { GameInput, Container } from '../../../shared'
-import { Showcase } from '../../../widgets/Showcase'
-import { Topbar } from '../../../widgets/Topbar'
+} from '@/features'
+import { GameInput, Container } from '@/shared'
+import { Showcase } from '@/widgets/Showcase'
+import { Topbar } from '@/widgets/Topbar'
 import cl from './ProfilePage.module.scss'
 
 export const ProfilePage = () => {

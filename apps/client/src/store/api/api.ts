@@ -6,7 +6,7 @@ import {
 	fetchBaseQuery
 	// retry,
 } from '@reduxjs/toolkit/query/react'
-import { TypeRootState } from '../store'
+import { TypeRootState } from '@/store'
 // import AuthSlice from '../lib/slices/AuthSlice'
 
 const baseQuery = fetchBaseQuery({

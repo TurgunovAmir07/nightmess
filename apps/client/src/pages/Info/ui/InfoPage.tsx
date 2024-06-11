@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { Container } from '../../../shared'
-import { Header } from '../../../widgets/Header'
+import { Container } from '@/shared'
+import { Header } from '@/widgets/Header'
 import cl from './InfoPage.module.scss'
 
 export const InfoPage = () => {

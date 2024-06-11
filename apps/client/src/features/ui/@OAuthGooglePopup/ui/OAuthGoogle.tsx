@@ -1,4 +1,4 @@
-import { GameButton } from '../../../../shared'
+import { GameButton } from '@/shared'
 import cl from './OAuthGoogle.module.scss'
 
 export const OAuthGoogle = () => {

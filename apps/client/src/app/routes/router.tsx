@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { MainPage } from '../../pages/Main'
-import { ProfilePage } from '../../pages/Profile'
-import { GamePage } from '../../pages/Game'
-import { ProductPage } from '../../pages/Product'
-import { RulesPage } from '../../pages/Rules'
-import { InfoPage } from '../../pages/Info'
-import { MapPage } from '../../pages/Map'
+import { MainPage } from '@/pages/Main'
+import { ProfilePage } from '@/pages/Profile'
+import { GamePage } from '@/pages/Game'
+import { ProductPage } from '@/pages/Product'
+import { RulesPage } from '@/pages/Rules'
+import { InfoPage } from '@/pages/Info'
+import { MapPage } from '@/pages/Map'
 import { HomePage } from '@/pages/Home'
 
 export const router = createBrowserRouter([
