@@ -15,52 +15,50 @@ export const Topbar = ({
   return (
     <div className={cl.root}>
       <div className={cl.root__container}>
-        <div
+        <Link
+          to="/game"
           className={`${cl.root__container__item} ${
             game && cl.root__container__item_active
           }`}
         >
           <label className={cl.root__container__item_label}>
-            <Link style={{ textDecoration: 'none' }} to="/game">
-              <input
-                checked={game}
-                onChange={handleGame}
-                className={cl.root__container__item_label__radio}
-                type="radio"
-                name="topbar"
-              />
-              <span
-                className={cl.root__container__item_label__text}
-                style={{ color: '#fff' }}
-              >
-                GAME
-              </span>
-            </Link>
+            <input
+              checked={game}
+              onChange={handleGame}
+              className={cl.root__container__item_label__radio}
+              type="radio"
+              name="topbar"
+            />
+            <span
+              className={cl.root__container__item_label__text}
+              style={{ color: '#fff' }}
+            >
+              GAME
+            </span>
           </label>
-        </div>
-        <div
+        </Link>
+        <Link
+          to="/profile"
           className={`${cl.root__container__item} ${
             profile && cl.root__container__item_active
           }`}
         >
           <label className={cl.root__container__item_label}>
-            <Link style={{ textDecoration: 'none' }} to="/profile">
-              <input
-                checked={profile}
-                onChange={handleProfile}
-                className={cl.root__container__item_label__radio}
-                type="radio"
-                name="topbar"
-              />
-              <span
-                style={{ color: '#fff' }}
-                className={cl.root__container__item_label__text}
-              >
-                PROFILE
-              </span>
-            </Link>
+            <input
+              checked={profile}
+              onChange={handleProfile}
+              className={cl.root__container__item_label__radio}
+              type="radio"
+              name="topbar"
+            />
+            <span
+              style={{ color: '#fff' }}
+              className={cl.root__container__item_label__text}
+            >
+              PROFILE
+            </span>
           </label>
-        </div>
+        </Link>
       </div>
     </div>
   )
