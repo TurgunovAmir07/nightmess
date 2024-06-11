@@ -1,34 +1,35 @@
 .root {
-  background-image: url(/фон5.png);
-  background-size: cover;
-  position: relative;
+	background-image: url(/фон5.png);
+	background-size: cover;
+	position: relative;
+	min-height: 100dvh;
 
-  &__content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 90px 0 0 0;
+	&__content {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		padding: 90px 0 0 0;
 
-    &__buttons {
-      transition: all;
-      transition-duration: 500ms;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 15px;
-    }
+		&__buttons {
+			transition: all;
+			transition-duration: 500ms;
+			display: flex;
+			gap: 20px;
+			flex-wrap: wrap;
+			justify-content: center;
+			margin-top: 15px;
+		}
 
-    @media (max-width: 380px) {
-      &__buttons {
-        gap: 10px;
-      }
-    }
-    @media (max-width: 370px) {
-      &__buttons {
-        gap: 5px;
-      }
-    }
-  }
+		@media (max-width: 380px) {
+			&__buttons {
+				gap: 10px;
+			}
+		}
+		@media (max-width: 370px) {
+			&__buttons {
+				gap: 5px;
+			}
+		}
+	}
 }
