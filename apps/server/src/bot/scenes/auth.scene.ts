@@ -14,7 +14,7 @@ export class AuthScene extends Scene {
 		this.scene = new Scenes.WizardScene(AUTH_SCENE, async ctx => {
 			await ctx.reply(
 				'Выберите раздел авторизации:',
-				Markup.keyboard([
+				Markup.inlineKeyboard([
 					Markup.button.callback('Авторизоваться через браузер', AUTH_SCENE_GENERATE_LINK)
 				])
 			)
@@ -24,7 +24,8 @@ export class AuthScene extends Scene {
 	}
 
 	public handle() {
-		this.composer.command(AUTH_SCENE_GENERATE_LINK, async ctx => {
+		this.scene.action(AUTH_SCENE_GENERATE_LINK, async ctx => {
+			console.log(ctx.from)
 			return ctx.wizard.next()
 		})
 	}

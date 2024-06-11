@@ -3,6 +3,8 @@ import { BotModule } from './bot/bot.module'
 import { DatabaseModule } from './core/database'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { EnvConfigOptions, getBotConfig } from './configs'
+import { UserModule } from './modules/user/user.module'
+import { AuthModule } from './auth/auth.module'
 
 @Module({
 	imports: [
@@ -12,7 +14,9 @@ import { EnvConfigOptions, getBotConfig } from './configs'
 			inject: [ConfigService],
 			useFactory: getBotConfig
 		}),
-		DatabaseModule
+		DatabaseModule,
+		UserModule,
+		AuthModule
 	]
 })
 export class AppModule {}
