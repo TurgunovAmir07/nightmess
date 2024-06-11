@@ -1,18 +1,31 @@
-import { Scenes } from 'telegraf'
+import { Composer, Markup, Scenes } from 'telegraf'
 import { Scene } from './abstract.scene'
 import { WizardScene } from 'telegraf/typings/scenes'
 import { IBotContext } from '../context'
+import { AUTH_SCENE_GENERATE_LINK, AUTH_SCENE } from '../bot.constants'
 
 export class AuthScene extends Scene {
 	public scene: WizardScene<IBotContext>
+	public composer: Composer<IBotContext>
 
 	constructor() {
 		super()
-		this.scene = new Scenes.WizardScene('auth_scene', async ctx => {
+		this.composer = new Composer<IBotContext>()
+		this.scene = new Scenes.WizardScene(AUTH_SCENE, async ctx => {
+			await ctx.reply(
+				'Выберите раздел авторизации:',
+				Markup.keyboard([
+					Markup.button.callback('Авторизоваться через браузер', AUTH_SCENE_GENERATE_LINK)
+				])
+			)
 			return ctx.wizard.next()
 		})
 		this.handle()
 	}
 
-	public handle() {}
+	public handle() {
+		this.composer.command(AUTH_SCENE_GENERATE_LINK, async ctx => {
+			return ctx.wizard.next()
+		})
+	}
 }
