@@ -44,9 +44,9 @@
       position: absolute;
       background-image: url(/SKILLS_FRAME.png);
       width: 55px;
-      height: 55px;
+      height: 58px;
       background-size: cover;
-      top: 45px;
+      top: 43.5px;
       left: calc(50% - 63px);
       display: flex;
       justify-content: center;
@@ -55,9 +55,9 @@
 
     @media (max-width: 375px) {
       &__frame {
-        top: 41px;
+        top: 39px;
         width: 50px;
-        height: 50px;
+        height: 53px;
         left: calc(50% - 55px) !important;
       }
     }
