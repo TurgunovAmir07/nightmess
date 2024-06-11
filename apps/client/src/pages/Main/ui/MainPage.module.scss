@@ -1,44 +1,45 @@
 .root {
-  background-image: url(/MAIN_BACK.png);
-  background-size: cover;
+	background-image: url(/MAIN_BACK.png);
+	background-size: cover;
+	min-height: 100dvh;
 
-  &__products {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 80px;
+	&__products {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		margin-top: 80px;
 
-    &__items {
-      gap: 50px;
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 300px;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-    }
-  }
+		&__items {
+			gap: 50px;
+			display: flex;
+			flex-wrap: wrap;
+			max-width: 300px;
+			justify-content: space-between;
+			align-items: center;
+			text-align: center;
+		}
+	}
 
-  &__footer {
-    padding: 30px 0;
-    width: 100%;
-    text-align: center;
+	&__footer {
+		padding: 30px 0;
+		width: 100%;
+		text-align: center;
 
-    &_btn {
-      background: inherit;
-      border: none;
-      text-align: center;
-      width: fit-content;
-      cursor: pointer;
+		&_btn {
+			background: inherit;
+			border: none;
+			text-align: center;
+			width: fit-content;
+			cursor: pointer;
 
-      &_link {
-        text-decoration: none;
-        text-align: center;
-        color: #d02314;
-        font-family: 'Panton';
-        font-size: 18px;
-        width: fit-content;
-      }
-    }
-  }
+			&_link {
+				text-decoration: none;
+				text-align: center;
+				color: #d02314;
+				font-family: 'Panton';
+				font-size: 18px;
+				width: fit-content;
+			}
+		}
+	}
 }
