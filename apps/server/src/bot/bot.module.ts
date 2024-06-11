@@ -6,7 +6,7 @@ import { BotService } from './bot.service'
 @Global()
 @Module({})
 export class BotModule {
-	static forRootAsync(options: IBotModuleAsyncOptions): DynamicModule {
+	public static forRootAsync(options: IBotModuleAsyncOptions): DynamicModule {
 		const asyncOptions = this.createAsyncOptionsProvider(options)
 		return {
 			module: BotModule,
