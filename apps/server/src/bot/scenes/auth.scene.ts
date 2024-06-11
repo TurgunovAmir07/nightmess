@@ -1,19 +1,18 @@
 import { Scenes } from 'telegraf'
 import { Scene } from './abstract.scene'
+import { WizardScene } from 'telegraf/typings/scenes'
 import { IBotContext } from '../context'
 
 export class AuthScene extends Scene {
-	public scene: Scenes.BaseScene<IBotContext>
+	public scene: WizardScene<IBotContext>
 
 	constructor() {
 		super()
-		this.scene = new Scenes.BaseScene('auth_scene')
+		this.scene = new Scenes.WizardScene('auth_scene', async ctx => {
+			return ctx.wizard.next()
+		})
 		this.handle()
 	}
 
-	public handle() {
-		this.scene.enter(ctx => {
-			ctx.editMessageText('УРРАА')
-		})
-	}
+	public handle() {}
 }
