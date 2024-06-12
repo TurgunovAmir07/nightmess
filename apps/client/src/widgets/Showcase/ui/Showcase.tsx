@@ -1,5 +1,5 @@
 import type { Key } from 'react'
-import { Breadcumps } from '@/features/Breadcumps'
+import { OrderStatus } from '@/features/OrderStatus'
 import { useCart } from '@/store'
 import { Product } from '@/widgets/Product'
 import cl from './Showcase.module.scss'
@@ -17,7 +17,7 @@ export const Showcase = ({ count }: { count: number }) => {
 				</div>
 				<div className={cl.root__content_item}>
 					<h2 className={cl.root__content_item_text}>СТАТУС</h2>
-					<Breadcumps />
+					<OrderStatus />
 					<h2 className={cl.root__content_item_text_noTop}>
 						ТОВАРЫ:
 					</h2>
