@@ -1,8 +1,8 @@
-import { Context, Scenes } from 'telegraf'
-import { Update } from 'telegraf/typings/core/types/typegram'
+import { WizardScene } from 'telegraf/typings/scenes'
+import { IBotContext } from '../context'
 
 export abstract class Scene {
-	public abstract scene: Scenes.BaseScene<Context<Update>>
+	public abstract scene: WizardScene<IBotContext>
 
 	constructor() {}
 
