@@ -1,7 +1,7 @@
 import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { Input, LongPopup } from '@/shared'
 import cl from './Settings.module.scss'
-import { settingsFieldsArr } from './settingsFields.data'
+import { settingsFieldsArr } from '../model/data/settingsFields.data'
 import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { useEffect } from 'react'
 import { useActions, useTypedSelector } from '@/store'
