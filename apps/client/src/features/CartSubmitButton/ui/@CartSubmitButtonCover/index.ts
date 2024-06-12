@@ -1,1 +1,1 @@
-export * from './ui/CartSubmitButtonCover'
+export * from './CartSubmitButtonCover'

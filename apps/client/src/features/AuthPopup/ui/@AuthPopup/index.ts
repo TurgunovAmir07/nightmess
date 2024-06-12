@@ -1,1 +1,1 @@
-export * from './ui/AuthPopup'
+export * from './AuthPopup'

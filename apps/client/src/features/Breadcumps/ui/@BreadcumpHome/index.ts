@@ -1,1 +1,1 @@
-export * from './ui/BreadcumpHome'
+export * from './BreadcumpHome'

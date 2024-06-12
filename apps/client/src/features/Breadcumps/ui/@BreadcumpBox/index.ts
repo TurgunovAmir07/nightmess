@@ -1,1 +1,1 @@
-export * from './ui/BreadcumpBox'
+export * from './BreadcumpBox'
