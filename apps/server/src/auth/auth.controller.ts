@@ -12,11 +12,15 @@ import { AuthService } from './auth.service'
 import { CookieOptions, Response } from 'express'
 import { RefreshGuard } from './guards'
 import { Cookie, User } from '@/common/decorators'
+import { ConfigService } from '@nestjs/config'
 // import type { TRefreshResponse } from '@/contracts/auth'
 
 @Controller('auth')
 export class AuthController {
-	constructor(private readonly authService: AuthService) {}
+	constructor(
+		private readonly authService: AuthService,
+		private readonly configService: ConfigService
+	) {}
 
 	private readonly refreshCookieOptions: CookieOptions = {
 		httpOnly: true,
@@ -65,6 +69,6 @@ export class AuthController {
 
 		res.cookie('refresh', refreshToken, this.refreshCookieOptions)
 
-		return res.redirect('https://ya.ru')
+		return res.redirect(this.configService.get('CLIENT_URL'))
 	}
 }
