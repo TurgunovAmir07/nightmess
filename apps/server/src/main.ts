@@ -1,12 +1,26 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { ConfigService } from '@nestjs/config'
+import * as cookieParser from 'cookie-parser'
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule)
+	app.use(cookieParser())
+	app.setGlobalPrefix('/api')
 
 	const configService = app.get(ConfigService)
 
-	await app.listen(configService.get('PORT'))
+	const CLIENT_URL = configService.get('CLIENT_URL')
+
+	app.enableCors({
+		origin: CLIENT_URL,
+		credentials: true
+	})
+
+	const SERVER_PORT = configService.get('SERVER_PORT')
+
+	await app.listen(SERVER_PORT)
+
+	console.log(`App start on port: ${SERVER_PORT}`)
 }
 bootstrap()

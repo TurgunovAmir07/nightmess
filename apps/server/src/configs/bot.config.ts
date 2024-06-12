@@ -3,6 +3,6 @@ import type { IBotOptions } from '@/bot/bot.interface'
 
 export const getBotConfig = (config: ConfigService): IBotOptions => {
 	return {
-		token: config.get('BOT_TOKEN')
+		token: config.get('BOT_TOKEN') ?? ''
 	}
 }

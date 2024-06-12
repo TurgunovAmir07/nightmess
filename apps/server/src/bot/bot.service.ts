@@ -5,6 +5,7 @@ import type { IBotOptions } from './bot.interface'
 import { BotStartCommand, Command } from './commands'
 import { AuthScene } from './scenes'
 import { IBotContext } from './context'
+import { AuthService } from '@/auth/auth.service'
 
 @Injectable()
 export class BotService {
@@ -12,10 +13,13 @@ export class BotService {
 	private commands: Command[]
 	private stage: Middleware<IBotContext>
 
-	constructor(@Inject(BOT_MODULE_OPTIONS) options: IBotOptions) {
+	constructor(
+		@Inject(BOT_MODULE_OPTIONS) options: IBotOptions,
+		public readonly authService: AuthService
+	) {
 		this.bot = new Telegraf(options.token)
 		this.commands = [new BotStartCommand(this.bot)]
-		this.stage = new Scenes.Stage([new AuthScene().scene])
+		this.stage = new Scenes.Stage([new AuthScene(authService).scene])
 		this.init()
 	}
 
