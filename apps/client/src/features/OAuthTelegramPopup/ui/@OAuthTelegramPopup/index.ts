@@ -1,1 +1,1 @@
-export * from './ui/OAuthTelegramPopup'
+export * from './OAuthTelegramPopup'
