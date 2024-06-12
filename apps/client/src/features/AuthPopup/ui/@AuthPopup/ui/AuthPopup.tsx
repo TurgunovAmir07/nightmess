@@ -2,10 +2,10 @@ import { Controller, useForm } from 'react-hook-form'
 import { Input, Popup } from '@/shared'
 import cl from './AuthPopup.module.scss'
 import { loginFieldsArr, registerFieldsArr } from './AuthPopup.data'
-import { CartSubmitButton } from '@/features/ui/@CartSubmitButton'
+import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { useCurrentQuery, useLoginMutation, useRegisterMutation } from '@/store'
 import { useState } from 'react'
-import { LoaderSpinner } from '@/features/ui/@LoaderSpinner'
+import { LoaderSpinner } from '@/features/LoaderSpinner'
 
 export const LoginPopup = ({
 	isOpen,

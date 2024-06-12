@@ -1,7 +1,7 @@
 import { Pagination, EffectCoverflow, Navigation } from 'swiper/modules'
 import { SwiperSlide, Swiper as SwiperJs } from 'swiper/react'
 import cl from './Swiper.module.scss'
-import { SwiperNavigationButton } from '@/features'
+import { SwiperNavigationButton } from '@/features/SwiperNavigationButton'
 
 import 'swiper/scss'
 import 'swiper/scss/pagination'

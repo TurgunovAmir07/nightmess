@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Input, LongPopup } from '@/shared'
 import cl from './Cart.module.scss'
-import { CartSubmitButton } from '@/features'
+import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { CartProduct } from '@/widgets/CartProduct'
 import { useActions, useCart, useTypedSelector } from '@/store'

@@ -1,20 +1,16 @@
-import {
-	HomeButton,
-	SettingsButton,
-	CartButton,
-	OAuthTelegram,
-	OAuthVkPopup,
-	Auth,
-	OAuthGoogle
-} from '@/features'
 import { GameInput, Container } from '@/shared'
 import { Showcase } from '@/widgets/Showcase'
 import cl from './ProfilePage.module.scss'
 import { Outlet } from 'react-router-dom'
+import { HomeButton } from '@/features/HomeButton'
+import { SettingsButton } from '@/features/SettingButton'
+import { CartButton } from '@/features/CartButton'
+import { OAuthTelegram } from '@/features/OAuthTelegramPopup'
+import { OAuthGoogle } from '@/features/OAuthGooglePopup'
+import { Auth } from '@/features/AuthPopup'
+import { OAuthVkPopup } from '@/features/OAuthVkPopup'
 
 export const ProfilePage = () => {
-	// вынести, использовать компонент Outlet
-
 	return (
 		<Container>
 			<div className={cl.root}>

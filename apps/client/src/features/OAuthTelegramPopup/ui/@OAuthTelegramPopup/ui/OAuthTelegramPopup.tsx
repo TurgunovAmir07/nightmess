@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Input, Popup } from '@/shared'
 import cl from './OAuthTelegramPopup.module.scss'
 import { Controller, useForm } from 'react-hook-form'
-import { CartSubmitButton } from '@/features/ui/@CartSubmitButton'
+import { CartSubmitButton } from '@/features/CartSubmitButton'
 
 export const OAuthTelegramPopup = ({
 	isOpen,

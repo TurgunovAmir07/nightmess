@@ -1,5 +1,5 @@
 import type { Key } from 'react'
-import { Breadcumps } from '@/features'
+import { Breadcumps } from '@/features/Breadcumps'
 import { useCart } from '@/store'
 import { Product } from '@/widgets/Product'
 import cl from './Showcase.module.scss'

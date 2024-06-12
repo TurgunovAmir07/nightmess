@@ -1,10 +1,8 @@
-import {
-	CartButton,
-	MapButton,
-	ProfileAuthButton,
-	GamepadButton
-} from '@/features'
+import { MapButton } from '@/features/MapButton'
 import cl from './Header.module.scss'
+import { ProfileAuthButton } from '@/features/ProfileAuthButton'
+import { CartButton } from '@/features/CartButton'
+import { GamepadButton } from '@/features/GamepadButton'
 
 export const Header = ({
 	title,

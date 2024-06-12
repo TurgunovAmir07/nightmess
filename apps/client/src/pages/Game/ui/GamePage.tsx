@@ -2,16 +2,15 @@ import { Container } from '@/shared'
 import { Swiper } from '@/widgets/Swiper'
 import cl from './GamePage.module.scss'
 import { Points } from '@/widgets/Points'
-import {
-	CartButton,
-	CraftButton,
-	HomeButton,
-	InventoryButton,
-	ShopButton
-} from '@/features'
+
 import { Stars } from '@/widgets/Stars'
 import { Skills } from '@/widgets/Skills'
 import { Outlet } from 'react-router-dom'
+import { HomeButton } from '@/features/HomeButton'
+import { CartButton } from '@/features/CartButton'
+import { InventoryButton } from '@/features/InventoryButton'
+import { CraftButton } from '@/features/CraftButton'
+import { ShopButton } from '@/features/ShopButton'
 
 export const GamePage = () => {
 	// use outlet component
