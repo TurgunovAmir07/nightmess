@@ -1,5 +1,6 @@
 import cl from './Skills.module.scss'
 import { SkillsItem } from './@SkillsItem'
+import { skillsData } from '../model/data/skills.data'
 
 export const Skills = () => {
 	return (
@@ -13,19 +14,11 @@ export const Skills = () => {
 				/>
 				<span className={cl.root__wrap_text}>2/9</span>
 				<span className={cl.root__wrap_text}>OPEN</span>
-				{/* выводить через список */}
-				<div className={cl.root__wrap__frame}>
-					<SkillsItem isEmpty={false} count={1} />
-				</div>
-				<div className={cl.root__wrap__frame}>
-					<SkillsItem isEmpty />
-				</div>
-				<div className={cl.root__wrap__frame}>
-					<SkillsItem isEmpty />
-				</div>
-				<div className={cl.root__wrap__frame}>
-					<SkillsItem isEmpty />
-				</div>
+				{skillsData.map((item, index) => (
+					<div className={cl.root__wrap__frame} key={index}>
+						<SkillsItem isEmpty={item.isEmpty} count={item.count} />
+					</div>
+				))}
 			</div>
 		</div>
 	)

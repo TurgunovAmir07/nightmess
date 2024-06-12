@@ -1,1 +1,1 @@
-export * from './ui/SkillsItem'
+export * from './SkillsItem'

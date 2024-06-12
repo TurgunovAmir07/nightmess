@@ -33,62 +33,16 @@ export const Swiper = () => {
 					slideShadows: false
 				}}
 			>
-				<SwiperSlide>
-					<img
-						style={{ width: '95%' }}
-						src='/CARD.png'
-						alt='card'
-						draggable={false}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<img
-						style={{ width: '95%' }}
-						src='/CARD.png'
-						alt='card'
-						draggable={false}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<img
-						style={{ width: '95%' }}
-						src='/CARD.png'
-						alt='card'
-						draggable={false}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<img
-						style={{ width: '95%' }}
-						src='/CARD.png'
-						alt='card'
-						draggable={false}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<img
-						style={{ width: '95%' }}
-						src='/CARD.png'
-						alt='card'
-						draggable={false}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<img
-						style={{ width: '95%' }}
-						src='/CARD.png'
-						alt='card'
-						draggable={false}
-					/>
-				</SwiperSlide>
-				<SwiperSlide>
-					<img
-						style={{ width: '95%' }}
-						src='/CARD.png'
-						alt='card'
-						draggable={false}
-					/>
-				</SwiperSlide>
+				{Array.from({ length: 5 }).map((_, index) => (
+					<SwiperSlide key={index}>
+						<img
+							style={{ width: '95%' }}
+							src='/CARD.png'
+							alt='card'
+							draggable={false}
+						/>
+					</SwiperSlide>
+				))}
 			</SwiperJs>
 			<SwiperNavigationButton className='rightEl' />
 		</div>
