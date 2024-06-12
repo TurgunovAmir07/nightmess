@@ -10,21 +10,19 @@ export const Showcase = ({ count }: { count: number }) => {
 	return (
 		<div className={cl.root}>
 			<div className={cl.root__content}>
-				<div className={cl.root__content_item}>
-					<h2 className={cl.root__content_item_title}>
+				<div className={cl.root__content__header}>
+					<h2 className={cl.root__content__header_title}>
 						ЗАКАЗ #{count}
 					</h2>
 				</div>
-				<div className={cl.root__content_item}>
-					<h2 className={cl.root__content_item_text}>СТАТУС</h2>
+				<div className={cl.root__content__main}>
+					<h2 className={cl.root__content__main_text}>СТАТУС</h2>
 					<OrderStatus />
-					<h2 className={cl.root__content_item_text_noTop}>
-						ТОВАРЫ:
-					</h2>
+					<h2 className={cl.root__content__main_text}>ТОВАРЫ:</h2>
 					<div
-						className={`${cl.root__content_item_products} ${
+						className={`${cl.root__content__main__products} ${
 							cart.length === 0 &&
-							cl.root__content_item_products_empty
+							cl.root__content__main__products_empty
 						}`}
 					>
 						{cart.length > 0 ? (
@@ -49,12 +47,13 @@ export const Showcase = ({ count }: { count: number }) => {
 								)
 							)
 						) : (
-							<h2 className={cl.root__content_item_text}>
-								ПУСТО :(
+							<h2 className={cl.root__content__main_text}>
+								ВЫ НИЧЕГО НЕ ЗАКАЗЫВАЛИ
 							</h2>
 						)}
 					</div>
 				</div>
+				<div className={cl.root__content__footer} />
 			</div>
 		</div>
 	)
