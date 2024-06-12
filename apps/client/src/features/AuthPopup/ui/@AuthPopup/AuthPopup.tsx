@@ -5,7 +5,7 @@ import { loginFieldsArr, registerFieldsArr } from './AuthPopup.data'
 import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { useCurrentQuery, useLoginMutation, useRegisterMutation } from '@/store'
 import { useState } from 'react'
-import { LoaderSpinner } from '@/features/LoaderSpinner'
+import { LoaderSpinner } from '@/shared/ui/loader-spinner'
 
 export const LoginPopup = ({
 	isOpen,
