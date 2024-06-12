@@ -1,17 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Input, LongPopup } from '@/shared'
 import cl from './Cart.module.scss'
 import { CartSubmitButton } from '@/features'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { CartProduct } from '@/widgets/CartProduct'
-import {
-	CartSlice,
-	OrderSlice,
-	useActions,
-	useCart,
-	useTypedSelector
-} from '@/store'
-import { useDispatch } from 'react-redux'
+import { useActions, useCart, useTypedSelector } from '@/store'
 import { cartFieldsArr } from './cartFields.data'
 
 export const Cart = ({
@@ -29,40 +22,39 @@ export const Cart = ({
 		formState: { errors }
 	} = useForm()
 
+	const { removeFromCart, setOrder, changeQuantity } = useActions()
+
 	const onSubmit = (data: FieldValues) => {
-		dispatch(
-			OrderSlice.actions.setOrder({
-				items: cart,
-				email: data.email,
-				tel: data.tel,
-				city: data.city,
-				delivery: data.delivery,
-				location: data.location,
-				client: data.client,
-				telegram: data.telegram,
-				comment: data.comment,
-				promotional_code: data.promotional_code,
-				payment: data.payment,
-				orderPrice: total + deliveryPrice
-			})
-		)
+		setOrder({
+			items: cart,
+			email: data.email,
+			tel: data.tel,
+			city: data.city,
+			delivery: data.delivery,
+			location: data.location,
+			client: data.client,
+			telegram: data.telegram,
+			comment: data.comment,
+			promotional_code: data.promotional_code,
+			payment: data.payment,
+			orderPrice: total + deliveryPrice
+		})
 	}
 
 	const { order } = useTypedSelector(state => state.order)
 	const { userData } = useTypedSelector(state => state.userData)
-
+	const [deliveryPrice, setDeliveryPrice] = useState<number>(0)
 	const delivery = watch('delivery')
 
-	// вынести в состояние
-	let deliveryPrice = 0
-
-	if (delivery === 'post_office') {
-		deliveryPrice = 500
-	} else if (delivery === 'cys') {
-		deliveryPrice = 1100
-	} else if (delivery === 'express') {
-		deliveryPrice = 490
-	}
+	useEffect(() => {
+		if (delivery === 'post_office') {
+			setDeliveryPrice(500)
+		} else if (delivery === 'cys') {
+			setDeliveryPrice(1100)
+		} else if (delivery === 'express') {
+			setDeliveryPrice(490)
+		}
+	}, [delivery])
 
 	const city = watch('city')
 
@@ -88,12 +80,9 @@ export const Cart = ({
 
 	const { cart, total } = useCart()
 
-	const { removeFromCart } = useActions()
-
-	const dispatch = useDispatch()
-
-	// мемоизация
-	const selectedDelivery = cartFieldsArr.find(item => item.value === delivery)
+	const selectedDelivery = useMemo(() => {
+		return cartFieldsArr.find(item => item.value === delivery)
+	}, [delivery])
 
 	return (
 		<div className={cl.root}>
@@ -127,24 +116,16 @@ export const Cart = ({
 											img={item.product.img}
 											quantity={item.quantity}
 											minus={() =>
-												dispatch(
-													CartSlice.actions.changeQuantity(
-														{
-															id: item.id,
-															type: 'minus'
-														}
-													)
-												)
+												changeQuantity({
+													id: item.id,
+													type: 'minus'
+												})
 											}
 											plus={() =>
-												dispatch(
-													CartSlice.actions.changeQuantity(
-														{
-															id: item.id,
-															type: 'plus'
-														}
-													)
-												)
+												changeQuantity({
+													id: item.id,
+													type: 'plus'
+												})
 											}
 										/>
 										<button

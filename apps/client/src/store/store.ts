@@ -53,3 +53,5 @@ export const setupStore = () => {
 }
 
 export type TypeRootState = ReturnType<typeof rootReducer>
+export type TypeStore = ReturnType<typeof setupStore>
+export type TypeDispatch = TypeStore['dispatch']

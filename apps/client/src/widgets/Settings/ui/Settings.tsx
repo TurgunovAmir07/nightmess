@@ -4,8 +4,7 @@ import cl from './Settings.module.scss'
 import { settingsFieldsArr } from './settingsFields.data'
 import { CartSubmitButton } from '@/features'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { UserDataSlice, useTypedSelector } from '@/store'
+import { useActions, useTypedSelector } from '@/store'
 
 export const Settings = ({
 	isOpen,
@@ -21,20 +20,18 @@ export const Settings = ({
 		formState: { errors }
 	} = useForm()
 
-	const dispatch = useDispatch()
+	const { setUserData } = useActions()
 
 	const onSubmit = (data: FieldValues) => {
-		dispatch(
-			UserDataSlice.actions.setUserData({
-				email: data.email,
-				tel: data.tel,
-				city: data.city,
-				delivery: data.delivery,
-				location: data.location,
-				client: data.client,
-				telegram: data.telegram
-			})
-		)
+		setUserData({
+			email: data.email,
+			tel: data.tel,
+			city: data.city,
+			delivery: data.delivery,
+			location: data.location,
+			client: data.client,
+			telegram: data.telegram
+		})
 	}
 
 	useEffect(() => {
