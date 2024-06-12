@@ -26,4 +26,12 @@ export class SessionRepository {
 		const createdSession = this.sessionRepository.create(session)
 		return this.sessionRepository.save(createdSession)
 	}
+
+	public async findByToken(token: string) {
+		return this.sessionRepository.findOne({
+			where: {
+				token
+			}
+		})
+	}
 }

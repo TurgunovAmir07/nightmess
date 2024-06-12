@@ -14,8 +14,8 @@ export class TokenService {
 		private readonly sessionRepository: SessionRepository
 	) {}
 
-	public generateTokens({ id, email }: UserEntity) {
-		const payload = { id, email }
+	public generateTokens({ id, email, tg_id }: UserEntity) {
+		const payload = { id, email, tg_id }
 		const { access, refresh } = this.jwtConfig
 
 		const accessToken = this.jwtService.sign(payload, access)
@@ -24,7 +24,7 @@ export class TokenService {
 		return { accessToken, refreshToken }
 	}
 
-	public async safeToDb(token: string, user: number) {
+	public async saveToDb(token: string, user: number) {
 		const oldSession = await this.sessionRepository.findByUser(user)
 
 		if (oldSession) {
@@ -35,5 +35,9 @@ export class TokenService {
 		}
 
 		return this.sessionRepository.create({ user, token })
+	}
+
+	public findSessionByToken(token: string) {
+		return this.sessionRepository.findByToken(token)
 	}
 }

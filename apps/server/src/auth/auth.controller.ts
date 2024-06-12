@@ -1,6 +1,18 @@
-import { BadRequestException, Controller, Get, Param, Res } from '@nestjs/common'
+import {
+	BadRequestException,
+	ClassSerializerInterceptor,
+	Controller,
+	Get,
+	Param,
+	Res,
+	UnauthorizedException,
+	UseInterceptors
+} from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { CookieOptions, Response } from 'express'
+import { RefreshGuard } from './guards'
+import { Cookie, User } from '@/common/decorators'
+// import type { TRefreshResponse } from '@/contracts/auth'
 
 @Controller('auth')
 export class AuthController {
@@ -12,7 +24,34 @@ export class AuthController {
 		path: '/api/auth'
 	}
 
-	@Get(':link')
+	@Get('refresh')
+	@RefreshGuard()
+	@UseInterceptors(ClassSerializerInterceptor)
+	public async refresh(
+		@Cookie('refresh') refresh: string,
+		@User('id') userId: number,
+		@Res({ passthrough: true }) res: Response
+	) {
+		const data = await this.authService.refresh(refresh, userId)
+
+		if (!data) {
+			res.clearCookie('refresh', {
+				path: this.refreshCookieOptions.path
+			})
+			throw new UnauthorizedException()
+		}
+
+		const {
+			tokens: { accessToken },
+			profile
+		} = data
+
+		res.cookie('refresh', this.refreshCookieOptions)
+
+		return { accessToken, profile }
+	}
+
+	@Get('confirm/:link')
 	public async createSession(
 		@Param('link') link: string,
 		@Res({ passthrough: true }) res: Response

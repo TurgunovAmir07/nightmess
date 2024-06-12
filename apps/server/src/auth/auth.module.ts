@@ -10,6 +10,7 @@ import { getJwtConfig } from '@/configs'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { SessionEntity } from './entities'
 import { SessionRepository } from './session.repository'
+import { AccessJwtStrategy, RefreshJwtStrategy } from './strategies'
 
 @Module({
 	imports: [TypeOrmModule.forFeature([SessionEntity]), UserModule, JwtModule.register({})],
@@ -18,6 +19,8 @@ import { SessionRepository } from './session.repository'
 		AuthService,
 		SessionRepository,
 		TokenService,
+		AccessJwtStrategy,
+		RefreshJwtStrategy,
 		{
 			provide: JWT_MODULE_OPTIONS,
 			inject: [ConfigService],

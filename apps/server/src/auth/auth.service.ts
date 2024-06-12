@@ -23,7 +23,7 @@ export class AuthService {
 
 		await this.userService.updateLink(userId, link)
 
-		return { link: `${this.configService.get('SERVER_URL')}/api/auth/${link}` }
+		return { link: `${this.configService.get('SERVER_URL')}/api/auth/confirm/${link}` }
 	}
 
 	public async createSession(link: string): Promise<null | string> {
@@ -37,8 +37,23 @@ export class AuthService {
 
 		await this.userService.updateLink(user.tg_id, null)
 
-		await this.tokenService.safeToDb(refreshToken, user.id)
+		await this.tokenService.saveToDb(refreshToken, user.id)
 
 		return refreshToken
+	}
+
+	public async refresh(refresh: string, userId: number) {
+		const tokenFromDb = await this.tokenService.findSessionByToken(refresh)
+		const profile = await this.userService.getById(userId)
+
+		if (!tokenFromDb || !profile) {
+			return null
+		}
+
+		const tokens = this.tokenService.generateTokens(profile)
+
+		await this.tokenService.saveToDb(tokens.refreshToken, userId)
+
+		return { tokens, profile }
 	}
 }

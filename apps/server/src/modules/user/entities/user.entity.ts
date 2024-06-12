@@ -1,5 +1,6 @@
 import { BaseEntity } from '@/core/database/entities'
 import { Column, Entity } from 'typeorm'
+import { Exclude } from 'class-transformer'
 
 @Entity('User')
 export class UserEntity extends BaseEntity {
@@ -30,11 +31,13 @@ export class UserEntity extends BaseEntity {
 	})
 	public readonly email: string | null
 
+	@Exclude()
 	@Column({
 		unique: true
 	})
 	public readonly tg_id: string
 
+	@Exclude()
 	@Column({
 		unique: true,
 		nullable: true
