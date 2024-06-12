@@ -1,1 +1,1 @@
-export * from './ui/LoaderSpinner'
+export * from './LoaderSpinner'

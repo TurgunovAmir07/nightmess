@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Input, LongPopup } from '@/shared'
+import { Input, Popup } from '@/shared'
 import cl from './Cart.module.scss'
 import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
@@ -86,7 +86,12 @@ export const Cart = ({
 
 	return (
 		<div className={cl.root}>
-			<LongPopup title={'КОРЗИНА'} isOpen={isOpen} setIsOpen={setIsOpen}>
+			<Popup
+				isScrollAnimation
+				title={'КОРЗИНА'}
+				isOpen={isOpen}
+				setIsOpen={setIsOpen}
+			>
 				<form
 					onSubmit={handleSubmit(onSubmit)}
 					className={cl.root__content}
@@ -282,7 +287,7 @@ export const Cart = ({
 						<CartSubmitButton title='ЗАКАЗАТЬ' />
 					</div>
 				</form>
-			</LongPopup>
+			</Popup>
 		</div>
 	)
 }

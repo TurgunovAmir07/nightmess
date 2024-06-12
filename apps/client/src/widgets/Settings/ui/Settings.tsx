@@ -1,5 +1,5 @@
 import { Controller, FieldValues, useForm } from 'react-hook-form'
-import { Input, LongPopup } from '@/shared'
+import { Input, Popup } from '@/shared'
 import cl from './Settings.module.scss'
 import { settingsFieldsArr } from '../model/data/settingsFields.data'
 import { CartSubmitButton } from '@/features/CartSubmitButton'
@@ -54,7 +54,12 @@ export const Settings = ({
 
 	return (
 		<div className={cl.root}>
-			<LongPopup title='Данные' isOpen={isOpen} setIsOpen={setIsOpen}>
+			<Popup
+				isScrollAnimation
+				title='Данные'
+				isOpen={isOpen}
+				setIsOpen={setIsOpen}
+			>
 				<form
 					onSubmit={handleSubmit(onSubmit)}
 					className={cl.root__content}
@@ -160,7 +165,7 @@ export const Settings = ({
 						</div>
 					</div>
 				</form>
-			</LongPopup>
+			</Popup>
 		</div>
 	)
 }
