@@ -5,7 +5,7 @@ import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { CartProduct } from '@/widgets/CartProduct'
 import { useActions, useCart, useTypedSelector } from '@/store'
-import { cartFieldsArr } from './cartFields.data'
+import { cartFieldsArr } from '../model/data/cartFields.data'
 
 export const Cart = ({
 	isOpen,

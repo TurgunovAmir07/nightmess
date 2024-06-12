@@ -1,0 +1,23 @@
+.root {
+	display: flex;
+	gap: 5px;
+	align-content: end;
+	font-family: 'Panton';
+
+	&__btn {
+		border: none;
+		background: inherit;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+
+		&_img {
+			max-width: 10px;
+		}
+
+		&__disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	}
+}

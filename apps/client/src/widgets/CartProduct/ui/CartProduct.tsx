@@ -1,3 +1,4 @@
+import { CartProductCounter } from './@CartProductCounter/CartProductCounter'
 import cl from './CartProduct.module.scss'
 
 export const CartProduct = ({
@@ -25,35 +26,11 @@ export const CartProduct = ({
 						Размер XL
 					</div>
 				</div>
-				<div className={cl.root__info__quontity}>
-					<button
-						disabled={quantity === 1}
-						onClick={minus}
-						className={`${cl.root__info__quontity__btn} ${
-							quantity === 1 &&
-							cl.root__info__quontity__btn__disabled
-						}`}
-						type='button'
-					>
-						<img
-							className={cl.root__info__quontity__btn_img}
-							src='/MINUS.png'
-							alt='minus'
-						/>
-					</button>
-					{quantity}
-					<button
-						onClick={plus}
-						className={cl.root__info__quontity__btn}
-						type='button'
-					>
-						<img
-							className={cl.root__info__quontity__btn_img}
-							src='/PLUS.png'
-							alt='plus'
-						/>
-					</button>
-				</div>
+				<CartProductCounter
+					quantity={quantity}
+					minus={minus}
+					plus={plus}
+				/>
 			</div>
 			<div className={cl.root__price}>{price} руб</div>
 		</div>
