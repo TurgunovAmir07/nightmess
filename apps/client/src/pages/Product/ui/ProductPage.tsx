@@ -3,12 +3,15 @@ import { productsData, Container, GameButton } from '@/shared'
 import { Product } from '@/widgets/Product'
 import cl from './ProductsPage.module.scss'
 import { useCart, useActions } from '@/store'
+import { useMemo } from 'react'
 
 export const ProductPage = () => {
 	// вынести логику в виджет или фичу
 	const { id } = useParams()
 
-	const product = productsData.find(item => item.id === Number(id))
+	const product = useMemo(() => {
+		return productsData.find(item => item.id === Number(id))
+	}, [id])
 
 	const { addToCart } = useActions()
 
