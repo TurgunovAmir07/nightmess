@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Container } from '@/shared'
 import { Header } from '@/widgets/Header'
 import cl from './InfoPage.module.scss'
+import { infoData } from '../model/data/info.data'
 
 export const InfoPage = () => {
 	return (
@@ -38,70 +39,28 @@ export const InfoPage = () => {
 						</span>
 					</span>
 				</div>
-				{/* FIX вынести в .data и пробежаться через map() */}
 				<div className={cl.root__wrapper}>
-					<Link to='/rules' className={cl.root__wrapper_link}>
-						<img
-							draggable={false}
-							className={cl.root__wrapper_link_img}
-							src='/GAMEPAD копия.png'
-							alt='gamepad'
-						/>
-						ПРАВИЛА ИГРЫ
-						<img
-							draggable={false}
-							className={cl.root__wrapper_link_img}
-							src='/GAMEPAD копия.png'
-							alt='gamepad'
-						/>
-					</Link>
-					<Link to='#' className={cl.root__wrapper_link}>
-						<img
-							draggable={false}
-							className={cl.root__wrapper_link_review}
-							src='/REVIEW.png'
-							alt='review'
-						/>
-						Отзывы
-						<img
-							draggable={false}
-							className={cl.root__wrapper_link_review}
-							src='/REVIEW.png'
-							alt='review'
-						/>
-					</Link>
-				</div>
-				<div className={cl.root__wrapper}>
-					<Link to='#' className={cl.root__wrapper_link}>
-						<img
-							draggable={false}
-							className={cl.root__wrapper_link_offerta}
-							src='/OFERTA.png'
-							alt='oferta'
-						/>
-						Offer
-						<img
-							draggable={false}
-							className={cl.root__wrapper_link_offerta}
-							src='/OFERTA.png'
-							alt='oferta'
-						/>
-					</Link>
-					<Link to='#' className={cl.root__wrapper_link}>
-						<img
-							draggable={false}
-							className={cl.root__wrapper_link_offerta}
-							src='/OFERTA.png'
-							alt='oferta'
-						/>
-						Privacy
-						<img
-							draggable={false}
-							className={cl.root__wrapper_link_offerta}
-							src='/OFERTA.png'
-							alt='oferta'
-						/>
-					</Link>
+					{infoData.map((item, index) => (
+						<Link
+							key={index}
+							to={item.path}
+							className={cl.root__wrapper_link}
+						>
+							<img
+								draggable={false}
+								className={item.styles}
+								src={item.src}
+								alt={item.alt}
+							/>
+							{item.text}
+							<img
+								draggable={false}
+								className={item.styles}
+								src={item.src}
+								alt={item.alt}
+							/>
+						</Link>
+					))}
 				</div>
 			</div>
 		</Container>

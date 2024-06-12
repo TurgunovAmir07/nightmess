@@ -13,8 +13,6 @@ import { CraftButton } from '@/features/CraftButton'
 import { ShopButton } from '@/features/ShopButton'
 
 export const GamePage = () => {
-	// use outlet component
-
 	return (
 		<Container>
 			<Outlet />
