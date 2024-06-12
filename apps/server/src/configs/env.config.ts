@@ -11,6 +11,7 @@ const nodeEnvArray = Object.freeze(getArrayEnum(ENodeEnv)) as any
 const environmentVariables = z.object({
 	SERVER_PORT: z.preprocess(Number, z.number()),
 	CLIENT_URL: z.string(),
+	SERVER_URL: z.string(),
 	ACCESS_JWT_SECRET: z.string(),
 	REFRESH_JWT_SECRET: z.string(),
 	// * DataBase

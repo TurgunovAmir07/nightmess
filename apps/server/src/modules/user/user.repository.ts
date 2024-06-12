@@ -26,12 +26,22 @@ export class UserRepository {
 	}
 
 	public async create(user: DeepPartial<UserEntity>) {
-		return this.userRepository.create({
+		const createdUser = this.userRepository.create({
 			...user
 		})
+
+		return this.userRepository.save(createdUser)
 	}
 
 	public async update(user: DeepPartial<UserEntity>) {
 		return this.userRepository.save({ ...user })
+	}
+
+	public async getByLink(link: string) {
+		return this.userRepository.findOne({
+			where: {
+				link
+			}
+		})
 	}
 }

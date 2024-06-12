@@ -13,10 +13,10 @@ export class BotStartCommand extends Command {
 			async ctx =>
 				await ctx.reply(
 					'Добро пожаловать в Nightmess Bot! Выберите интересующий Вас модуль:',
-					Markup.inlineKeyboard([Markup.button.callback('Авторизация', AUTH_SCENE_ENTER)])
+					Markup.keyboard([Markup.button.text(AUTH_SCENE_ENTER)])
 				)
 		)
 
-		this.bot.action(AUTH_SCENE_ENTER, ctx => ctx.scene.enter(AUTH_SCENE))
+		this.bot.hears(AUTH_SCENE_ENTER, ctx => ctx.scene.enter(AUTH_SCENE))
 	}
 }

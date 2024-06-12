@@ -25,9 +25,10 @@ export class UserEntity extends BaseEntity {
 	public readonly phone: string | null
 
 	@Column({
-		unique: true
+		unique: true,
+		nullable: true
 	})
-	public readonly email: string
+	public readonly email: string | null
 
 	@Column({
 		unique: true

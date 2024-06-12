@@ -13,13 +13,17 @@ export class UserService {
 		return this.userRepository.create({ tg_id })
 	}
 
-	public async updateLink(userId: string, link: string) {
-		const user = await this.userRepository.getByTgId(userId)
+	public async updateLink(userTgId: string, link: string) {
+		const user = await this.userRepository.getByTgId(userTgId)
 
 		if (!user) {
 			return null
 		}
 
 		return this.userRepository.update({ ...user, link })
+	}
+
+	public async getByLink(link: string) {
+		return this.userRepository.getByLink(link)
 	}
 }
