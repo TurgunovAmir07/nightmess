@@ -6,31 +6,32 @@ import { ProductPage } from '@/pages/Product'
 import { RulesPage } from '@/pages/Rules'
 import { InfoPage } from '@/pages/Info'
 import { MapPage } from '@/pages/Map'
-import { HomePage } from '@/pages/Home'
+import { Topbar } from '@/widgets/Topbar'
 
 export const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <MainPage />
 	},
-	// example, remove after fix
 	{
-		path: '/home',
-		element: <HomePage />,
+		path: '/profile',
+		element: <ProfilePage />,
 		children: [
 			{
-				path: 'profile',
-				element: <></>
+				path: '',
+				element: <Topbar />
 			}
 		]
 	},
 	{
-		path: '/profile',
-		element: <ProfilePage />
-	},
-	{
 		path: '/game',
-		element: <GamePage />
+		element: <GamePage />,
+		children: [
+			{
+				path: '',
+				element: <Topbar />
+			}
+		]
 	},
 	{
 		path: '/product/:id',

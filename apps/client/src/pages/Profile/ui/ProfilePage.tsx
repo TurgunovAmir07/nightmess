@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
 	HomeButton,
 	SettingsButton,
@@ -10,34 +9,16 @@ import {
 } from '@/features'
 import { GameInput, Container } from '@/shared'
 import { Showcase } from '@/widgets/Showcase'
-import { Topbar } from '@/widgets/Topbar'
 import cl from './ProfilePage.module.scss'
+import { Outlet } from 'react-router-dom'
 
 export const ProfilePage = () => {
 	// вынести, использовать компонент Outlet
 
-	const [profile, setProfile] = useState(true)
-	const [game, setGame] = useState(false)
-
-	const handleProfile = () => {
-		setGame(false)
-		setProfile(true)
-	}
-
-	const handleGame = () => {
-		setProfile(false)
-		setGame(true)
-	}
-
 	return (
 		<Container>
 			<div className={cl.root}>
-				<Topbar
-					profile={profile}
-					game={game}
-					handleProfile={handleProfile}
-					handleGame={handleGame}
-				/>
+				<Outlet />
 
 				<div className={cl.root__content}>
 					<HomeButton />

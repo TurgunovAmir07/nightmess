@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import { Container } from '@/shared'
 import { Swiper } from '@/widgets/Swiper'
-import { Topbar } from '@/widgets/Topbar'
 import cl from './GamePage.module.scss'
 import { Points } from '@/widgets/Points'
 import {
@@ -13,31 +11,14 @@ import {
 } from '@/features'
 import { Stars } from '@/widgets/Stars'
 import { Skills } from '@/widgets/Skills'
+import { Outlet } from 'react-router-dom'
 
 export const GamePage = () => {
 	// use outlet component
 
-	const [profile, setProfile] = useState(false)
-	const [game, setGame] = useState(true)
-
-	const handleProfile = () => {
-		setGame(false)
-		setProfile(true)
-	}
-
-	const handleGame = () => {
-		setProfile(false)
-		setGame(true)
-	}
-
 	return (
 		<Container>
-			<Topbar
-				profile={profile}
-				game={game}
-				handleProfile={handleProfile}
-				handleGame={handleGame}
-			/>
+			<Outlet />
 			<div className={cl.root}>
 				<span className={cl.root__moon}>
 					<img
