@@ -1,4 +1,7 @@
-image: node:18-alpine
+
+# warning don't use it
+
+image: ubuntu:latest
 
 stages:
   - ci-client
@@ -8,6 +11,7 @@ stages:
 
 job 0:
   stage: ci-client
+  when: manual
   scripts:
     - npm i
     - npm run lint
@@ -18,6 +22,7 @@ job 0:
 
 job 1:
   stage: ci-server
+  when: manual
   scripts:
     - npm i yarn
     - yarn
@@ -30,10 +35,11 @@ job 1:
 job 2:
   stage: build-client
   needs: ci-client
+  when: manual
   only:
     - main
   scripts:
-    echo "build-client"
+    echo "build-client!"
   before_scripts:
     - cd apps
     - cd client
@@ -41,10 +47,11 @@ job 2:
 job 3:
   stage: build-server
   needs: ci-server
+  when: manual
   only:
     - main
   scripts:
-    echo "build-server"
+    echo "build-server!"
   before_scripts:
     - cd apps
     - cd server
