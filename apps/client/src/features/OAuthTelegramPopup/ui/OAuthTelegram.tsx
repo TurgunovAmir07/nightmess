@@ -15,7 +15,7 @@ export const OAuthTelegram = () => {
 			<GameButton
 				onCLick={handlePopup}
 				text={'привязать'}
-				Icon='/telegram.png'
+				Icon='/icon-telegram.png'
 			/>
 			<OAuthTelegramPopup isOpen={isOpen} setIsOpen={setIsOpen} />
 		</div>

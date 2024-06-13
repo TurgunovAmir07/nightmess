@@ -1,12 +1,12 @@
 export const pointsData = [
 	{
 		quantity: 100,
-		src: '/COINS.png',
+		src: '/icon-currency-coin.png',
 		alt: 'coins'
 	},
 	{
 		quantity: 100,
-		src: '/GEMS.png',
+		src: '/icon-currency-gem.png',
 		alt: 'gems'
 	}
 ]

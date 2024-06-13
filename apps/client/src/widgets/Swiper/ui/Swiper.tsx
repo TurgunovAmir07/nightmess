@@ -37,7 +37,7 @@ export const Swiper = () => {
 					<SwiperSlide key={index}>
 						<img
 							style={{ width: '95%' }}
-							src='/CARD.png'
+							src='/illustration-card.png'
 							alt='card'
 							draggable={false}
 						/>

@@ -3,13 +3,13 @@ import cl from './Product.module.scss'
 
 export const Product = ({
 	name,
-	Icon,
+	icon,
 	price,
 	id,
 	isShowCase
 }: {
 	name: string
-	Icon: string
+	icon: string
 	price?: number
 	id: number
 	isShowCase?: boolean
@@ -18,13 +18,14 @@ export const Product = ({
 		<Link to={`/product/${id}`} className={cl.root}>
 			<img
 				className={`${cl.root__icon} ${
-					isShowCase ? cl.root__icon__showcase : ''
+					isShowCase && cl.root__icon__showcase
 				}`}
-				src={Icon}
+				alt={name}
+				src={icon}
 			/>
 			<div
 				className={`${cl.root__name} ${
-					isShowCase ? cl.root__name__showcase : ''
+					isShowCase && cl.root__name__showcase
 				}`}
 			>
 				{name}

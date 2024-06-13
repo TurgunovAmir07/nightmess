@@ -21,13 +21,17 @@ export const CartProductCounter = ({
 			>
 				<img
 					className={cl.root__btn_img}
-					src='/MINUS.png'
+					src='/button-minus.png'
 					alt='minus'
 				/>
 			</button>
 			{quantity}
 			<button onClick={plus} className={cl.root__btn} type='button'>
-				<img className={cl.root__btn_img} src='/PLUS.png' alt='plus' />
+				<img
+					className={cl.root__btn_img}
+					src='/button-plus.png'
+					alt='plus'
+				/>
 			</button>
 		</div>
 	)

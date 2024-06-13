@@ -7,7 +7,7 @@ export const StatusHome = () => {
 				<img
 					className={cl.root__text_icon}
 					draggable={false}
-					src='/дом.png'
+					src='/icon-order-status-home.png'
 					alt='home'
 				/>
 			</button>

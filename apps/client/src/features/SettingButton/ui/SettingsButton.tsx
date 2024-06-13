@@ -17,7 +17,7 @@ export const SettingsButton = () => {
 					<img
 						draggable={false}
 						style={{ width: '50px' }}
-						src='/settings.png'
+						src='/button-settings.png'
 						alt='settings'
 					/>
 				</button>

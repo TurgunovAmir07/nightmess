@@ -1,106 +1,106 @@
 .root {
-  user-select: none;
-  padding-bottom: 20px;
+	user-select: none;
+	padding-bottom: 20px;
 
-  &__wrap {
-    position: relative;
-    height: 120px;
+	&__wrap {
+		position: relative;
+		height: 120px;
 
-    &_img {
-      top: 0;
-      left: calc(50% - 175px);
-      max-width: 350px;
-      position: absolute;
-    }
+		&_img {
+			top: 0;
+			left: calc(50% - 175px);
+			max-width: 350px;
+			position: absolute;
+		}
 
-    &_text {
-      position: absolute;
-      top: 10px;
-      left: calc(50% - -121px);
-      font-size: 11px;
-      color: #440707;
-    }
+		&_text {
+			position: absolute;
+			top: 10px;
+			left: calc(50% - -121px);
+			font-size: 11px;
+			color: #440707;
+		}
 
-    &_text:nth-child(2) {
-      top: 5px;
-      left: calc(50% - 165px);
-      font-size: 16px;
-    }
+		&_text:nth-child(2) {
+			top: 5px;
+			left: calc(50% - 165px);
+			font-size: 16px;
+		}
 
-    @media (max-width: 375px) {
-      &_text {
-        font-size: 10px;
-        top: 9px;
-        left: calc(50% - -111px);
-      }
-      &_text:nth-child(2) {
-        top: 5px;
-        left: calc(50% - 150px);
-        font-size: 14px;
-      }
-    }
+		@media (max-width: 375px) {
+			&_text {
+				font-size: 10px;
+				top: 9px;
+				left: calc(50% - -111px);
+			}
+			&_text:nth-child(2) {
+				top: 5px;
+				left: calc(50% - 150px);
+				font-size: 14px;
+			}
+		}
 
-    &__frame {
-      position: absolute;
-      background-image: url(/SKILLS_FRAME.png);
-      width: 55px;
-      height: 58px;
-      background-size: cover;
-      top: 43.5px;
-      left: calc(50% - 63px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+		&__frame {
+			position: absolute;
+			background-image: url(/icon-skill-frame.png);
+			width: 55px;
+			height: 58px;
+			background-size: cover;
+			top: 43.5px;
+			left: calc(50% - 63px);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 
-    @media (max-width: 375px) {
-      &__frame {
-        top: 39px;
-        width: 50px;
-        height: 53px;
-        left: calc(50% - 55px) !important;
-      }
-    }
+		@media (max-width: 375px) {
+			&__frame {
+				top: 39px;
+				width: 50px;
+				height: 53px;
+				left: calc(50% - 55px) !important;
+			}
+		}
 
-    &__frame:nth-child(7) {
-      left: calc(50% - -78px);
-    }
+		&__frame:nth-child(7) {
+			left: calc(50% - -78px);
+		}
 
-    @media (max-width: 375px) {
-      &__frame:nth-child(7) {
-        left: calc(50% - -67px) !important;
-      }
-    }
+		@media (max-width: 375px) {
+			&__frame:nth-child(7) {
+				left: calc(50% - -67px) !important;
+			}
+		}
 
-    &__frame:nth-child(6) {
-      left: calc(50% - -8px);
-    }
+		&__frame:nth-child(6) {
+			left: calc(50% - -8px);
+		}
 
-    @media (max-width: 375px) {
-      &__frame:nth-child(6) {
-        left: calc(50% - -5px) !important;
-      }
-    }
+		@media (max-width: 375px) {
+			&__frame:nth-child(6) {
+				left: calc(50% - -5px) !important;
+			}
+		}
 
-    &__frame:nth-child(4) {
-      left: calc(50% - 132px);
-    }
+		&__frame:nth-child(4) {
+			left: calc(50% - 132px);
+		}
 
-    @media (max-width: 375px) {
-      &__frame:nth-child(4) {
-        left: calc(50% - 115px) !important;
-      }
-    }
-  }
+		@media (max-width: 375px) {
+			&__frame:nth-child(4) {
+				left: calc(50% - 115px) !important;
+			}
+		}
+	}
 
-  @media (max-width: 375px) {
-    &__wrap {
-      height: 110px;
+	@media (max-width: 375px) {
+		&__wrap {
+			height: 110px;
 
-      &_img {
-        max-width: 320px;
-        left: calc(50% - 160px);
-      }
-    }
-  }
+			&_img {
+				max-width: 320px;
+				left: calc(50% - 160px);
+			}
+		}
+	}
 }

@@ -7,7 +7,7 @@ export const StatusOrder = () => {
 				<img
 					className={cl.root__text_icon}
 					draggable={false}
-					src='/заказ.png'
+					src='/icon-order-status-task.png'
 					alt='order'
 				/>
 			</button>

@@ -8,7 +8,7 @@ export const Points = () => {
 				<img
 					draggable={false}
 					className={cl.root__wrap_img}
-					src='/POINTS_BACK.png'
+					src='/illustration-currency-lines.png'
 					alt='points'
 				/>
 				{pointsData.map((item, index) => (

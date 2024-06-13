@@ -17,7 +17,7 @@ export const ProductDetails = () => {
 				<Product
 					id={product.id}
 					name={product.name}
-					Icon={product.img}
+					icon={product.img}
 					price={product.price}
 				/>
 			)}

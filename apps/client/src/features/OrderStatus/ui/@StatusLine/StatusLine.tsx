@@ -7,7 +7,7 @@ export const StatusLine = () => {
 				<img
 					draggable={false}
 					style={{ width: '20px' }}
-					src='/линия.png'
+					src='/icon-line.png'
 					alt='line'
 				/>
 			</div>

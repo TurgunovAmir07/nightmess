@@ -33,7 +33,7 @@ export const CartButton = ({ removeTop }: { removeTop?: boolean }) => {
 					<img
 						draggable={false}
 						style={{ width: '44px' }}
-						src='/КОРЗИНА.png'
+						src='/button-cart.png'
 						alt='cart'
 					/>
 				</button>

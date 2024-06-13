@@ -148,7 +148,7 @@ export const Cart = ({
 												className={
 													cl.root__content__products__item_container__delete_img
 												}
-												src='/DELETE.png'
+												src='/button-delete-product.png'
 												alt='delete'
 											/>
 										</button>

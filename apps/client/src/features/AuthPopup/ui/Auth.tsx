@@ -15,7 +15,7 @@ export const Auth = () => {
 			<GameButton
 				onCLick={handlePopupOpen}
 				text={'привязать'}
-				Icon='/email.png'
+				Icon='/icon-email.png'
 			/>
 			<LoginPopup isOpen={isOpen} setIsOpen={setIsOpen} />
 		</div>

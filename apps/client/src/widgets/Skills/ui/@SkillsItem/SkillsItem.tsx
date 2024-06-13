@@ -13,14 +13,14 @@ export const SkillsItem = ({
 				<>
 					<img
 						className={cl.root__skill}
-						src='/ITEM1.png'
+						src='/icon-inventory-item.png'
 						alt='empty'
 					/>
 					<div className={cl.root__bage}>
 						<img
 							draggable={false}
 							className={cl.root__bage_img}
-							src='/bage.png'
+							src='/icon-bage.png'
 							alt='bage'
 						/>
 						<span className={cl.root__bage_count}>{count}</span>
@@ -30,7 +30,7 @@ export const SkillsItem = ({
 				<img
 					draggable={false}
 					className={cl.root__empty}
-					src='/EMPTY_SKILL.png'
+					src='/icon-lock.png'
 					alt='empty'
 				/>
 			)}

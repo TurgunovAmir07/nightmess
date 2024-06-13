@@ -7,7 +7,7 @@ export const StatusDelivery = () => {
 				<img
 					className={cl.root__text_icon}
 					draggable={false}
-					src='/машина.png'
+					src='/icon-order-status-car.png'
 					alt='car'
 				/>
 			</button>

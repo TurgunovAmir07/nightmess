@@ -1,27 +1,27 @@
 .root {
-  padding-top: 80px;
-  background-image: url(/GAME_BACK.png);
-  background-size: cover;
-  min-height: 100dvh;
+	padding-top: 80px;
+	background-image: url(/background-game.png);
+	background-size: cover;
+	min-height: 100dvh;
 
-  &__moon {
-    position: relative;
+	&__moon {
+		position: relative;
 
-    &_img {
-      top: 30px;
-      left: 30px;
-      width: 80px;
-      position: absolute;
-    }
-  }
+		&_img {
+			top: 30px;
+			left: 30px;
+			width: 80px;
+			position: absolute;
+		}
+	}
 
-  &__footer {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-around;
+	&__footer {
+		margin-top: 30px;
+		display: flex;
+		justify-content: space-around;
 
-    &_button {
-      padding-bottom: 20px;
-    }
-  }
+		&_button {
+			padding-bottom: 20px;
+		}
+	}
 }

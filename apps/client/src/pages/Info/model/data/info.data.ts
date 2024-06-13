@@ -11,28 +11,28 @@ interface IInfoData {
 export const infoData: IInfoData[] = [
 	{
 		path: '/rules',
-		src: '/GAMEPAD копия.png',
+		src: '/button-gamepad.png',
 		alt: 'gamepad',
 		text: 'ПРАВИЛА ИГРЫ',
 		styles: cl.root__wrapper_link_img
 	},
 	{
 		path: '#',
-		src: '/REVIEW.png',
+		src: '/icon-review.png',
 		alt: 'review',
 		text: 'Отзывы',
 		styles: cl.root__wrapper_link_review
 	},
 	{
 		path: '#',
-		src: '/OFERTA.png',
+		src: '/icon-offerta.png',
 		alt: 'offerta',
 		text: 'Offer',
 		styles: cl.root__wrapper_link_offerta
 	},
 	{
 		path: '#',
-		src: '/OFERTA.png',
+		src: '/icon-offerta.png',
 		alt: 'privacy',
 		text: 'Privacy',
 		styles: cl.root__wrapper_link_offerta

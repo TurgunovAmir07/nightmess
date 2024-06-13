@@ -7,7 +7,7 @@ export const StatusBox = () => {
 				<img
 					className={cl.root__text_icon}
 					draggable={false}
-					src='/коробка.png'
+					src='/icon-order-status-box.png'
 					alt='box'
 				/>
 			</button>

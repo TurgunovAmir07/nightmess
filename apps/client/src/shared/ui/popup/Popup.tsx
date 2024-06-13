@@ -65,7 +65,7 @@ export const Popup = ({
 							<img
 								draggable={false}
 								className={cl.root__content_header__btn__close}
-								src='/CLOSE.png'
+								src='/button-close-popup.png'
 								alt='close'
 							/>
 						</button>

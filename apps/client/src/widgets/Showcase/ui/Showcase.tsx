@@ -42,7 +42,7 @@ export const Showcase = ({ count }: { count: number }) => {
 										isShowCase
 										name={item.product.name}
 										id={item.product.id}
-										Icon={item.product.img}
+										icon={item.product.img}
 									/>
 								)
 							)

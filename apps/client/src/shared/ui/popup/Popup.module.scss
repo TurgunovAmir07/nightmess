@@ -52,7 +52,7 @@
 
 		&_header {
 			display: block;
-			background-image: url(/longpopup_top.png);
+			background-image: url(/illustration-popup-top.png);
 			background-size: cover;
 			width: 400px;
 			max-width: 400px;
@@ -89,7 +89,7 @@
 			transition: all;
 			transition-duration: 500ms;
 			padding-top: 10px;
-			background-image: url(/longpopup_main.png);
+			background-image: url(/illustration-popup-main.png);
 			background-size: 400px;
 			background-repeat: repeat;
 			max-width: 400px;
@@ -103,7 +103,7 @@
 		&_footer {
 			display: block;
 			margin-top: -5px;
-			background-image: url(/longpopup_bottom.png);
+			background-image: url(/illustration-popup-bottom.png);
 			background-size: cover;
 			width: 400px;
 			max-width: 400px;

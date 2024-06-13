@@ -7,7 +7,7 @@ export const CartSubmitButtonCover = ({ isNoIcon }: { isNoIcon?: boolean }) => {
 			<div className={cl.root__wrap}>
 				<img
 					className={cl.root__wrap_cover}
-					src='/SUBMIT.png'
+					src='/button-submit-btn.png'
 					alt='submit'
 				/>
 				{!isNoIcon && <CartSubmitButtonMark />}

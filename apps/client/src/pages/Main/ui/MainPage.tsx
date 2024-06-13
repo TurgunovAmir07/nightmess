@@ -17,7 +17,7 @@ export const MainPage = () => {
 								id={item.id}
 								key={item.name}
 								name={item.name}
-								Icon={item.img}
+								icon={item.img}
 							/>
 						))}
 					</div>

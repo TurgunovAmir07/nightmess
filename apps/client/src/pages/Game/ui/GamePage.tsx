@@ -20,7 +20,7 @@ export const GamePage = () => {
 				<span className={cl.root__moon}>
 					<img
 						className={cl.root__moon_img}
-						src='/MOON.png'
+						src='/illustration-moon.png'
 						alt='moon'
 					/>
 				</span>

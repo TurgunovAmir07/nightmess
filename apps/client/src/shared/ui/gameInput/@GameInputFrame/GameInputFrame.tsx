@@ -8,7 +8,7 @@ export const GameInputFrame = () => {
 				<img
 					draggable={false}
 					className={cl.root__frame}
-					src='/рамка.png'
+					src='/icon-frame.png'
 					alt='frame'
 				/>
 				<GameInputPen />

@@ -9,7 +9,7 @@ export const Skills = () => {
 				<img
 					draggable={false}
 					className={cl.root__wrap_img}
-					src='/SKILLS_COVER.png'
+					src='/illustration-skills-showcase.png'
 					alt='skills'
 				/>
 				<span className={cl.root__wrap_text}>2/9</span>

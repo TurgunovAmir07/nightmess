@@ -7,7 +7,7 @@ export const GameInputCover = () => {
 			<img
 				draggable={false}
 				className={cl.root}
-				src='/ник.png'
+				src='/input-game-inpt.png'
 				alt='nickname'
 			/>
 			<GameInputFrame />

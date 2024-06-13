@@ -12,7 +12,7 @@ export const MapPage = () => {
 					<img
 						draggable={false}
 						className={cl.root__main__legs}
-						src='/legs.png'
+						src='/illustration-legs.png'
 						alt='legs'
 					/>
 					{mapCrossData.map((item, index) => (
@@ -30,7 +30,7 @@ export const MapPage = () => {
 					<img
 						draggable={false}
 						className={cl.root__footer_img}
-						src='/map_footer.png'
+						src='/illustration-top-gamers.png'
 						alt='map_footer'
 					/>
 					<div className={cl.root__footer__top}>
