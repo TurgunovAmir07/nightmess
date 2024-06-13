@@ -33,7 +33,7 @@ job 2:
   only:
     - main
   scripts:
-    echo "build-client"
+    echo "build-client!"
   before_scripts:
     - cd apps
     - cd client
@@ -44,7 +44,7 @@ job 3:
   only:
     - main
   scripts:
-    echo "build-server"
+    echo "build-server!"
   before_scripts:
     - cd apps
     - cd server
