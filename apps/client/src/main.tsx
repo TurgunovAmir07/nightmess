@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom/client'
 import App from './app/App.tsx'
 import './app/index.scss'
 
+declare global {
+	interface Window {
+		Telegram: Telegram
+	}
+}
+
 if (import.meta.env.VITE_APP_TYPE === 'telegram') {
 	const script = document.createElement('script')
 	script.type = 'text/javascript'
