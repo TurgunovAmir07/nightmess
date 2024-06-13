@@ -78,11 +78,9 @@ export const authApi = createApi({
 		}),
 		// FIXME: типизировать
 		// eslint-disable-next-line
-		refreshToken: build.query<any, any>({
-			query: token => ({
-				url: 'refresh',
-				method: 'POST',
-				body: token
+		refreshToken: build.query<any, void>({
+			query: () => ({
+				url: 'refresh'
 			})
 		})
 	})

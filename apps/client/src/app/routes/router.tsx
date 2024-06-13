@@ -7,6 +7,7 @@ import { RulesPage } from '@/pages/Rules'
 import { InfoPage } from '@/pages/Info'
 import { MapPage } from '@/pages/Map'
 import { Topbar } from '@/widgets/Topbar'
+import { ProtectedRoute } from '@/shared'
 
 export const router = createBrowserRouter([
 	{
@@ -15,7 +16,11 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: '/profile',
-		element: <ProfilePage />,
+		element: (
+			<ProtectedRoute variant='authorized'>
+				<ProfilePage />
+			</ProtectedRoute>
+		),
 		children: [
 			{
 				path: '',
@@ -25,7 +30,11 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: '/game',
-		element: <GamePage />,
+		element: (
+			<ProtectedRoute variant='public'>
+				<GamePage />
+			</ProtectedRoute>
+		),
 		children: [
 			{
 				path: '',
@@ -35,18 +44,34 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: '/product/:id',
-		element: <ProductPage />
+		element: (
+			<ProtectedRoute variant='public'>
+				<ProductPage />
+			</ProtectedRoute>
+		)
 	},
 	{
 		path: '/rules',
-		element: <RulesPage />
+		element: (
+			<ProtectedRoute variant='public'>
+				<RulesPage />
+			</ProtectedRoute>
+		)
 	},
 	{
 		path: '/info',
-		element: <InfoPage />
+		element: (
+			<ProtectedRoute variant='public'>
+				<InfoPage />
+			</ProtectedRoute>
+		)
 	},
 	{
 		path: '/map',
-		element: <MapPage />
+		element: (
+			<ProtectedRoute variant='public'>
+				<MapPage />
+			</ProtectedRoute>
+		)
 	}
 ])
