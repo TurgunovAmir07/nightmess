@@ -1,24 +1,24 @@
 .root {
-  text-align: center;
-  width: 100%;
-  position: relative;
+	text-align: center;
+	width: 100%;
+	position: relative;
 
-  &__text {
-    background: inherit;
-    border: none;
-    width: fit-content;
-    cursor: pointer;
+	&__text {
+		background: inherit;
+		border: none;
+		width: fit-content;
+		cursor: pointer;
 
-    &_icon {
-      width: 50px;
-      transition: all;
-      transition-duration: 500ms;
-    }
+		&_icon {
+			width: 50px;
+			transition: all;
+			transition-duration: 500ms;
+		}
 
-    @media (max-width: 325px) {
-      &_icon {
-        width: 45px;
-      }
-    }
-  }
+		@media (max-width: 365px) {
+			&_icon {
+				width: 45px;
+			}
+		}
+	}
 }
