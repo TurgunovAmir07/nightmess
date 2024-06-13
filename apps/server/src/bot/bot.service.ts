@@ -23,6 +23,8 @@ export class BotService {
 		this.commands = [new BotStartCommand(this.bot)]
 		this.stage = new Scenes.Stage([new AuthScene(this.authService, this.configService).scene])
 		this.init()
+		process.once('SIGINT', () => this.bot.stop('SIGINT'))
+		process.once('SIGTERM', () => this.bot.stop('SIGTERM'))
 	}
 
 	private init() {
