@@ -1,9 +1,12 @@
-export interface UserModel {
-  user_name: string
-  full_name: string
-  address_id: number
-  phone: string
-  email: string
-  password: string
-  login: string
+export interface IUser {
+	id: number
+	createDate: string
+	updateDate: string
+	name: string
+	surname: string
+	patronymic: string
+	phone: string
+	email: string
+	tg_id: number | string
+	link: string
 }

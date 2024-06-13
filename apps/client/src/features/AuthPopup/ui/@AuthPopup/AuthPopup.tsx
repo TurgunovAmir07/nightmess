@@ -3,9 +3,7 @@ import { Input, Popup } from '@/shared'
 import cl from './AuthPopup.module.scss'
 import { loginFieldsArr, registerFieldsArr } from './AuthPopup.data'
 import { CartSubmitButton } from '@/features/CartSubmitButton'
-import { useCurrentQuery, useLoginMutation, useRegisterMutation } from '@/store'
 import { useState } from 'react'
-import { LoaderSpinner } from '@/shared/ui/loader-spinner'
 
 export const LoginPopup = ({
 	isOpen,
@@ -27,36 +25,13 @@ export const LoginPopup = ({
 		formState: { errors }
 	} = useForm()
 
-	const [loginUser] = useLoginMutation()
-	const [registerUser] = useRegisterMutation()
-	const [error, setError] = useState('')
-	const { isLoading, refetch } = useCurrentQuery()
-
-	// eslint-disable-next-line
-	const onSubmit = async (data: any) => {
-		try {
-			{
-				isLogin
-					? await loginUser(data).unwrap()
-					: await registerUser(data).unwrap()
-			}
-			refetch()
-			reset()
-			setError('')
-		} catch (e) {
-			// eslint-disable-next-line
-			// @ts-ignore
-			if (e.status === 400) {
-				setError('Введен неверный логин или пароль')
-			} else {
-				setError('Что-то пошло не так, попробуйте позже')
-			}
-		}
+	const onSubmit = (data: unknown) => {
+		reset()
+		console.log(data)
 	}
 
 	return (
 		<>
-			{isLoading && <LoaderSpinner />}
 			<Popup
 				isLongTitle={!isLogin}
 				title={`${isLogin ? 'Логин' : 'Регистрация'}`}
@@ -75,10 +50,7 @@ export const LoginPopup = ({
 									render={({ field }) => (
 										<Input
 											field={field}
-											error={
-												errors[item.name]?.message ||
-												error
-											}
+											error={errors[item.name]?.message}
 											label={item.label}
 											type={item.type}
 											placeholder={item.placeholder}

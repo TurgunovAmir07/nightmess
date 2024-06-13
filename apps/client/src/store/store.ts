@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { CartSlice, OrderSlice, UserDataSlice } from './lib'
+import { CartSlice, OrderSlice, UserDataSlice, authSlice } from './lib'
 
 import {
 	FLUSH,
@@ -11,9 +11,7 @@ import {
 	persistReducer
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import auth from './lib/slices/AuthSlice'
-import { api } from './api'
-import { listenerMiddleware } from './middleware'
+import { authApi } from './api'
 
 const persistConfig = {
 	key: 'nighmess',
@@ -25,8 +23,8 @@ const rootReducer = combineReducers({
 	cart: CartSlice.reducer,
 	order: OrderSlice.reducer,
 	userData: UserDataSlice.reducer,
-	[api.reducerPath]: api.reducer,
-	auth
+	authApi: authApi.reducer,
+	authSlice: authSlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -46,9 +44,7 @@ export const setupStore = () => {
 						REGISTER
 					]
 				}
-			})
-				.concat(api.middleware)
-				.prepend(listenerMiddleware.middleware)
+			}).concat(authApi.middleware)
 	})
 }
 
