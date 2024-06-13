@@ -46,11 +46,11 @@ export class AuthController {
 		}
 
 		const {
-			tokens: { accessToken },
+			tokens: { accessToken, refreshToken },
 			profile
 		} = data
 
-		res.cookie('refresh', this.refreshCookieOptions)
+		res.cookie('refresh', refreshToken, this.refreshCookieOptions)
 
 		return { accessToken, profile }
 	}
