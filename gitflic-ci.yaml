@@ -1,0 +1,50 @@
+image: node:18-alpine
+
+stages:
+  - ci-client
+  - ci-server
+  - build-client
+  - build-server
+
+job 0:
+  stage: ci-client
+  scripts:
+    - npm i
+    - npm run lint
+    - npm run build
+  before_scripts:
+    - cd apps
+    - cd client
+
+job 1:
+  stage: ci-server
+  scripts:
+    - npm i yarn
+    - yarn
+    - yarn lint
+    - yarn build
+  before_scripts:
+    - cd apps
+    - cd server
+
+job 2:
+  stage: build-client
+  needs: ci-client
+  only:
+    - main
+  scripts:
+    echo "build-client"
+  before_scripts:
+    - cd apps
+    - cd client
+
+job 3:
+  stage: build-server
+  needs: ci-server
+  only:
+    - main
+  scripts:
+    echo "build-server"
+  before_scripts:
+    - cd apps
+    - cd server
