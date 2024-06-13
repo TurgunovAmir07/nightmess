@@ -1,1 +1,3 @@
-export * from './ui/InfoPage'
+import InfoPage from './ui/InfoPage'
+
+export default InfoPage

@@ -1,1 +1,3 @@
-export * from './ui/ProductPage'
+import ProductPage from './ui/ProductPage'
+
+export default ProductPage

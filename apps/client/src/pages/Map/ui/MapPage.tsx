@@ -3,7 +3,7 @@ import { Header } from '@/widgets/Header'
 import cl from './MapPage.module.scss'
 import { mapCrossData, mapNicknamesData } from '../model/data/map.data'
 
-export const MapPage = () => {
+const MapPage = () => {
 	return (
 		<Container>
 			<div className={cl.root}>
@@ -49,3 +49,5 @@ export const MapPage = () => {
 		</Container>
 	)
 }
+
+export default MapPage

@@ -12,7 +12,7 @@ import { InventoryButton } from '@/features/InventoryButton'
 import { CraftButton } from '@/features/CraftButton'
 import { ShopButton } from '@/features/ShopButton'
 
-export const GamePage = () => {
+const GamePage = () => {
 	return (
 		<Container>
 			<Outlet />
@@ -45,3 +45,5 @@ export const GamePage = () => {
 		</Container>
 	)
 }
+
+export default GamePage

@@ -3,7 +3,7 @@ import { Container } from '@/shared'
 import { Header } from '@/widgets/Header'
 import cl from './RulesPage.module.scss'
 
-export const RulesPage = () => {
+const RulesPage = () => {
 	return (
 		<Container>
 			<div className={cl.root}>
@@ -68,3 +68,5 @@ export const RulesPage = () => {
 		</Container>
 	)
 }
+
+export default RulesPage

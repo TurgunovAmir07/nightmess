@@ -1,1 +1,3 @@
-export * from './ui/GamePage'
+import GamePage from './ui/GamePage'
+
+export default GamePage

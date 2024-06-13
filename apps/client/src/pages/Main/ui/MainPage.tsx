@@ -5,7 +5,7 @@ import cl from './MainPage.module.scss'
 import { productsData } from '@/shared'
 import { Link } from 'react-router-dom'
 
-export const MainPage = () => {
+const MainPage = () => {
 	return (
 		<Container>
 			<div className={cl.root}>
@@ -33,3 +33,5 @@ export const MainPage = () => {
 		</Container>
 	)
 }
+
+export default MainPage

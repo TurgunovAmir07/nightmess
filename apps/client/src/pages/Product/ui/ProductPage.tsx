@@ -4,7 +4,7 @@ import cl from './ProductsPage.module.scss'
 import { ProductDetails } from '@/widgets/ProductDetails'
 import { AddToCartButton } from '@/features/AddToCartButton'
 
-export const ProductPage = () => {
+const ProductPage = () => {
 	return (
 		<Container>
 			<div className={cl.root}>
@@ -22,3 +22,5 @@ export const ProductPage = () => {
 		</Container>
 	)
 }
+
+export default ProductPage

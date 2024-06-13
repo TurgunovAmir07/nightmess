@@ -10,7 +10,7 @@ import { OAuthGoogle } from '@/features/OAuthGooglePopup'
 import { Auth } from '@/features/AuthPopup'
 import { OAuthVkPopup } from '@/features/OAuthVkPopup'
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
 	return (
 		<Container>
 			<div className={cl.root}>
@@ -38,3 +38,5 @@ export const ProfilePage = () => {
 		</Container>
 	)
 }
+
+export default ProfilePage

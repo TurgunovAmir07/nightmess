@@ -1,1 +1,3 @@
-export * from './ui/MapPage.tsx'
+import MapPage from './ui/MapPage'
+
+export default MapPage

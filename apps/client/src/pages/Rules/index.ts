@@ -1,1 +1,3 @@
-export * from './ui/RulesPage'
+import RulesPage from './ui/RulesPage'
+
+export default RulesPage

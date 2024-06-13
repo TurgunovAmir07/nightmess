@@ -1,20 +1,25 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter } from 'react-router-dom'
-import { MainPage } from '@/pages/Main'
-import { ProfilePage } from '@/pages/Profile'
-import { GamePage } from '@/pages/Game'
-import { ProductPage } from '@/pages/Product'
-import { RulesPage } from '@/pages/Rules'
-import { InfoPage } from '@/pages/Info'
-import { MapPage } from '@/pages/Map'
+import { Suspense, lazy } from 'react'
+import { LoaderSpinner, ProtectedRoute } from '@/shared'
 import { Topbar } from '@/widgets/Topbar'
-import { ProtectedRoute } from '@/shared'
+
+const MainPage = lazy(() => import('@/pages/Main'))
+const ProfilePage = lazy(() => import('@/pages/Profile'))
+const GamePage = lazy(() => import('@/pages/Game'))
+const ProductPage = lazy(() => import('@/pages/Product'))
+const RulesPage = lazy(() => import('@/pages/Rules'))
+const InfoPage = lazy(() => import('@/pages/Info'))
+const MapPage = lazy(() => import('@/pages/Map'))
 
 export const router = createBrowserRouter([
 	{
 		path: '/',
 		element: (
 			<ProtectedRoute variant='public'>
-				<MainPage />
+				<Suspense fallback={<LoaderSpinner />}>
+					<MainPage />
+				</Suspense>
 			</ProtectedRoute>
 		)
 	},
@@ -22,7 +27,9 @@ export const router = createBrowserRouter([
 		path: '/profile',
 		element: (
 			<ProtectedRoute variant='public'>
-				<ProfilePage />
+				<Suspense fallback={<LoaderSpinner />}>
+					<ProfilePage />
+				</Suspense>
 			</ProtectedRoute>
 		),
 		children: [
@@ -36,7 +43,9 @@ export const router = createBrowserRouter([
 		path: '/game',
 		element: (
 			<ProtectedRoute variant='public'>
-				<GamePage />
+				<Suspense fallback={<LoaderSpinner />}>
+					<GamePage />
+				</Suspense>
 			</ProtectedRoute>
 		),
 		children: [
@@ -50,7 +59,9 @@ export const router = createBrowserRouter([
 		path: '/product/:id',
 		element: (
 			<ProtectedRoute variant='public'>
-				<ProductPage />
+				<Suspense fallback={<LoaderSpinner />}>
+					<ProductPage />
+				</Suspense>
 			</ProtectedRoute>
 		)
 	},
@@ -58,7 +69,9 @@ export const router = createBrowserRouter([
 		path: '/rules',
 		element: (
 			<ProtectedRoute variant='public'>
-				<RulesPage />
+				<Suspense fallback={<LoaderSpinner />}>
+					<RulesPage />
+				</Suspense>
 			</ProtectedRoute>
 		)
 	},
@@ -66,7 +79,9 @@ export const router = createBrowserRouter([
 		path: '/info',
 		element: (
 			<ProtectedRoute variant='public'>
-				<InfoPage />
+				<Suspense fallback={<LoaderSpinner />}>
+					<InfoPage />
+				</Suspense>
 			</ProtectedRoute>
 		)
 	},
@@ -74,7 +89,9 @@ export const router = createBrowserRouter([
 		path: '/map',
 		element: (
 			<ProtectedRoute variant='public'>
-				<MapPage />
+				<Suspense fallback={<LoaderSpinner />}>
+					<MapPage />
+				</Suspense>
 			</ProtectedRoute>
 		)
 	}

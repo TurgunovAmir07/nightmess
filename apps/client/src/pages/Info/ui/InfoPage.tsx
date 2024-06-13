@@ -4,7 +4,7 @@ import { Header } from '@/widgets/Header'
 import cl from './InfoPage.module.scss'
 import { infoData } from '../model/data/info.data'
 
-export const InfoPage = () => {
+const InfoPage = () => {
 	return (
 		<Container>
 			<div className={cl.root}>
@@ -66,3 +66,5 @@ export const InfoPage = () => {
 		</Container>
 	)
 }
+
+export default InfoPage

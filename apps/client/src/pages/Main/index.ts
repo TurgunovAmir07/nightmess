@@ -1,1 +1,3 @@
-export * from './ui/MainPage'
+import MainPage from './ui/MainPage'
+
+export default MainPage
