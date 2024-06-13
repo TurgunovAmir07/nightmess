@@ -13,7 +13,15 @@ export class BotStartCommand extends Command {
 			async ctx =>
 				await ctx.reply(
 					'Добро пожаловать в Nightmess Bot! Выберите интересующий Вас модуль:',
-					Markup.keyboard([Markup.button.text(AUTH_SCENE_ENTER)])
+					Markup.keyboard([
+						Markup.button.text(AUTH_SCENE_ENTER)
+						// {
+						// 	text: 'Вход в web-app',
+						// 	web_app: {
+						// 		url: 'http://localhost:3000'
+						// 	}
+						// }
+					])
 				)
 		)
 
