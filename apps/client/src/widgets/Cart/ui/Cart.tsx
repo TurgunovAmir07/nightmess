@@ -6,6 +6,7 @@ import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { CartProduct } from '@/widgets/CartProduct'
 import { useActions, useCart, useTypedSelector } from '@/store'
 import { cartFieldsArr } from '../model/data/cartFields.data'
+import { DeleteFromCartButton } from '@/features/DeleteFromCartButton'
 
 export const Cart = ({
 	isOpen,
@@ -22,7 +23,7 @@ export const Cart = ({
 		formState: { errors }
 	} = useForm()
 
-	const { removeFromCart, setOrder, changeQuantity } = useActions()
+	const { setOrder, changeQuantity } = useActions()
 
 	const onSubmit = (data: FieldValues) => {
 		setOrder({
@@ -133,25 +134,9 @@ export const Cart = ({
 												})
 											}
 										/>
-										<button
-											type='button'
-											onClick={() =>
-												removeFromCart({
-													id: item.product.id
-												})
-											}
-											className={
-												cl.root__content__products__item_container__delete
-											}
-										>
-											<img
-												className={
-													cl.root__content__products__item_container__delete_img
-												}
-												src='/button-delete-product.png'
-												alt='delete'
-											/>
-										</button>
+										<DeleteFromCartButton
+											id={item.product.id}
+										/>
 									</div>
 								</div>
 							))
