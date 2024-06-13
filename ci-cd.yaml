@@ -1,0 +1,57 @@
+
+# warning don't use it
+
+image: ubuntu:latest
+
+stages:
+  - ci-client
+  - ci-server
+  - build-client
+  - build-server
+
+job 0:
+  stage: ci-client
+  when: manual
+  scripts:
+    - npm i
+    - npm run lint
+    - npm run build
+  before_scripts:
+    - cd apps
+    - cd client
+
+job 1:
+  stage: ci-server
+  when: manual
+  scripts:
+    - npm i yarn
+    - yarn
+    - yarn lint
+    - yarn build
+  before_scripts:
+    - cd apps
+    - cd server
+
+job 2:
+  stage: build-client
+  needs: ci-client
+  when: manual
+  only:
+    - main
+  scripts:
+    echo "build-client!"
+  before_scripts:
+    - cd apps
+    - cd client
+
+job 3:
+  stage: build-server
+  needs: ci-server
+  when: manual
+  only:
+    - main
+  scripts:
+    echo "build-server!"
+  before_scripts:
+    - cd apps
+    - cd server

@@ -6,6 +6,7 @@ import { BotStartCommand, Command } from './commands'
 import { AuthScene } from './scenes'
 import { IBotContext } from './context'
 import { AuthService } from '@/auth/auth.service'
+import { ConfigService } from '@nestjs/config'
 
 @Injectable()
 export class BotService {
@@ -15,11 +16,12 @@ export class BotService {
 
 	constructor(
 		@Inject(BOT_MODULE_OPTIONS) options: IBotOptions,
-		public readonly authService: AuthService
+		private readonly authService: AuthService,
+		private readonly configService: ConfigService
 	) {
 		this.bot = new Telegraf(options.token)
 		this.commands = [new BotStartCommand(this.bot)]
-		this.stage = new Scenes.Stage([new AuthScene(authService).scene])
+		this.stage = new Scenes.Stage([new AuthScene(this.authService, this.configService).scene])
 		this.init()
 	}
 
