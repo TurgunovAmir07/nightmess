@@ -23,7 +23,7 @@ export class AuthService {
 
 		await this.userService.updateLink(userId, link)
 
-		return { link: `${this.configService.get('SERVER_URL')}/api/auth/confirm/${link}` }
+		return { link: `${this.configService.get('VITE_SERVER_URL')}/api/auth/confirm/${link}` }
 	}
 
 	public async createSession(link: string): Promise<null | string> {
