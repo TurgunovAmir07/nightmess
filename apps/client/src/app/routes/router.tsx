@@ -12,12 +12,16 @@ import { ProtectedRoute } from '@/shared'
 export const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <MainPage />
+		element: (
+			<ProtectedRoute variant='public'>
+				<MainPage />
+			</ProtectedRoute>
+		)
 	},
 	{
 		path: '/profile',
 		element: (
-			<ProtectedRoute variant='authorized'>
+			<ProtectedRoute variant='public'>
 				<ProfilePage />
 			</ProtectedRoute>
 		),
