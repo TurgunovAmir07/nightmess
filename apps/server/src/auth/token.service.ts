@@ -40,4 +40,8 @@ export class TokenService {
 	public findSessionByToken(token: string) {
 		return this.sessionRepository.findByToken(token)
 	}
+
+	public removeSessionByToken(token: string) {
+		return this.sessionRepository.deleteByRefresh(token)
+	}
 }
