@@ -31,6 +31,9 @@ export class AuthScene extends Scene {
 		this.scene.hears(AUTH_SCENE_GENERATE_LINK, async ctx => {
 			const { link } = await this.authService.login(String(ctx.from.id))
 
+			// DON'T TOUCH ONLY FOR DEV
+			console.log(link)
+
 			await ctx.reply(
 				'Нажмите на ссылку ниже',
 				Markup.inlineKeyboard([

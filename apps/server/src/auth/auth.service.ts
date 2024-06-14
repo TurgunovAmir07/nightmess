@@ -56,4 +56,8 @@ export class AuthService {
 
 		return { tokens, profile }
 	}
+
+	public async logout(refresh: string) {
+		await this.tokenService.removeSessionByToken(refresh)
+	}
 }
