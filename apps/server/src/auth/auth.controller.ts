@@ -3,6 +3,7 @@ import {
 	ClassSerializerInterceptor,
 	Controller,
 	Get,
+	HttpCode,
 	Param,
 	Res,
 	UnauthorizedException,
@@ -63,12 +64,23 @@ export class AuthController {
 		const refreshToken = await this.authService.createSession(link)
 
 		if (!refreshToken) {
-			res.clearCookie('refresh', { path: this.refreshCookieOptions.path })
+			res.clearCookie('refresh')
 			throw new BadRequestException('Ссылка невалидна!')
 		}
 
 		res.cookie('refresh', refreshToken, this.refreshCookieOptions)
 
 		return res.redirect(this.configService.get('CLIENT_URL'))
+	}
+
+	@HttpCode(200)
+	@Get('logout')
+	public async logout(
+		@Cookie('refresh') refresh: string,
+		@Res({ passthrough: true }) res: Response
+	) {
+		await this.authService.logout(refresh)
+		res.clearCookie('refresh')
+		return
 	}
 }

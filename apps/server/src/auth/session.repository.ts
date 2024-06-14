@@ -34,4 +34,8 @@ export class SessionRepository {
 			}
 		})
 	}
+
+	public deleteByRefresh(token: string) {
+		return this.sessionRepository.delete({ token })
+	}
 }
