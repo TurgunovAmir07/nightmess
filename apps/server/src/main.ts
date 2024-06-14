@@ -9,15 +9,13 @@ async function bootstrap() {
 	app.setGlobalPrefix('/api')
 
 	const configService = app.get(ConfigService)
-
 	const CLIENT_URL = configService.get('CLIENT_URL')
+	const SERVER_PORT = configService.get('SERVER_PORT')
 
 	app.enableCors({
 		origin: CLIENT_URL,
 		credentials: true
 	})
-
-	const SERVER_PORT = configService.get('SERVER_PORT')
 
 	await app.listen(SERVER_PORT)
 
