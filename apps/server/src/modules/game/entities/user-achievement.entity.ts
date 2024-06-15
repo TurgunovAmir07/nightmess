@@ -1,6 +1,6 @@
 import { BaseEntity } from '@/core/database/entities'
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm'
-import { EUserStage } from '@/common/enums'
+import { ECardRarity } from '@/common/enums'
 import { UserEntity } from '@/modules/user/entities'
 
 @Entity('UserAchievement')
@@ -17,10 +17,10 @@ export class UserAchievementEntity extends BaseEntity {
 
 	@Column({
 		type: 'enum',
-		enum: EUserStage,
-		default: EUserStage.NULL
+		enum: ECardRarity,
+		default: ECardRarity.NULL
 	})
-	public readonly stage: EUserStage
+	public readonly stage: ECardRarity
 
 	@Column({
 		default: 0

@@ -9,4 +9,12 @@ export class SettingsService {
 	public async getSettingsParamByName(name: ESettingsName) {
 		return this.settingsRepository.getSettingsParamByName(name)
 	}
+
+	public async getAllSettings() {
+		return this.settingsRepository.getAllSettings()
+	}
+
+	public async getSettingsParamsByNames(names: ESettingsName[]) {
+		return this.settingsRepository.getSettingsParamsByNames(names)
+	}
 }
