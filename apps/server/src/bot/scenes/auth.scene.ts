@@ -2,7 +2,7 @@ import { Composer, Markup, Scenes } from 'telegraf'
 import { Scene } from './abstract.scene'
 import { WizardScene } from 'telegraf/typings/scenes'
 import { IBotContext } from '../context'
-import { AUTH_SCENE_GENERATE_LINK, AUTH_SCENE } from '../bot.constants'
+import { AUTH_SCENE } from '../bot.constants'
 import { AuthService } from '@/auth/auth.service'
 import { ConfigService } from '@nestjs/config'
 
@@ -17,18 +17,6 @@ export class AuthScene extends Scene {
 		super()
 		this.composer = new Composer<IBotContext>()
 		this.scene = new Scenes.WizardScene(AUTH_SCENE, async ctx => {
-			await ctx.reply(
-				'Выберите раздел авторизации:',
-				Markup.keyboard([Markup.button.text(AUTH_SCENE_GENERATE_LINK)])
-			)
-			return ctx.wizard.next()
-		})
-
-		this.handle()
-	}
-
-	public handle() {
-		this.scene.hears(AUTH_SCENE_GENERATE_LINK, async ctx => {
 			const { link } = await this.authService.login(String(ctx.from.id))
 
 			// DON'T TOUCH ONLY FOR DEV
@@ -45,5 +33,9 @@ export class AuthScene extends Scene {
 			)
 			return ctx.wizard.next()
 		})
+
+		this.handle()
 	}
+
+	public handle() {}
 }
