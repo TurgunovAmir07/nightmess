@@ -1,11 +1,18 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
-import { CartSlice, OrderSlice, UserDataSlice, useTypedDispatch } from '@/store'
+import {
+	CartSlice,
+	OrderSlice,
+	UserDataSlice,
+	authSlice,
+	useTypedDispatch
+} from '@/store'
 import { useMemo } from 'react'
 
 const rootActions = {
 	...CartSlice.actions,
 	...OrderSlice.actions,
-	...UserDataSlice.actions
+	...UserDataSlice.actions,
+	...authSlice.actions
 }
 
 export const useActions = () => {
