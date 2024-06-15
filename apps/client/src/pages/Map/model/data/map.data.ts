@@ -1,6 +1,16 @@
 import cl from '../../ui/MapPage.module.scss'
 
-export const mapCrossData = [
+interface TMapCrossData {
+	src: string
+	alt: string
+	styles: string
+}
+
+interface TMapNicknamesData {
+	nickname: string
+}
+
+export const mapCrossData: TMapCrossData[] = [
 	{
 		src: '/icon-red-x.png',
 		alt: 'red_x',
@@ -23,7 +33,7 @@ export const mapCrossData = [
 	}
 ]
 
-export const mapNicknamesData = [
+export const mapNicknamesData: TMapNicknamesData[] = [
 	{
 		nickname: '1. nickname'
 	},

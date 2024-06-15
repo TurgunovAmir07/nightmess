@@ -4,11 +4,13 @@ import { Product } from '@/widgets/Product'
 import cl from './MainPage.module.scss'
 import { productsData } from '@/shared'
 import { Link } from 'react-router-dom'
+import { LogoutButton } from '@/features/LogoutButton'
 
 const MainPage = () => {
 	return (
 		<Container>
 			<div className={cl.root}>
+				<LogoutButton />
 				<Header title='NIGHTMESS' />
 				<div className={cl.root__products}>
 					<div className={cl.root__products__items}>

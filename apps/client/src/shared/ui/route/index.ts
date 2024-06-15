@@ -1,1 +1,1 @@
-export * from './ui/ProtectedRoute'
+export * from './ProtectedRoute'

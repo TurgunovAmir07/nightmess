@@ -1,0 +1,10 @@
+.root {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	padding: 20px;
+
+	&_btn {
+		font-family: 'Panton';
+	}
+}
