@@ -38,9 +38,19 @@ export class GameService {
 		const card = await this.cardService.drop()
 
 		await this.userAchievementService.drop(userId, card, isUserHaveTries || isFreeTry)
+
+		return card
+	}
+
+	public async getInventory(userId: number) {
+		return this.userAchievementService.getByUserId(userId)
 	}
 
 	private async isDateArrived(date: Date) {
+		if (date === null) {
+			return true
+		}
+
 		const tapInterval = await this.settingsService.getSettingsParamByName(
 			ESettingsName.TAP_INTERVAL
 		)

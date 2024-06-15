@@ -32,7 +32,7 @@ export class UserAchievementEntity extends BaseEntity {
 		type: 'date',
 		nullable: true
 	})
-	public readonly lastTap: Date
+	public readonly lastTap: Date | null
 
 	@OneToOne(() => UserEntity)
 	@JoinColumn()
