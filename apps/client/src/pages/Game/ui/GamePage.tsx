@@ -1,4 +1,4 @@
-import { Container } from '@/shared'
+import { Container, LinkedButton } from '@/shared'
 import { CardSlider } from '@/widgets/CardSlider'
 import cl from './GamePage.module.scss'
 import { Points } from '@/widgets/Points'
@@ -6,7 +6,6 @@ import { Points } from '@/widgets/Points'
 import { Stars } from '@/widgets/Stars'
 import { Skills } from '@/widgets/Skills'
 import { Outlet } from 'react-router-dom'
-import { HomeButton } from '@/features/HomeButton'
 import { CartButton } from '@/features/CartButton'
 import { InventoryButton } from '@/features/InventoryButton'
 import { CraftButton } from '@/features/CraftButton'
@@ -24,7 +23,17 @@ const GamePage = () => {
 						alt='moon'
 					/>
 				</span>
-				<HomeButton />
+				<div className={cl.root__home}>
+					<div className={cl.root__home_button}>
+						<LinkedButton
+							width={50}
+							height={45}
+							src={'/button-home.png'}
+							alt={'home'}
+							to={'/'}
+						/>
+					</div>
+				</div>
 				<Points />
 				<CartButton />
 				<Stars count={1} />
