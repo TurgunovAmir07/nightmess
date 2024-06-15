@@ -20,7 +20,7 @@ export class AuthScene extends Scene {
 			const { link } = await this.authService.login(String(ctx.from.id))
 
 			// DON'T TOUCH ONLY FOR DEV
-			console.log(link)
+			console.log(link, 'link')
 
 			await ctx.reply(
 				'Нажмите на ссылку ниже',

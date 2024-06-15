@@ -1,6 +1,7 @@
 import { ECardRarity, ECardColor } from '@/common/enums'
 import { CardEntity } from '@/modules/card/entities'
-import { getEnumItemByIndex } from '@/common/utils'
+import { getEnumItemByIndex } from '../utils'
+import { ESettingsName } from '@/common/enums'
 
 export const cardGenerate = () => {
 	const cardsStructure = [
@@ -25,6 +26,29 @@ export const cardGenerate = () => {
 		card.color = cardName
 		card.name = cardName
 		card.description = cardName
+
+		switch (i) {
+			case ECardRarity.NULL:
+				{
+					card.chance = ESettingsName.ZERO_LEVEL_CHANCE
+				}
+				break
+			case ECardRarity.ONE:
+				{
+					card.chance = ESettingsName.FIRST_LEVEL_CHANCE
+				}
+				break
+			case ECardRarity.TWO:
+				{
+					card.chance = ESettingsName.SECOND_LEVEL_CHANCE
+				}
+				break
+			case ECardRarity.THREE:
+				{
+					card.chance = ESettingsName.THIRD_LEVEL_CHANCE
+				}
+				break
+		}
 
 		return card
 	})

@@ -24,7 +24,7 @@ export class TokenService {
 		return { accessToken, refreshToken }
 	}
 
-	public async saveToDb(token: string, user: number) {
+	public async saveToDb(token: string, user: UserEntity) {
 		const oldSession = await this.sessionRepository.findByUser(user)
 
 		if (oldSession) {

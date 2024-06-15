@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { DeepPartial, Repository } from 'typeorm'
 import { SessionEntity } from './entities/session.entity'
+import { UserEntity } from '@/modules/user/entities'
 
 @Injectable()
 export class SessionRepository {
@@ -10,10 +11,12 @@ export class SessionRepository {
 		private readonly sessionRepository: Repository<SessionEntity>
 	) {}
 
-	public async findByUser(user: number) {
+	public async findByUser(user: UserEntity) {
 		return this.sessionRepository.findOne({
 			where: {
-				user
+				user: {
+					id: user.id
+				}
 			}
 		})
 	}

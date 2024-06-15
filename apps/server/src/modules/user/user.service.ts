@@ -9,7 +9,7 @@ export class UserService {
 		return this.userRepository.getByTgId(id)
 	}
 
-	public async registration(tg_id: string) {
+	public async create(tg_id: string) {
 		return this.userRepository.create({ tg_id })
 	}
 

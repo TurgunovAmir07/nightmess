@@ -30,7 +30,7 @@ export class UserRepository {
 			...user
 		})
 
-		return this.userRepository.save(createdUser)
+		return await this.userRepository.save(createdUser)
 	}
 
 	public async update(user: DeepPartial<UserEntity>) {

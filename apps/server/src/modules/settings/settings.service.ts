@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { SettingsRepository } from './settings.repository'
 import { ESettingsName } from '@/common/enums'
 import { settingsGenerate } from '@/core/seeder/generate'
+import { SettingsEntity } from './entities'
 
 @Injectable()
 export class SettingsService {
@@ -9,6 +10,19 @@ export class SettingsService {
 
 	public async getSettingsParamByName(name: ESettingsName) {
 		return this.settingsRepository.getParamByName(name)
+	}
+
+	public async getSettingsParamsByNamesMap(
+		names: ESettingsName[]
+	): Promise<[{ [key: string]: string }, SettingsEntity[]]> {
+		const settings = await this.getSettingsParamsByNames(names)
+
+		const settingsMap = settings.reduce((acc, item) => {
+			acc[item.name] = item.value
+			return acc
+		}, {})
+
+		return [settingsMap, settings]
 	}
 
 	public async getAll() {

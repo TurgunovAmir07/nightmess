@@ -11,9 +11,15 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { SessionEntity } from './entities'
 import { SessionRepository } from './session.repository'
 import { AccessJwtStrategy, RefreshJwtStrategy } from './strategies'
+import { DatabaseModule } from '@/core/database'
 
 @Module({
-	imports: [TypeOrmModule.forFeature([SessionEntity]), UserModule, JwtModule.register({})],
+	imports: [
+		TypeOrmModule.forFeature([SessionEntity]),
+		UserModule,
+		JwtModule.register({}),
+		DatabaseModule
+	],
 	controllers: [AuthController],
 	providers: [
 		AuthService,

@@ -3,6 +3,7 @@ import { SettingsService } from '../settings/settings.service'
 import { ESettingsName } from '@/common/enums'
 import { CardRepository } from './card.repository'
 import { cardGenerate } from '@/core/seeder/generate/card.generate'
+import { CardEntity } from './entities'
 
 @Injectable()
 export class CardService {
@@ -11,8 +12,34 @@ export class CardService {
 		private readonly cardRepository: CardRepository
 	) {}
 
-	private async findAndGroupCardsByLevel() {
+	private async findAndFormatCards(levelChancesMap: { [key: string]: string }) {
 		const cards = await this.cardRepository.getAll()
+
+		const groupedCards = cards.reduce((acc, item) => {
+			const arr = acc[item.chance] ?? []
+			acc[item.chance] = [...arr, item]
+			return acc
+		}, {})
+
+		return cards.map(i => {
+			const levelChance = +levelChancesMap[i.chance] / groupedCards[i.chance].length
+			i.chance = String(levelChance)
+			return i
+		})
+	}
+
+	private getDropCard(cards: CardEntity[]) {
+		const total = cards.reduce((acc, item) => acc + +item.chance, 0)
+		const chance = total * Math.random()
+
+		let current = 0
+
+		for (const item of cards) {
+			if (current <= chance && chance < current + +item.chance) {
+				return item
+			}
+			current += +item.chance
+		}
 	}
 
 	public async drop() {
@@ -23,16 +50,16 @@ export class CardService {
 			ESettingsName.THIRD_LEVEL_CHANCE
 		]
 
-		const settings = await this.settingsService.getSettingsParamsByNames(settingsParamNames)
+		const [settingsMap, settingsArr] =
+			await this.settingsService.getSettingsParamsByNamesMap(settingsParamNames)
 
-		if (settings.length !== settingsParamNames.length) {
+		if (settingsArr.length !== settingsParamNames.length) {
 			throw new BadRequestException('Не все параметры существуют. Обратитесь в поддержку')
 		}
 
-		const total = settings.reduce((acc, item) => acc + +item.value, 0)
-		const chance = total * Math.random()
+		const cards = await this.findAndFormatCards(settingsMap)
 
-		const current = 0
+		return this.getDropCard(cards)
 	}
 
 	public async _seeding() {
@@ -42,4 +69,6 @@ export class CardService {
 			.deleteMany(oldCards)
 			.then(() => this.cardRepository.saveMany(cards))
 	}
+
+	public async addCardToCards(user: number, card: number) {}
 }

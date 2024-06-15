@@ -1,7 +1,8 @@
 import { BaseEntity } from '@/core/database/entities'
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm'
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne } from 'typeorm'
 import { ECardRarity } from '@/common/enums'
 import { UserEntity } from '@/modules/user/entities'
+import { CardEntity } from '@/modules/card/entities'
 
 @Entity('UserAchievement')
 export class UserAchievementEntity extends BaseEntity {
@@ -28,11 +29,16 @@ export class UserAchievementEntity extends BaseEntity {
 	public readonly tries: number
 
 	@Column({
-		type: 'date'
+		type: 'date',
+		nullable: true
 	})
 	public readonly lastTap: Date
 
 	@OneToOne(() => UserEntity)
 	@JoinColumn()
-	public readonly user: number | null
+	public readonly user: UserEntity
+
+	@ManyToMany(() => CardEntity)
+	@JoinTable()
+	public readonly cards: CardEntity[]
 }

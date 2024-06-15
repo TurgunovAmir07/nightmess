@@ -1,10 +1,12 @@
 import { InjectRepository } from '@nestjs/typeorm'
 import { CardEntity } from './entities'
 import { Repository } from 'typeorm'
+import { DatabaseService } from '@/core/database/database.service'
 
 export class CardRepository {
 	constructor(
-		@InjectRepository(CardEntity) private readonly cardRepository: Repository<CardEntity>
+		@InjectRepository(CardEntity) private readonly cardRepository: Repository<CardEntity>,
+		private readonly databaseService: DatabaseService
 	) {}
 
 	public async getAll() {

@@ -20,7 +20,7 @@ export class BotService {
 		private readonly configService: ConfigService
 	) {
 		this.bot = new Telegraf(options.token)
-		this.commands = [new BotStartCommand(this.bot)]
+		this.commands = [new BotStartCommand(this.bot, this.authService)]
 		this.stage = new Scenes.Stage([new AuthScene(this.authService, this.configService).scene])
 		this.init()
 	}

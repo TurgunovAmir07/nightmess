@@ -3,27 +3,42 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { randomUUID } from 'crypto'
 import { TokenService } from './token.service'
+import { UserAchievementService } from '@/modules/game/user-achievement.service'
 
 @Injectable()
 export class AuthService {
 	constructor(
 		private readonly userService: UserService,
 		private readonly configService: ConfigService,
-		private readonly tokenService: TokenService
+		private readonly tokenService: TokenService,
+		private readonly userAchievementService: UserAchievementService
 	) {}
 
-	public async login(userId: string) {
-		let user = await this.userService.getByTgId(userId)
+	public async registration(tg_id: string) {
+		const user = await this.userService.getByTgId(tg_id)
 
-		if (!user) {
-			user = await this.userService.registration(userId)
+		if (user) {
+			return user
 		}
+
+		const createdUser = this.userService.create(tg_id).then(async res => {
+			await this.userAchievementService.create(res)
+			return res
+		})
+
+		return createdUser
+	}
+
+	public async login(userId: string) {
+		const user = await this.userService.getByTgId(userId)
 
 		const link = randomUUID()
 
-		await this.userService.updateLink(userId, link)
+		const updatedUser = await this.userService.updateLink(String(user.tg_id), link)
 
-		return { link: `${this.configService.get('VITE_SERVER_URL')}/api/auth/confirm/${link}` }
+		return {
+			link: `${this.configService.get('VITE_SERVER_URL')}/api/auth/confirm/${updatedUser.link}`
+		}
 	}
 
 	public async createSession(link: string): Promise<null | string> {
@@ -37,7 +52,7 @@ export class AuthService {
 
 		await this.userService.updateLink(user.tg_id, null)
 
-		await this.tokenService.saveToDb(refreshToken, user.id)
+		await this.tokenService.saveToDb(refreshToken, user)
 
 		return refreshToken
 	}
@@ -52,7 +67,7 @@ export class AuthService {
 
 		const tokens = this.tokenService.generateTokens(profile)
 
-		await this.tokenService.saveToDb(tokens.refreshToken, userId)
+		await this.tokenService.saveToDb(tokens.refreshToken, profile)
 
 		return { tokens, profile }
 	}

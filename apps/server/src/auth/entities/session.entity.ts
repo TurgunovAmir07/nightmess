@@ -11,5 +11,5 @@ export class SessionEntity extends BaseEntity {
 
 	@OneToOne(() => UserEntity)
 	@JoinColumn()
-	public readonly user: number | null
+	public readonly user: UserEntity
 }
