@@ -3,12 +3,12 @@ import { Showcase } from '@/widgets/Showcase'
 import cl from './ProfilePage.module.scss'
 import { Outlet } from 'react-router-dom'
 import { SettingsButton } from '@/features/SettingButton'
-import { CartButton } from '@/features/CartButton'
 import { OAuthTelegram } from '@/features/OAuthTelegramPopup'
 import { OAuthGoogle } from '@/features/OAuthGooglePopup'
 import { Auth } from '@/features/AuthPopup'
 import { OAuthVkPopup } from '@/features/OAuthVkPopup'
 import { GoToMainPageButton } from '@/features/GoToMainPageButton'
+import { CartButton } from '@/features/OpenCartButton'
 
 const ProfilePage = () => {
 	return (
