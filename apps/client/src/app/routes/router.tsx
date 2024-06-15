@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
 	{
 		path: '/profile',
 		element: (
-			<ProtectedRoute variant='public'>
+			<ProtectedRoute variant='authorized'>
 				<Suspense fallback={<LoaderSpinner />}>
 					<ProfilePage />
 				</Suspense>

@@ -64,6 +64,7 @@ export const authApi = createApi({
 		}),
 		logoutUser: build.query<void, void>({
 			query: () => ({
+				method: 'GET',
 				url: 'logout'
 			})
 		}),

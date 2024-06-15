@@ -1,8 +1,8 @@
-import { MapButton } from '@/features/MapButton'
 import cl from './Header.module.scss'
-import { ProfileAuthButton } from '@/features/ProfileAuthButton'
-import { CartButton } from '@/features/CartButton'
-import { GamepadButton } from '@/features/GamepadButton'
+import { GoToMapPageButton } from '@/features/GoToMapPageButton'
+import { GoToGamePageButton } from '@/features/GoToGamePageButton'
+import { GoToProfilePageButton } from '@/features/GoToProfilePageButton'
+import { CartButton } from '@/features/OpenCart'
 
 export const Header = ({
 	title,
@@ -14,9 +14,9 @@ export const Header = ({
 	return (
 		<div className={cl.root}>
 			<div className={cl.root__header}>
-				{isMap ? <GamepadButton /> : <MapButton />}
+				{isMap ? <GoToGamePageButton /> : <GoToMapPageButton />}
 				<h1 className={cl.root__header__title}>{title}</h1>
-				<ProfileAuthButton />
+				<GoToProfilePageButton />
 			</div>
 			<CartButton removeTop />
 		</div>

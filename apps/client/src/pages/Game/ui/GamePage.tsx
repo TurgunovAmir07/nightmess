@@ -1,16 +1,16 @@
 import { Container } from '@/shared'
-import { Swiper } from '@/widgets/Swiper'
+import { CardSlider } from '@/widgets/CardSlider'
 import cl from './GamePage.module.scss'
 import { Points } from '@/widgets/Points'
 
 import { Stars } from '@/widgets/Stars'
 import { Skills } from '@/widgets/Skills'
 import { Outlet } from 'react-router-dom'
-import { HomeButton } from '@/features/HomeButton'
-import { CartButton } from '@/features/CartButton'
+import { CartButton } from '@/features/OpenCart'
 import { InventoryButton } from '@/features/InventoryButton'
 import { CraftButton } from '@/features/CraftButton'
 import { ShopButton } from '@/features/ShopButton'
+import { GoToMainPageButton } from '@/features/GoToMainPageButton'
 
 const GamePage = () => {
 	return (
@@ -24,11 +24,11 @@ const GamePage = () => {
 						alt='moon'
 					/>
 				</span>
-				<HomeButton />
+				<GoToMainPageButton />
 				<Points />
 				<CartButton />
 				<Stars count={1} />
-				<Swiper />
+				<CardSlider />
 				<Skills />
 				<div className={cl.root__footer}>
 					<div className={cl.root__footer_button}>
