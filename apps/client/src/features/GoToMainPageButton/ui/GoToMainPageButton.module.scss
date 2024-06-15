@@ -1,0 +1,11 @@
+.root {
+	padding: 50px 0;
+
+	&__button {
+		position: absolute;
+		top: 90px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+}
