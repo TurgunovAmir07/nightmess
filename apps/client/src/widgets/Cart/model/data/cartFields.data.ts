@@ -1,4 +1,27 @@
-export const cartFieldsArr = [
+interface TRules {
+	required: string
+	pattern: {
+		value: RegExp
+		message: string
+	}
+}
+
+type TInputType = 'text' | 'email' | 'tel' | 'radio'
+
+interface TCardField {
+	id?: string
+	value?: string
+	description?: string
+	isRadio?: boolean
+	name?: string
+	type: TInputType
+	placeholder?: string
+	label: string
+	rules?: TRules
+	img?: string
+}
+
+export const cartFieldsArr: TCardField[] = [
 	{
 		name: 'email',
 		type: 'email',

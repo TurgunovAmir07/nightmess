@@ -1,5 +1,5 @@
 import { Container } from '@/shared'
-import { Swiper } from '@/widgets/Swiper'
+import { CardSlider } from '@/widgets/CardSlider'
 import cl from './GamePage.module.scss'
 import { Points } from '@/widgets/Points'
 
@@ -28,7 +28,7 @@ const GamePage = () => {
 				<Points />
 				<CartButton />
 				<Stars count={1} />
-				<Swiper />
+				<CardSlider />
 				<Skills />
 				<div className={cl.root__footer}>
 					<div className={cl.root__footer_button}>
