@@ -11,22 +11,30 @@ export class SettingsRepository {
 		private readonly settingsRepository: Repository<SettingsEntity>
 	) {}
 
-	public async getSettingsParamByName(name: ESettingsName) {
+	public async getParamByName(name: ESettingsName) {
 		return this.settingsRepository.findOne({
 			where: {
 				name
 			}
 		})
 	}
-	public async getAllSettings() {
+	public async getAll() {
 		return this.settingsRepository.find()
 	}
 
-	public async getSettingsParamsByNames(names: ESettingsName[]) {
+	public async getParamsByNames(names: ESettingsName[]) {
 		return this.settingsRepository.find({
 			where: {
 				name: In(names)
 			}
 		})
+	}
+
+	public async saveMany(settings: SettingsEntity[]) {
+		return this.settingsRepository.save(settings)
+	}
+
+	public async deleteMany(entities: SettingsEntity[]) {
+		return this.settingsRepository.remove(entities)
 	}
 }

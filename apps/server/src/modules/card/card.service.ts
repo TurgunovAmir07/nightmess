@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common'
 import { SettingsService } from '../settings/settings.service'
 import { ESettingsName } from '@/common/enums'
 import { CardRepository } from './card.repository'
+import { cardGenerate } from '@/core/seeder/generate/card.generate'
 
 @Injectable()
 export class CardService {
@@ -11,7 +12,7 @@ export class CardService {
 	) {}
 
 	private async findAndGroupCardsByLevel() {
-		const cards = await this.cardRepository.getAllCards()
+		const cards = await this.cardRepository.getAll()
 	}
 
 	public async drop() {
@@ -32,5 +33,13 @@ export class CardService {
 		const chance = total * Math.random()
 
 		const current = 0
+	}
+
+	public async _seeding() {
+		const oldCards = await this.cardRepository.getAll()
+		const cards = cardGenerate()
+		await this.cardRepository
+			.deleteMany(oldCards)
+			.then(() => this.cardRepository.saveMany(cards))
 	}
 }

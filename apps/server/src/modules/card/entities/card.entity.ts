@@ -1,28 +1,29 @@
 import { ECardRarity, ECardColor } from '@/common/enums'
+import { BaseEntity } from '@/core/database/entities'
 import { Column, Entity } from 'typeorm'
 
 @Entity('Card')
-export class CardEntity {
+export class CardEntity extends BaseEntity {
 	@Column({
 		type: 'enum',
 		enum: ECardRarity
 	})
-	public readonly rarity: ECardRarity
+	public rarity: ECardRarity
 
 	@Column({
 		type: 'enum',
 		enum: ECardColor
 	})
-	public readonly color: ECardColor
+	public color: ECardColor
 
 	@Column({
 		unique: true
 	})
-	public readonly name: string
+	public name: string
 
 	@Column()
-	public readonly description: string
+	public description: string
 
 	@Column()
-	public readonly image: string
+	public image: string
 }

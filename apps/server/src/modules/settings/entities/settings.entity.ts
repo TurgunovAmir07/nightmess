@@ -7,15 +7,15 @@ export class SettingsEntity extends BaseEntity {
 	@Column({
 		nullable: true
 	})
-	public readonly description: string
+	public description: string
 
 	@Column({
 		unique: true,
 		enum: ESettingsName,
 		type: 'enum'
 	})
-	public readonly name: ESettingsName
+	public name: ESettingsName
 
 	@Column()
-	public readonly value: string
+	public value: string
 }
