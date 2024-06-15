@@ -19,16 +19,25 @@ export class GameService {
 			throw new BadRequestException('Пользователь не найден. Обратитесь в поддержку')
 		}
 
+		const tryChance = await this.settingsService.getSettingsParamByName(
+			ESettingsName.TRY_CHANCE
+		)
+
+		if (!tryChance) {
+			throw new BadRequestException('Параметр не найден. 2')
+		}
+
 		const isUserHaveTries = achievement.tries > 0
 		const isDateArrived = await this.isDateArrived(achievement.lastTap)
+		const isFreeTry = Math.random() * 100 <= +tryChance.value
 
-		if (!isUserHaveTries && !isDateArrived) {
+		if (!isUserHaveTries && !isDateArrived && !isFreeTry) {
 			return `Прошло недостаточное количество времени. Подождите еще!`
 		}
 
 		const card = await this.cardService.drop()
 
-		await this.userAchievementService.drop(userId, card, isUserHaveTries)
+		await this.userAchievementService.drop(userId, card, isUserHaveTries || isFreeTry)
 	}
 
 	private async isDateArrived(date: Date) {

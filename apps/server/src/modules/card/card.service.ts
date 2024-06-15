@@ -69,6 +69,4 @@ export class CardService {
 			.deleteMany(oldCards)
 			.then(() => this.cardRepository.saveMany(cards))
 	}
-
-	public async addCardToCards(user: number, card: number) {}
 }

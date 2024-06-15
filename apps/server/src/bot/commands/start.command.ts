@@ -16,8 +16,6 @@ export class BotStartCommand extends Command {
 		this.bot.start(async ctx => {
 			const user = await this.authService.registration(String(ctx.from.id))
 
-			console.log(user, 'user')
-
 			return ctx.reply(
 				'Добро пожаловать в Nightmess Bot! Выберите интересующий Вас модуль:',
 				Markup.keyboard([

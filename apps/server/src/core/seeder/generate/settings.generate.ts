@@ -36,6 +36,12 @@ export const settingsGenerate = (i: ESettingsName) => {
 				setting.value = '0.01'
 			}
 			break
+		case ESettingsName.TRY_CHANCE:
+			{
+				setting.description = 'Шанс получения попытки'
+				setting.value = '1'
+			}
+			break
 	}
 
 	return setting
