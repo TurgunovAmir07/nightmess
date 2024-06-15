@@ -1,75 +1,75 @@
 body {
-  background: #2d0d24;
+	background: #2d0d24;
 }
 
 @font-face {
-  src: url('/fonts/PixelAnchorJack.ttf');
-  font-family: 'Pixel Anchor-Jack';
-  format: 'truetype';
+	src: url('/fonts/PixelAnchorJack.ttf');
+	font-family: 'Pixel Anchor-Jack';
+	format: 'truetype';
 }
 
 @font-face {
-  src: url('/fonts/Panton.ttf');
-  font-family: 'Panton';
-  format: 'truetype';
+	src: url('/fonts/Panton.ttf');
+	font-family: 'Panton';
+	format: 'truetype';
 }
 
 @font-face {
-  src: url('/fonts/TildaSans.ttf');
-  font-family: 'Tilda Sans';
-  format: 'truetype';
+	src: url('/fonts/TildaSans.ttf');
+	font-family: 'Tilda Sans';
+	format: 'truetype';
 }
 
 @font-face {
-  src: url('/fonts/PixelCyr.ttf');
-  font-family: 'Pixel Cyr';
-  format: 'truetype';
+	src: url('/fonts/PixelCyr.ttf');
+	font-family: 'Pixel Cyr';
+	format: 'truetype';
 }
 
 * {
-  padding: 0;
-  margin: 0;
-  font-family: 'Pixel Anchor-Jack';
+	padding: 0;
+	margin: 0;
+	font-family: 'Pixel Anchor-Jack';
 }
 
 h1 {
-  font-family: 'Panton' !important;
+	font-family: 'Panton' !important;
 }
 
 input[type='radio']:checked {
-  accent-color: #000;
+	accent-color: #000;
 }
 
 .swiper-slide {
-  text-align: center;
+	text-align: center !important;
 }
 
 .swiper-pagination {
-  margin-top: 20px;
-  position: sticky;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	margin-top: 20px !important;
+	position: sticky !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
 }
 
 .swiper-3d {
-  .swiper-slide-shadow-left {
-    background: inherit;
-  }
-  .swiper-slide-shadow-right {
-    background: inherit;
-  }
+	.swiper-slide-shadow-left {
+		background: inherit !important;
+	}
+	.swiper-slide-shadow-right {
+		background: inherit !important;
+	}
 }
 
 .swiper-pagination-bullet {
-  opacity: 1;
-  transition: all;
-  transition-duration: 500ms;
-  background-color: #00ba24;
-  border-radius: 0;
+	opacity: 1 !important;
+	transition: all !important;
+	transition-duration: 500ms !important;
+	background-color: #00ba24 !important;
+	border-radius: 0 !important;
 
-  &-active {
-    background-color: #fff;
-    height: 15px;
-  }
+	&-active {
+		background-color: #fff !important;
+		height: 15px !important;
+	}
 }
