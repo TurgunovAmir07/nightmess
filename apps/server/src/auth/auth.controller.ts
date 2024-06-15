@@ -64,7 +64,7 @@ export class AuthController {
 		const refreshToken = await this.authService.createSession(link)
 
 		if (!refreshToken) {
-			res.clearCookie('refresh')
+			res.clearCookie('refresh', { path: this.refreshCookieOptions.path })
 			throw new BadRequestException('Ссылка невалидна!')
 		}
 
@@ -80,7 +80,7 @@ export class AuthController {
 		@Res({ passthrough: true }) res: Response
 	) {
 		await this.authService.logout(refresh)
-		res.clearCookie('refresh')
+		res.clearCookie('refresh', { path: this.refreshCookieOptions.path })
 		return
 	}
 }
