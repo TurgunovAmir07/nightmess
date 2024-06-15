@@ -7,8 +7,8 @@ import { OAuthGoogle } from '@/features/OAuthGooglePopup'
 import { Auth } from '@/features/AuthPopup'
 import { OAuthVkPopup } from '@/features/OAuthVkPopup'
 import { GoToMainPageButton } from '@/features/GoToMainPageButton'
-import { CartButton } from '@/features/OpenCartButton'
-import { SettingsButton } from '@/features/OpenSettingsButton'
+import { CartButton } from '@/features/OpenCart'
+import { SettingsButton } from '@/features/OpenSettings'
 
 const ProfilePage = () => {
 	return (
