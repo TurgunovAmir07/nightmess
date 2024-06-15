@@ -1,7 +1,7 @@
 import { LinkedButton } from '@/shared'
-import cl from './GoToGamePage.module.scss'
+import cl from './GoToGamePageButton.module.scss'
 
-export const GoToGamePage = () => {
+export const GoToGamePageButton = () => {
 	return (
 		<div className={cl.root}>
 			<div className={cl.root__button}>

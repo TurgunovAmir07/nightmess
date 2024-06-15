@@ -1,1 +1,1 @@
-export * from './ui/GoToGamePage'
+export * from './ui/GoToGamePageButton'
