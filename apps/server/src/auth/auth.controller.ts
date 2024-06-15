@@ -14,8 +14,10 @@ import { CookieOptions, Response } from 'express'
 import { RefreshGuard } from './guards'
 import { Cookie, User } from '@/common/decorators'
 import { ConfigService } from '@nestjs/config'
+import { ApiOperation, ApiTags } from '@nestjs/swagger'
 // import type { TRefreshResponse } from '@/contracts/auth'
 
+@ApiTags('Авторизация')
 @Controller('auth')
 export class AuthController {
 	constructor(
@@ -29,6 +31,9 @@ export class AuthController {
 		path: '/api/auth'
 	}
 
+	@ApiOperation({
+		summary: 'Обновление токенов'
+	})
 	@Get('refresh')
 	@RefreshGuard()
 	@UseInterceptors(ClassSerializerInterceptor)
@@ -56,6 +61,9 @@ export class AuthController {
 		return { accessToken, profile }
 	}
 
+	@ApiOperation({
+		summary: 'Создание сессии при переходе по ссылке'
+	})
 	@Get('confirm/:link')
 	public async createSession(
 		@Param('link') link: string,
@@ -73,6 +81,9 @@ export class AuthController {
 		return res.redirect(this.configService.get('CLIENT_URL'))
 	}
 
+	@ApiOperation({
+		summary: 'Выход из профиля'
+	})
 	@HttpCode(200)
 	@Get('logout')
 	public async logout(

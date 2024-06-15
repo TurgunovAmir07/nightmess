@@ -25,7 +25,9 @@ const environmentVariables = z.object({
 		.default('false')
 		.transform(value => value === 'true'),
 	NODE_ENV: z.enum(nodeEnvArray).optional(),
-	BOT_TOKEN: z.string()
+	BOT_TOKEN: z.string(),
+	REDIS_PORT: z.string(),
+	REDIS_HOST: z.string()
 })
 
 export const EnvConfigOptions: ConfigModuleOptions = {
