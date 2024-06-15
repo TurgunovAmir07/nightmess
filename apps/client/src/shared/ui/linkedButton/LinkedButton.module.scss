@@ -1,0 +1,10 @@
+.root {
+	width: fit-content;
+	height: fit-content;
+	z-index: 2;
+
+	&__link {
+		cursor: pointer;
+		width: fit-content;
+	}
+}
