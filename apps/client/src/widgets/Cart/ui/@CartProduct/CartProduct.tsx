@@ -1,4 +1,4 @@
-import { CartProductCounter } from './@CartProductCounter/CartProductCounter'
+import { CartProductCounter } from '../@CartProductCounter/CartProductCounter'
 import cl from './CartProduct.module.scss'
 
 export const CartProduct = ({
