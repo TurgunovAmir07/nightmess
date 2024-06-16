@@ -1,7 +1,14 @@
 import { Context } from 'telegraf'
-import { SceneContextScene, SceneSessionData, WizardContextWizard } from 'telegraf/typings/scenes'
+import {
+	SceneContextScene,
+	SceneSession,
+	SceneSessionData,
+	WizardContextWizard
+} from 'telegraf/typings/scenes'
 
-export interface ISessionData {}
+export interface ISessionData extends SceneSession<IWizardSessionData> {
+	userId: number
+}
 export interface IWizardSessionData extends SceneSessionData {
 	cursor: number
 }

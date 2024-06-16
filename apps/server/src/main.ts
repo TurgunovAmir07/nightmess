@@ -24,7 +24,7 @@ async function bootstrap() {
 
 	if (NODE_ENV !== ENodeEnv.production) {
 		const document = SwaggerModule.createDocument(app, config)
-		SwaggerModule.setup('api/docs', app, document)
+		SwaggerModule.setup('/api/docs', app, document)
 	}
 
 	await app.listen(SERVER_PORT)
