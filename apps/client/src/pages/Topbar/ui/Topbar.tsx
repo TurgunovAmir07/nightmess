@@ -14,62 +14,58 @@ export const Topbar = () => {
 	if (location.pathname === '/') return <Navigate to='/main' />
 
 	return (
-		<>
-			<Container>
-				<div className={cl.root}>
-					<div className={cl.root__container}>
-						<Link
-							to='/game'
-							className={`${cl.root__container__item} ${
-								activePath === '/game' &&
-								cl.root__container__item_active
-							}`}
-						>
-							<label className={cl.root__container__item_label}>
-								<input
-									className={
-										cl.root__container__item_label__radio
-									}
-									type='radio'
-									name='topbar'
-								/>
-								<span
-									className={
-										cl.root__container__item_label__text
-									}
-								>
-									GAME
-								</span>
-							</label>
-						</Link>
-						<Link
-							to='/profile'
-							className={`${cl.root__container__item} ${
-								activePath === '/profile' &&
-								cl.root__container__item_active
-							}`}
-						>
-							<label className={cl.root__container__item_label}>
-								<input
-									className={
-										cl.root__container__item_label__radio
-									}
-									type='radio'
-									name='topbar'
-								/>
-								<span
-									className={
-										cl.root__container__item_label__text
-									}
-								>
-									PROFILE
-								</span>
-							</label>
-						</Link>
-					</div>
+		<Container>
+			<div className={cl.root}>
+				<div className={cl.root__container}>
+					<span
+						className={`${cl.root__container_separator} ${
+							activePath === '/game'
+								? cl.root__container_separator_right
+								: cl.root__container_separator_left
+						}
+            `}
+					/>
+					<Link to='/game' className={cl.root__container__item}>
+						<label className={cl.root__container__item_label}>
+							<input
+								className={
+									cl.root__container__item_label__radio
+								}
+								type='radio'
+								name='topbar'
+							/>
+							<span
+								className={cl.root__container__item_label__text}
+							>
+								GAME
+							</span>
+						</label>
+					</Link>
+					<Link
+						to='/profile'
+						className={`${cl.root__container__item} ${
+							activePath === '/profile' &&
+							cl.root__container__item_active
+						}`}
+					>
+						<label className={cl.root__container__item_label}>
+							<input
+								className={
+									cl.root__container__item_label__radio
+								}
+								type='radio'
+								name='topbar'
+							/>
+							<span
+								className={cl.root__container__item_label__text}
+							>
+								PROFILE
+							</span>
+						</label>
+					</Link>
 				</div>
-				<Outlet />
-			</Container>
-		</>
+			</div>
+			<Outlet />
+		</Container>
 	)
 }
