@@ -28,7 +28,7 @@ export class BotService {
 		this.commands = [new BotStartCommand(this.bot, this.authService)]
 		this.stage = new Scenes.Stage([
 			new AuthScene(this.authService, this.configService).scene,
-			new InventoryScene(this.gameService).scene
+			new InventoryScene(this.gameService, this.configService).scene
 		])
 		this.store = Redis(getRedisConfig(this.configService))
 		this.init()

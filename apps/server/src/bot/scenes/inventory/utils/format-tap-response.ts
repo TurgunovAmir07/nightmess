@@ -6,9 +6,9 @@ export const formatTapResponse = ({ card, message }: { card: CardEntity; message
 	return `
     ${message}
 
-    name: ${name}
-    rarity: ${rarity}
-    color: ${color}
-    description: ${description}
+name: ${name}
+rarity: ${rarity}
+color: ${color}
+description: ${description}
     `
 }

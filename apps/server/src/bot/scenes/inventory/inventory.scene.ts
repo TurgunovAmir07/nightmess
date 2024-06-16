@@ -4,13 +4,17 @@ import { IBotContext } from '../../context'
 import { Composer, Markup, Scenes } from 'telegraf'
 import { GET_CARD, INVENTORY_SCENE, SHOW_INVENTORY } from '../../bot.constants'
 import { GameService } from '@/modules/game/game.service'
-import { formatTapResponse } from './utils'
+import { formatInventory, formatTapResponse } from './utils'
+import { ConfigService } from '@nestjs/config'
 
 export class InventoryScene extends Scene {
 	public scene: WizardScene<IBotContext>
 	public composer: Composer<IBotContext>
 
-	constructor(private readonly gameService: GameService) {
+	constructor(
+		private readonly gameService: GameService,
+		private readonly configService: ConfigService
+	) {
 		super()
 		this.composer = new Composer<IBotContext>()
 		this.scene = new Scenes.WizardScene(INVENTORY_SCENE, async ctx => {
@@ -34,14 +38,32 @@ export class InventoryScene extends Scene {
 					if (!res.card) {
 						return ctx.reply(res.message)
 					} else {
-						// @ts-expect-error card is exist after check !res.card
-						return ctx.reply(formatTapResponse(res))
+						console.log(
+							this.configService.get('VITE_SERVER_STATIC_URL') + '/' + res.card.image
+						)
+						return ctx.replyWithPhoto(
+							{
+								url:
+									this.configService.get('VITE_SERVER_STATIC_URL') +
+									'/' +
+									res.card.image
+							},
+							{
+								// @ts-expect-error card always exist after check
+								caption: formatTapResponse(res)
+							}
+						)
 					}
 				})
-				.catch(e => ctx.reply(e.response.message))
+				.catch(e => {
+					console.log(e)
+					return ctx.reply(e.response?.message ?? 'Неожиданная ошибка')
+				})
 		})
 		this.scene.hears(SHOW_INVENTORY, async ctx => {
-			return ctx.reply('Показать инвентарь')
+			const inventory = await this.gameService.getInventory(ctx.session.userId)
+
+			return ctx.reply(formatInventory(inventory))
 		})
 	}
 }
