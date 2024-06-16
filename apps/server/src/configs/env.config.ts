@@ -29,7 +29,8 @@ const environmentVariables = z.object({
 	REDIS_PORT: z.string(),
 	REDIS_HOST: z.string(),
 	REDIS_USERNAME: z.string(),
-	REDIS_PASSWORD: z.string()
+	REDIS_PASSWORD: z.string(),
+	SERVER_STATIC_URL: z.string()
 })
 
 export const EnvConfigOptions: ConfigModuleOptions = {
