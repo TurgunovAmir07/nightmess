@@ -28,7 +28,8 @@ const environmentVariables = z.object({
 	BOT_TOKEN: z.string(),
 	REDIS_PORT: z.string(),
 	REDIS_HOST: z.string(),
-	REDIS_USERNAME: z.string()
+	REDIS_USERNAME: z.string(),
+	REDIS_PASSWORD: z.string()
 })
 
 export const EnvConfigOptions: ConfigModuleOptions = {

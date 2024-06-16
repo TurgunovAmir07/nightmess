@@ -32,14 +32,23 @@ export class GameService {
 		const isFreeTry = Math.random() * 100 <= +tryChance.value
 
 		if (!isUserHaveTries && !isDateArrived && !isFreeTry) {
-			return `Прошло недостаточное количество времени. Подождите еще!`
+			return { message: `Прошло недостаточное количество времени. Подождите еще!` }
 		}
 
 		const card = await this.cardService.drop()
 
 		await this.userAchievementService.drop(userId, card, isUserHaveTries || isFreeTry)
 
-		return card
+		let message = 'Вы получили карточку: '
+
+		if (isUserHaveTries) {
+			message = `Вы использовали попытку. У Вас осталось ${achievement.tries - 1} попыток`
+		}
+		if (isFreeTry) {
+			message = 'Удача! Вам выпала бесплатная попытка!'
+		}
+
+		return { card, message }
 	}
 
 	public async getInventory(userId: number) {
@@ -60,7 +69,8 @@ export class GameService {
 		}
 
 		const dateForCheck = new Date(date)
-		dateForCheck.setHours(dateForCheck.getHours() + +tapInterval)
+
+		dateForCheck.setHours(dateForCheck.getHours() + +tapInterval.value)
 		return new Date() > dateForCheck
 	}
 }
