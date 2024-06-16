@@ -1,0 +1,39 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { TypeRootState } from '@/store'
+
+const baseQuery = fetchBaseQuery({
+	baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/game`,
+	credentials: 'include',
+
+	// Automatically use token in authorization header if it provided
+	prepareHeaders: (headers, { getState }) => {
+		const token = (getState() as TypeRootState)['authSlice'].accessToken
+		if (token) {
+			headers.set('Authorization', `Bearer ${token}`)
+			headers.set('Content-Type', 'application/json')
+		}
+
+		return headers
+	}
+})
+
+export const cardApi = createApi({
+	reducerPath: 'cardApi',
+	baseQuery: baseQuery,
+	endpoints: build => ({
+		// eslint-disable-next-line
+		getCard: build.query<any, void>({
+			query: () => ({
+				url: 'tap'
+			})
+		}),
+		// eslint-disable-next-line
+		getInventory: build.query<any, void>({
+			query: () => ({
+				url: 'inventory'
+			})
+		})
+	})
+})
+
+export const { useGetCardQuery, useGetInventoryQuery } = cardApi

@@ -7,19 +7,18 @@
 		background-size: cover;
 		background-color: inherit;
 		border: none;
-		padding: 15px;
 		cursor: pointer;
 		height: 80px;
 		width: 175px;
 
 		&_text {
-			font-size: 18px;
-			padding: 20px;
+			color: #440707;
+			font-size: 24px;
 		}
 
 		@media (max-width: 375px) {
 			&_text {
-				font-size: 14px;
+				font-size: 18px;
 			}
 		}
 	}
