@@ -1,8 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createBrowserRouter } from 'react-router-dom'
+import { Outlet, createBrowserRouter } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import { LoaderSpinner, ProtectedRoute } from '@/shared'
-import { Topbar } from '@/widgets/Topbar'
+import { Topbar } from '@/pages/Topbar'
 
 const MainPage = lazy(() => import('@/pages/Main'))
 const ProfilePage = lazy(() => import('@/pages/Profile'))
@@ -15,6 +15,38 @@ const MapPage = lazy(() => import('@/pages/Map'))
 export const router = createBrowserRouter([
 	{
 		path: '/',
+		element: <Outlet />,
+		children: [
+			{
+				path: '/',
+				element: <Topbar />,
+				children: [
+					{
+						path: '/profile',
+						element: (
+							<ProtectedRoute variant='public'>
+								<Suspense fallback={<LoaderSpinner />}>
+									<ProfilePage />
+								</Suspense>
+							</ProtectedRoute>
+						)
+					},
+					{
+						path: '/game',
+						element: (
+							<ProtectedRoute variant='public'>
+								<Suspense fallback={<LoaderSpinner />}>
+									<GamePage />
+								</Suspense>
+							</ProtectedRoute>
+						)
+					}
+				]
+			}
+		]
+	},
+	{
+		path: '/main',
 		element: (
 			<ProtectedRoute variant='public'>
 				<Suspense fallback={<LoaderSpinner />}>
@@ -22,38 +54,6 @@ export const router = createBrowserRouter([
 				</Suspense>
 			</ProtectedRoute>
 		)
-	},
-	{
-		path: '/profile',
-		element: (
-			<ProtectedRoute variant='public'>
-				<Suspense fallback={<LoaderSpinner />}>
-					<ProfilePage />
-				</Suspense>
-			</ProtectedRoute>
-		),
-		children: [
-			{
-				path: '',
-				element: <Topbar />
-			}
-		]
-	},
-	{
-		path: '/game',
-		element: (
-			<ProtectedRoute variant='public'>
-				<Suspense fallback={<LoaderSpinner />}>
-					<GamePage />
-				</Suspense>
-			</ProtectedRoute>
-		),
-		children: [
-			{
-				path: '',
-				element: <Topbar />
-			}
-		]
 	},
 	{
 		path: '/product/:id',
