@@ -1,9 +1,9 @@
 import { ActivateEmailButton } from '@/features/ActivateEmail'
-import cl from './OAuthFrame.module.scss'
+import cl from './ActivationButtonsFrame.module.scss'
 import { ActivateGoogleButton } from '@/features/ActivateGoogle'
 import { ActivateVkButton } from '@/features/ActivateVk'
 
-export const OAuthFrame = () => {
+export const ActivationButtonsFrame = () => {
 	return (
 		<div className={cl.root}>
 			<h2 className={cl.root_title}>ПРИВЯЗАТЬ</h2>

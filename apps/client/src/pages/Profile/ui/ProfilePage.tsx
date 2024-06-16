@@ -4,7 +4,7 @@ import cl from './ProfilePage.module.scss'
 import { GoToMainPageButton } from '@/features/GoToMainPageButton'
 import { CartButton } from '@/features/OpenCart'
 import { SettingsButton } from '@/features/OpenSettings'
-import { OAuthFrame } from '@/widgets/OAuthFrame'
+import { ActivationButtonsFrame } from '@/widgets/ActivationButtonsFrame'
 
 const ProfilePage = () => {
 	return (
@@ -21,7 +21,7 @@ const ProfilePage = () => {
 				</div>
 
 				<div className={cl.root__content__buttons}>
-					<OAuthFrame />
+					<ActivationButtonsFrame />
 				</div>
 
 				<Showcase count={1} />
