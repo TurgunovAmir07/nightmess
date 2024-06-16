@@ -1,10 +1,10 @@
 import { Container } from '@/shared'
 import { Header } from '@/widgets/Header'
-import { Product } from '@/widgets/Product'
 import cl from './MainPage.module.scss'
 import { productsData } from '@/shared'
 import { Link } from 'react-router-dom'
 import { LogoutButton } from '@/features/LogoutButton'
+import { Product } from '@/entities/Product'
 
 const MainPage = () => {
 	return (

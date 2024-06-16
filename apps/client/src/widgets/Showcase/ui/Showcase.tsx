@@ -1,8 +1,8 @@
 import type { Key } from 'react'
 import { OrderStatus } from '@/features/OrderStatus'
 import { useCart } from '@/store'
-import { Product } from '@/widgets/Product'
 import cl from './Showcase.module.scss'
+import { Product } from '@/entities/Product'
 
 export const Showcase = ({ count }: { count: number }) => {
 	const { cart } = useCart()
