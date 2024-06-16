@@ -10,7 +10,7 @@ export const GoToMainPageButton = () => {
 					height={45}
 					src={'/button-home.png'}
 					alt={'home'}
-					to={'/'}
+					to={'/main'}
 				/>
 			</div>
 		</div>

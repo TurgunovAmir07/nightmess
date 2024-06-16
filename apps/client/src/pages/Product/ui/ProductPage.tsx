@@ -15,7 +15,7 @@ const ProductPage = () => {
 					</div>
 				</>
 				<div className={cl.root_links}>
-					<Link to='/'>главная</Link>
+					<Link to='/main'>главная</Link>
 					<Link to='/profile'>профиль</Link>
 				</div>
 			</div>
