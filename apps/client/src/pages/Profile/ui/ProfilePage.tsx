@@ -1,13 +1,10 @@
 import { GameInput } from '@/shared'
 import { Showcase } from '@/widgets/Showcase'
 import cl from './ProfilePage.module.scss'
-import { OAuthTelegram } from '@/features/OAuthTelegramPopup'
-import { OAuthGoogle } from '@/features/OAuthGooglePopup'
-import { Auth } from '@/features/AuthPopup'
-import { OAuthVkPopup } from '@/features/OAuthVkPopup'
 import { GoToMainPageButton } from '@/features/GoToMainPageButton'
 import { CartButton } from '@/features/OpenCart'
 import { SettingsButton } from '@/features/OpenSettings'
+import { OAuthFrame } from '@/widgets/OAuthFrame'
 
 const ProfilePage = () => {
 	return (
@@ -24,10 +21,7 @@ const ProfilePage = () => {
 				</div>
 
 				<div className={cl.root__content__buttons}>
-					<OAuthTelegram />
-					<OAuthGoogle />
-					<Auth />
-					<OAuthVkPopup />
+					<OAuthFrame />
 				</div>
 
 				<Showcase count={1} />
