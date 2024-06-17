@@ -1,1 +1,1 @@
-export * from './GetCardButton.tsx'
+export * from './ui/GetCardButton.tsx'
