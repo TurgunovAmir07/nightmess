@@ -1,6 +1,6 @@
-import cl from './SkillsItem.module.scss'
+import cl from './MiniInventoryItem.module.scss'
 
-export const SkillsItem = ({
+export const MiniInventoryItem = ({
 	count,
 	isEmpty
 }: {

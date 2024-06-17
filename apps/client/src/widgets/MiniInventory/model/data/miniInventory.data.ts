@@ -1,9 +1,9 @@
-interface ISkillsData {
+interface TMiniInventoryData {
 	isEmpty: boolean
 	count?: number
 }
 
-export const skillsData: ISkillsData[] = [
+export const miniInventoryData: TMiniInventoryData[] = [
 	{
 		isEmpty: false,
 		count: 1
