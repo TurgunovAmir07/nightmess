@@ -1,0 +1,25 @@
+.root {
+	cursor: pointer;
+	background-color: inherit;
+	border: none;
+	width: fit-content;
+	height: fit-content;
+	margin-bottom: 30px;
+
+	&__icon {
+		width: 40px;
+		margin-right: 10px;
+
+		&_left {
+			margin-right: 0;
+			margin-left: 10px;
+			transform: scaleX(-1);
+		}
+	}
+
+	@media (max-width: 355px) {
+		&__icon {
+			width: 30px;
+		}
+	}
+}
