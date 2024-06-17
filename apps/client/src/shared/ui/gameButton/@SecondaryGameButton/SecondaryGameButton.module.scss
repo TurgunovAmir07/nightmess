@@ -1,0 +1,56 @@
+.root {
+	cursor: pointer;
+	background-image: url('/button-game-btn.png');
+	background-size: cover;
+	width: 210px;
+	height: 45px;
+	border: inherit;
+
+	&_middle {
+		width: 260px;
+		height: 57px;
+	}
+
+	&_large {
+		width: 306px;
+		height: 66.5px;
+	}
+
+	&__content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+
+		&__text {
+			margin-top: -2px;
+			font-size: 12px;
+			color: #fff;
+
+			&_middle {
+				margin-top: -3px;
+				font-size: 16px;
+			}
+
+			&_large {
+				margin-top: -4px;
+				font-size: 20px;
+			}
+		}
+
+		&__img {
+			margin-right: -10px;
+			width: 25px;
+
+			&_middle {
+				margin-top: -2px;
+				width: 30px;
+			}
+
+			&_large {
+				margin-top: -2px;
+				width: 40px;
+			}
+		}
+	}
+}

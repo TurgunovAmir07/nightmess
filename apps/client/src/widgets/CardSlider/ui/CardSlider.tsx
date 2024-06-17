@@ -1,17 +1,17 @@
 import { Pagination, EffectCoverflow, Navigation } from 'swiper/modules'
 import { SwiperSlide, Swiper as SwiperJs } from 'swiper/react'
 import cl from './CardSlider.module.scss'
-import { SwiperNavigationButton } from '@/features/SwiperNavigationButton'
 
 import 'swiper/scss'
 import 'swiper/scss/pagination'
 import 'swiper/scss/effect-coverflow'
 import 'swiper/scss/navigation'
+import { NavigateSliderElementsButton } from '@/features/NavigateSliderElements/ui/NavigateSliderElementsButton'
 
 export const CardSlider = () => {
 	return (
 		<div className={cl.root}>
-			<SwiperNavigationButton left className='leftEl' />
+			<NavigateSliderElementsButton side='left' className='leftEl' />
 			<SwiperJs
 				style={{ maxWidth: '250px' }}
 				spaceBetween={50}
@@ -44,7 +44,7 @@ export const CardSlider = () => {
 					</SwiperSlide>
 				))}
 			</SwiperJs>
-			<SwiperNavigationButton className='rightEl' />
+			<NavigateSliderElementsButton side='right' className='rightEl' />
 		</div>
 	)
 }

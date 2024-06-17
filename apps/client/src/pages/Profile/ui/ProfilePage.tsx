@@ -1,43 +1,32 @@
-import { GameInput, Container } from '@/shared'
+import { Input } from '@/shared'
 import { Showcase } from '@/widgets/Showcase'
 import cl from './ProfilePage.module.scss'
-import { Outlet } from 'react-router-dom'
-import { OAuthTelegram } from '@/features/OAuthTelegramPopup'
-import { OAuthGoogle } from '@/features/OAuthGooglePopup'
-import { Auth } from '@/features/AuthPopup'
-import { OAuthVkPopup } from '@/features/OAuthVkPopup'
-import { GoToMainPageButton } from '@/features/GoToMainPageButton'
+import { GoToMainPageButton } from '@/features/GoToMainPage'
 import { CartButton } from '@/features/OpenCart'
 import { SettingsButton } from '@/features/OpenSettings'
+import { ActivationButtonsFrame } from '@/widgets/ActivationButtonsFrame'
 
 const ProfilePage = () => {
 	return (
-		<Container>
-			<div className={cl.root}>
-				<Outlet />
+		<div className={cl.root}>
+			<div className={cl.root__content}>
+				<GoToMainPageButton />
 
-				<div className={cl.root__content}>
-					<GoToMainPageButton />
+				<SettingsButton />
 
-					<SettingsButton />
+				<CartButton />
 
-					<CartButton />
-
-					<div className={cl.root__content_input}>
-						<GameInput />
-					</div>
-
-					<div className={cl.root__content__buttons}>
-						<OAuthTelegram />
-						<OAuthGoogle />
-						<Auth />
-						<OAuthVkPopup />
-					</div>
-
-					<Showcase count={1} />
+				<div className={cl.root__content_input}>
+					<Input variant='game' />
 				</div>
+
+				<div className={cl.root__content__buttons}>
+					<ActivationButtonsFrame />
+				</div>
+
+				<Showcase count={1} />
 			</div>
-		</Container>
+		</div>
 	)
 }
 

@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Input, Popup } from '@/shared'
+import { GameButton, Input, Popup } from '@/shared'
 import cl from './Cart.module.scss'
-import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
-import { CartProduct } from '@/widgets/CartProduct'
 import { useActions, useCart, useTypedSelector } from '@/store'
 import { cartFieldsArr } from '../model/data/cartFields.data'
-import { DeleteFromCartButton } from '@/features/DeleteFromCartButton'
+import { DeleteFromCartButton } from '@/features/DeleteFromCart'
+import { CartProduct } from './@CartProduct/CartProduct'
 
 export const Cart = ({
 	isOpen,
@@ -42,7 +41,6 @@ export const Cart = ({
 		})
 	}
 
-	const { order } = useTypedSelector(state => state.order)
 	const { userData } = useTypedSelector(state => state.userData)
 	const [deliveryPrice, setDeliveryPrice] = useState<number>(0)
 	const delivery = watch('delivery')
@@ -74,10 +72,6 @@ export const Cart = ({
 			document.removeEventListener('keydown', handleEsc)
 		}
 	}, [isOpen, setIsOpen])
-
-	useEffect(() => {
-		console.log(order)
-	}, [order])
 
 	const { cart, total } = useCart()
 
@@ -234,6 +228,7 @@ export const Cart = ({
 									}
 									render={({ field }) => (
 										<Input
+											variant='form'
 											field={field}
 											error={
 												errors[
@@ -269,7 +264,14 @@ export const Cart = ({
 						</span>
 					</div>
 					<div className={cl.root__content_submitBtn}>
-						<CartSubmitButton title='ЗАКАЗАТЬ' />
+						<GameButton
+							src='/icon-mark.png'
+							alt='mark'
+							text='ЗАКАЗАТЬ'
+							type='primary'
+							size='middle'
+							htmlType='submit'
+						/>
 					</div>
 				</form>
 			</Popup>

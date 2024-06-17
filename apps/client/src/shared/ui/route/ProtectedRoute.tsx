@@ -16,10 +16,10 @@ export const ProtectedRoute = ({
 	if (isLoading) return <LoaderSpinner />
 
 	if (variant === 'unauthorized')
-		return user || data ? <Navigate to='/' /> : children
+		return user || data ? <Navigate to='/main' /> : children
 
 	if (variant === 'authorized')
-		return user || data ? children : <Navigate to='/' />
+		return user || data ? children : <Navigate to='/main' />
 
 	return children
 }

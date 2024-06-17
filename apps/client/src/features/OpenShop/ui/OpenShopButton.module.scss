@@ -1,0 +1,11 @@
+.root {
+	background-color: inherit;
+	background-image: url('/button-inventory-shop.png');
+	background-size: cover;
+	border: none;
+	padding: 15px;
+
+	&_img {
+		max-width: 40px;
+	}
+}

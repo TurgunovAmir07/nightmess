@@ -1,166 +1,167 @@
 .root {
-  &__content {
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    padding: 0 35px;
+	&__content {
+		z-index: 999;
+		display: flex;
+		flex-direction: column;
+		padding: 0 35px;
 
-    &__products {
-      display: flex;
-      flex-direction: column;
-      border-top: 2px solid #000;
-      border-bottom: 2px solid #000;
-      width: 100%;
+		&__products {
+			display: flex;
+			flex-direction: column;
+			border-top: 2px solid #000;
+			border-bottom: 2px solid #000;
+			width: 100%;
 
-      &__title {
-        font-family: 'Tilda Sans';
-        text-align: center;
-        padding: 30px 0;
-      }
+			&__title {
+				font-family: 'Tilda Sans';
+				text-align: center;
+				padding: 30px 0;
+			}
 
-      &__item {
-        display: flex;
-        flex-direction: column;
+			&__item {
+				display: flex;
+				flex-direction: column;
 
-        &_container {
-          position: relative;
+				&_container {
+					position: relative;
 
-          &__delete {
-            padding: 15px 0 0 0;
-            cursor: pointer;
-            background: inherit;
-            border: none;
-            height: fit-content;
-            position: absolute;
-            top: 0;
-            right: 0;
+					&__delete {
+						padding: 15px 0 0 0;
+						cursor: pointer;
+						background: inherit;
+						border: none;
+						height: fit-content;
+						position: absolute;
+						top: 0;
+						right: 0;
 
-            &_img {
-              max-width: 13px;
-            }
-          }
-        }
-      }
-    }
+						&_img {
+							max-width: 13px;
+						}
+					}
+				}
+			}
+		}
 
-    &__radioWrap {
-      &__delivery {
-        display: flex;
-        flex-direction: column;
+		&__radioWrap {
+			&__delivery {
+				display: flex;
+				flex-direction: column;
 
-        &__title {
-          font-size: 16px;
-          font-family: 'Tilda Sans';
-          font-weight: 800;
-        }
+				&__title {
+					font-size: 16px;
+					font-family: 'Tilda Sans';
+					font-weight: 800;
+				}
 
-        &__label {
-          display: flex;
-          gap: 7px;
-          margin-bottom: 10px;
-          align-items: start;
+				&__label {
+					display: flex;
+					gap: 7px;
+					margin-bottom: 10px;
+					align-items: start;
 
-          &_Err {
-            margin-bottom: -9px;
-          }
+					&_Err {
+						margin-bottom: -9px;
+					}
 
-          &_error {
-            font-family: 'Tilda Sans';
-            font-weight: 600;
-            color: #e03737;
-          }
+					&_error {
+						font-family: 'Tilda Sans';
+						font-weight: 600;
+						color: #e03737;
+					}
 
-          &_textWrap {
-            display: flex;
-            gap: 10px;
+					&_textWrap {
+						display: flex;
+						gap: 10px;
 
-            &_title {
-              display: flex;
-              align-items: center;
-              max-width: 171px;
-              width: fit-content;
-              font-family: 'Tilda Sans';
-              font-weight: 700;
-              font-size: 12px;
+						&_title {
+							cursor: pointer;
+							display: flex;
+							align-items: center;
+							max-width: 171px;
+							width: fit-content;
+							font-family: 'Tilda Sans';
+							font-weight: 700;
+							font-size: 12px;
 
-              &_removeMaxW {
-                max-width: 210px;
-                gap: 10px;
-              }
-            }
+							&_removeMaxW {
+								max-width: 210px;
+								gap: 10px;
+							}
+						}
 
-            &_description {
-              align-content: end;
-              font-family: 'Tilda Sans';
-              font-weight: 700;
-              font-size: 10px;
-              opacity: 40%;
-            }
-          }
-        }
-      }
-    }
+						&_description {
+							align-content: end;
+							font-family: 'Tilda Sans';
+							font-weight: 700;
+							font-size: 10px;
+							opacity: 40%;
+						}
+					}
+				}
+			}
+		}
 
-    &__orderInfo {
-      display: flex;
-      flex-direction: column;
+		&__orderInfo {
+			display: flex;
+			flex-direction: column;
 
-      &_text {
-        font-weight: 600;
-        font-family: 'Tilda Sans';
-        text-align: end;
-        transition: all;
-        transition-duration: 500ms;
-      }
+			&_text {
+				font-weight: 600;
+				font-family: 'Tilda Sans';
+				text-align: end;
+				transition: all;
+				transition-duration: 500ms;
+			}
 
-      &_total {
-        margin-top: 10px;
-        text-align: end;
-        font-size: 15px;
-        font-family: 'Tilda Sans';
-        font-weight: 800;
-        transition: all;
-        transition-duration: 500ms;
-      }
-    }
+			&_total {
+				margin-top: 10px;
+				text-align: end;
+				font-size: 15px;
+				font-family: 'Tilda Sans';
+				font-weight: 800;
+				transition: all;
+				transition-duration: 500ms;
+			}
+		}
 
-    &__total {
-      text-align: end;
-      margin-top: 20px;
-      font-size: 15px;
-      font-weight: 900;
-      font-family: 'Tilda Sans';
-      transition: all;
-      transition-duration: 500ms;
-    }
+		&__total {
+			text-align: end;
+			margin-top: 20px;
+			font-size: 15px;
+			font-weight: 900;
+			font-family: 'Tilda Sans';
+			transition: all;
+			transition-duration: 500ms;
+		}
 
-    &_submitBtn {
-      text-align: center;
-      margin-top: 20px;
-      transition: all;
-      transition-duration: 500ms;
-    }
-  }
+		&_submitBtn {
+			text-align: center;
+			margin-top: 20px;
+			transition: all;
+			transition-duration: 500ms;
+		}
+	}
 }
 
 @media (max-width: 410px) {
-  .root {
-    &__content {
-      padding: 0 25px;
-    }
-  }
+	.root {
+		&__content {
+			padding: 0 25px;
+		}
+	}
 }
 @media (max-width: 385px) {
-  .root {
-    &__content {
-      padding: 0 15px;
-    }
-  }
+	.root {
+		&__content {
+			padding: 0 15px;
+		}
+	}
 }
 @media (max-width: 361px) {
-  .root {
-    &__content {
-      padding: 0px;
-    }
-  }
+	.root {
+		&__content {
+			padding: 0px;
+		}
+	}
 }

@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from 'react'
 import cl from './Popup.module.scss'
+import { ClosePopupButton } from '@/features/ClosePopup'
 
 export const Popup = ({
 	children,
@@ -58,17 +59,7 @@ export const Popup = ({
 						>
 							{title}
 						</div>
-						<button
-							onClick={() => setIsOpen(false)}
-							className={cl.root__content_header__btn}
-						>
-							<img
-								draggable={false}
-								className={cl.root__content_header__btn__close}
-								src='/button-close-popup.png'
-								alt='close'
-							/>
-						</button>
+						<ClosePopupButton onClick={() => setIsOpen(false)} />
 					</div>
 					<div
 						className={cl.root__content__main}

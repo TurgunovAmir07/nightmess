@@ -11,7 +11,7 @@ import {
 	persistReducer
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { authApi } from './api'
+import { authApi, cardApi } from './api'
 
 const persistConfig = {
 	key: 'nighmess',
@@ -24,7 +24,8 @@ const rootReducer = combineReducers({
 	order: OrderSlice.reducer,
 	userData: UserDataSlice.reducer,
 	authApi: authApi.reducer,
-	authSlice: authSlice.reducer
+	authSlice: authSlice.reducer,
+	cardApi: cardApi.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -44,7 +45,7 @@ export const setupStore = () => {
 						REGISTER
 					]
 				}
-			}).concat(authApi.middleware)
+			}).concat([authApi.middleware, cardApi.middleware])
 	})
 }
 

@@ -1,0 +1,32 @@
+.root {
+	cursor: pointer;
+	margin-top: -20px;
+
+	&__btn {
+		background-image: url(/button-craft.png);
+		background-size: cover;
+		background-color: inherit;
+		border: none;
+		cursor: pointer;
+		height: 80px;
+		width: 175px;
+
+		&_text {
+			color: #440707;
+			font-size: 24px;
+		}
+
+		@media (max-width: 375px) {
+			&_text {
+				font-size: 18px;
+			}
+		}
+	}
+
+	@media (max-width: 375px) {
+		&__btn {
+			height: 70px;
+			width: 155px;
+		}
+	}
+}

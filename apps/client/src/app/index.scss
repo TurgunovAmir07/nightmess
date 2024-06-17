@@ -2,6 +2,10 @@ body {
 	background: #2d0d24;
 }
 
+html {
+	overflow-y: scroll;
+}
+
 @font-face {
 	src: url('/fonts/PixelAnchorJack.ttf');
 	font-family: 'Pixel Anchor-Jack';
