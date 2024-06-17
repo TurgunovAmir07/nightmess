@@ -21,11 +21,12 @@ export const Topbar = () => {
 					<span
 						className={`${cl.root__container_separator} ${
 							activePath === '/game'
-								? cl.root__container_separator_right
-								: cl.root__container_separator_left
+								? cl.root__container_separator_left
+								: cl.root__container_separator_right
 						}
             `}
 					/>
+					<span className={cl.root__container_background} />
 					{topbarData.map((item, index) => (
 						<Link
 							key={index}
