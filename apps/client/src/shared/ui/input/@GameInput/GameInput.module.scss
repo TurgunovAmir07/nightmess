@@ -1,0 +1,33 @@
+.root {
+	background-image: url('/input-game-inpt.png');
+	background-size: cover;
+	width: fit-content;
+	height: fit-content;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+
+	&__input {
+		color: #fff;
+		text-align: center;
+		padding: 1px 50px 0 10px;
+		border: none;
+		outline: none;
+		width: 160px;
+		height: 48px;
+		background-color: transparent;
+
+		&_middle {
+			font-size: 17px;
+			width: 200px;
+			height: 57.5px;
+		}
+
+		&_large {
+			font-size: 18px;
+			width: 240px;
+			height: 66.5px;
+		}
+	}
+}

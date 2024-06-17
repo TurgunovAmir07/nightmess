@@ -233,6 +233,7 @@ export const Cart = ({
 									}
 									render={({ field }) => (
 										<Input
+											variant='form'
 											field={field}
 											error={
 												errors[

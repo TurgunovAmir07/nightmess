@@ -145,6 +145,7 @@ export const Settings = ({
 									}
 									render={({ field }) => (
 										<Input
+											variant='form'
 											field={field}
 											error={
 												errors[

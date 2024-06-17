@@ -1,4 +1,4 @@
-import { GameInput } from '@/shared'
+import { Input } from '@/shared'
 import { Showcase } from '@/widgets/Showcase'
 import cl from './ProfilePage.module.scss'
 import { GoToMainPageButton } from '@/features/GoToMainPageButton'
@@ -17,7 +17,7 @@ const ProfilePage = () => {
 				<CartButton />
 
 				<div className={cl.root__content_input}>
-					<GameInput />
+					<Input variant='game' />
 				</div>
 
 				<div className={cl.root__content__buttons}>

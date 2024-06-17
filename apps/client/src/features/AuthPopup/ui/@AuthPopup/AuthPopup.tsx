@@ -48,6 +48,7 @@ export const LoginPopup = ({
 									name={item.name}
 									render={({ field }) => (
 										<Input
+											variant='form'
 											field={field}
 											error={errors[item.name]?.message}
 											label={item.label}
@@ -68,6 +69,7 @@ export const LoginPopup = ({
 									rules={item.rules}
 									render={({ field }) => (
 										<Input
+											variant='form'
 											field={field}
 											error={errors[item.name]?.message}
 											label={item.label}
