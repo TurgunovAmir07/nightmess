@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Input, Popup } from '@/shared'
+import { GameButton, Input, Popup } from '@/shared'
 import cl from './Cart.module.scss'
-import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { useActions, useCart, useTypedSelector } from '@/store'
 import { cartFieldsArr } from '../model/data/cartFields.data'
@@ -269,7 +268,14 @@ export const Cart = ({
 						</span>
 					</div>
 					<div className={cl.root__content_submitBtn}>
-						<CartSubmitButton title='ЗАКАЗАТЬ' />
+						<GameButton
+							src='/icon-mark.png'
+							alt='mark'
+							text='ЗАКАЗАТЬ'
+							type='primary'
+							size='middle'
+							htmlType='submit'
+						/>
 					</div>
 				</form>
 			</Popup>

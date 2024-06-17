@@ -1,8 +1,7 @@
 import { Controller, useForm } from 'react-hook-form'
-import { Input, Popup } from '@/shared'
+import { GameButton, Input, Popup } from '@/shared'
 import cl from './AuthPopup.module.scss'
 import { loginFieldsArr, registerFieldsArr } from './AuthPopup.data'
-import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { useState } from 'react'
 
 export const LoginPopup = ({
@@ -82,9 +81,13 @@ export const LoginPopup = ({
 					)}
 
 					<div className={cl.root_submitBtn}>
-						<CartSubmitButton
-							isNoIcon
-							title={`${isLogin ? 'Вход' : 'Регистрация'}`}
+						<GameButton
+							src='/icon-mark.png'
+							alt='mark'
+							text={`${isLogin ? 'Вход' : 'Регистрация'}`}
+							type='primary'
+							size='middle'
+							htmlType='submit'
 						/>
 					</div>
 				</form>

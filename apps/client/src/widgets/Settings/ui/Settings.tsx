@@ -1,8 +1,7 @@
 import { Controller, FieldValues, useForm } from 'react-hook-form'
-import { Input, Popup } from '@/shared'
+import { GameButton, Input, Popup } from '@/shared'
 import cl from './Settings.module.scss'
 import { settingsFieldsArr } from '../model/data/settingsFields.data'
-import { CartSubmitButton } from '@/features/CartSubmitButton'
 import { useEffect } from 'react'
 import { useActions, useTypedSelector } from '@/store'
 
@@ -161,7 +160,14 @@ export const Settings = ({
 							)
 						)}
 						<div className={cl.root__content__main_btn}>
-							<CartSubmitButton title='СОХРАНИТЬ' />
+							<GameButton
+								src='/icon-mark.png'
+								alt='mark'
+								text='СОХРАНИТЬ'
+								type='primary'
+								size='middle'
+								htmlType='submit'
+							/>
 						</div>
 					</div>
 				</form>
