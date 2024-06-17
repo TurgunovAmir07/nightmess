@@ -7,8 +7,8 @@ import { Skills } from '@/widgets/Skills'
 import { CartButton } from '@/features/OpenCart'
 import { InventoryButton } from '@/features/InventoryButton'
 import { CraftButton } from '@/features/CraftButton'
-import { ShopButton } from '@/features/ShopButton'
 import { GoToMainPageButton } from '@/features/GoToMainPageButton'
+import { OpenShopButton } from '@/features/OpenShop'
 
 const GamePage = () => {
 	return (
@@ -34,7 +34,7 @@ const GamePage = () => {
 					<CraftButton />
 				</div>
 				<div className={cl.root__footer_button}>
-					<ShopButton />
+					<OpenShopButton />
 				</div>
 			</div>
 		</div>
