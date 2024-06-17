@@ -41,7 +41,6 @@ export const Cart = ({
 		})
 	}
 
-	const { order } = useTypedSelector(state => state.order)
 	const { userData } = useTypedSelector(state => state.userData)
 	const [deliveryPrice, setDeliveryPrice] = useState<number>(0)
 	const delivery = watch('delivery')
@@ -73,10 +72,6 @@ export const Cart = ({
 			document.removeEventListener('keydown', handleEsc)
 		}
 	}, [isOpen, setIsOpen])
-
-	useEffect(() => {
-		console.log(order)
-	}, [order])
 
 	const { cart, total } = useCart()
 

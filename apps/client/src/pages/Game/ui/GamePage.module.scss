@@ -2,7 +2,7 @@
 	padding-top: 100px;
 	background-image: url(/background-game.png);
 	background-size: cover;
-	min-height: 100dvh;
+	min-height: 90dvh;
 
 	&__moon {
 		position: relative;
@@ -16,12 +16,12 @@
 	}
 
 	&__footer {
-		margin-top: 30px;
+		margin-top: 10px;
 		display: flex;
 		justify-content: space-around;
 
 		&_button {
-			padding-bottom: 20px;
+			padding-bottom: 5px;
 		}
 	}
 }
