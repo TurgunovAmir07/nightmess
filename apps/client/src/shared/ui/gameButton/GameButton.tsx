@@ -1,33 +1,48 @@
-import cl from './GameButton.module.scss'
-import { GameButtonFrame } from './@GameButtonFrame/GameButtonFrame'
+import { SecondaryGameButton } from './@SecondaryGameButton/SecondaryGameButton'
+import { PrimaryGameButton } from './@PrimaryGameButton/PrimaryGameButton'
+
 export const GameButton = ({
-  text,
-  Icon,
-  onCLick,
-  noIcon,
+	text,
+	htmlType,
+	onCLick,
+	type,
+	size,
+	src,
+	alt
 }: {
-  noIcon?: boolean
-  text: string
-  Icon?: string
-  onCLick?: () => void
-}) => (
-  <>
-    <button className={cl.root} onClick={onCLick}>
-      <GameButtonFrame />
-      <div className={cl.root__link}>
-        <div
-          className={`${cl.root__link_text} ${
-            noIcon ? cl.root__link_text_noIcon : ''
-          }`}
-        >
-          {text}
-        </div>
-        <div className={cl.root__link__icon}>
-          {Icon && (
-            <img src={Icon} alt="icon" className={cl.root__link__icon_img} />
-          )}
-        </div>
-      </div>
-    </button>
-  </>
-)
+	text: string
+	onCLick?: () => void
+	type: 'secondary' | 'primary'
+	size: 'small' | 'middle' | 'large'
+	src?: string
+	alt?: string
+	htmlType: 'submit' | 'button'
+}) => {
+	switch (type) {
+		case 'secondary':
+			return (
+				<SecondaryGameButton
+					htmlType={htmlType}
+					src={src}
+					alt={alt}
+					text={text}
+					onCLick={onCLick}
+					size={size}
+				/>
+			)
+
+		case 'primary':
+			return (
+				<PrimaryGameButton
+					htmlType={htmlType}
+					src={src}
+					alt={alt}
+					text={text}
+					onCLick={onCLick}
+					size={size}
+				/>
+			)
+		default:
+			return <></>
+	}
+}

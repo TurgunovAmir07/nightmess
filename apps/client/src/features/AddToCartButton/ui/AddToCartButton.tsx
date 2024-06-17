@@ -20,7 +20,9 @@ export const AddToCartButton = () => {
 	return (
 		<div className={cl.root}>
 			<GameButton
-				noIcon
+				size='small'
+				htmlType='submit'
+				type='secondary'
 				text={isInCart ? 'Добавлено' : 'В корзину'}
 				onCLick={() =>
 					addToCart({

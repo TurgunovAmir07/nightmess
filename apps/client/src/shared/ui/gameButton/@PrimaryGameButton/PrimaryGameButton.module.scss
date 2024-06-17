@@ -1,0 +1,54 @@
+.root {
+	background-image: url('/button-submit-btn.png');
+	background-size: cover;
+	width: 210px;
+	height: 46px;
+	border: inherit;
+
+	&_middle {
+		width: 260px;
+		height: 57px;
+	}
+
+	&_large {
+		width: 306px;
+		height: 66.5px;
+	}
+
+	&__content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 5px;
+
+		&__text {
+			margin-top: -2px;
+			font-size: 16px;
+
+			&_middle {
+				margin-top: -5px;
+				font-size: 20px;
+			}
+
+			&_large {
+				margin-top: -6px;
+				font-size: 24px;
+			}
+		}
+
+		&__img {
+			margin-right: -10px;
+			width: 30px;
+
+			&_middle {
+				margin-top: -2px;
+				width: 30px;
+			}
+
+			&_large {
+				margin-top: -2px;
+				width: 40px;
+			}
+		}
+	}
+}
