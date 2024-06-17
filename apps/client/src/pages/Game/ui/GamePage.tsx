@@ -5,10 +5,10 @@ import { Points } from '@/widgets/Points'
 import { Stars } from '@/widgets/Stars'
 import { Skills } from '@/widgets/Skills'
 import { CartButton } from '@/features/OpenCart'
-import { InventoryButton } from '@/features/InventoryButton'
 import { CraftButton } from '@/features/CraftButton'
 import { GoToMainPageButton } from '@/features/GoToMainPageButton'
 import { OpenShopButton } from '@/features/OpenShop'
+import { OpenCaseStoreButton } from '@/features/OpenCaseStore'
 
 const GamePage = () => {
 	return (
@@ -28,7 +28,7 @@ const GamePage = () => {
 			<Skills />
 			<div className={cl.root__footer}>
 				<div className={cl.root__footer_button}>
-					<InventoryButton />
+					<OpenCaseStoreButton />
 				</div>
 				<div className={cl.root__footer_button}>
 					<CraftButton />
