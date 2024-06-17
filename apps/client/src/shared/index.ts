@@ -1,4 +1,3 @@
-export * from './ui/gameInput'
 export * from './ui/gameButton'
 export * from './ui/popup'
 export * from './ui/container'
