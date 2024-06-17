@@ -6,7 +6,7 @@ import { Stars } from '@/widgets/Stars'
 import { Skills } from '@/widgets/Skills'
 import { CartButton } from '@/features/OpenCart'
 import { CraftButton } from '@/features/CraftButton'
-import { GoToMainPageButton } from '@/features/GoToMainPageButton'
+import { GoToMainPageButton } from '@/features/GoToMainPage'
 import { OpenShopButton } from '@/features/OpenShop'
 import { OpenCaseStoreButton } from '@/features/OpenCaseStore'
 

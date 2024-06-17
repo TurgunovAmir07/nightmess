@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Container } from '@/shared'
 import cl from './ProductsPage.module.scss'
 import { ProductDetails } from '@/widgets/ProductDetails'
-import { AddToCartButton } from '@/features/AddToCartButton'
+import { AddToCartButton } from '@/features/AddToCart'
 
 const ProductPage = () => {
 	return (

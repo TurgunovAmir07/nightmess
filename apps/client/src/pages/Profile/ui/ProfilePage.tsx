@@ -1,7 +1,7 @@
 import { Input } from '@/shared'
 import { Showcase } from '@/widgets/Showcase'
 import cl from './ProfilePage.module.scss'
-import { GoToMainPageButton } from '@/features/GoToMainPageButton'
+import { GoToMainPageButton } from '@/features/GoToMainPage'
 import { CartButton } from '@/features/OpenCart'
 import { SettingsButton } from '@/features/OpenSettings'
 import { ActivationButtonsFrame } from '@/widgets/ActivationButtonsFrame'
