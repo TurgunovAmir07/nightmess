@@ -1,7 +1,7 @@
 import { cardApi, useTypedDispatch } from '@/store'
-import cl from './CraftButton.module.scss'
+import cl from './GetCardButton.module.scss'
 
-export const CraftButton = () => {
+export const GetCardButton = () => {
 	const dispatch = useTypedDispatch()
 
 	const handleGetCard = async () => {
