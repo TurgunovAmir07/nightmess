@@ -3,7 +3,6 @@ import { Container } from '@/shared'
 import cl from './ProductsPage.module.scss'
 import { ProductDetails } from '@/widgets/ProductDetails'
 import { AddToCartButton } from '@/features/AddToCartButton'
-import { GameInput } from '@/shared/ui/input/@GameInput/GameInput'
 
 const ProductPage = () => {
 	return (
@@ -19,17 +18,6 @@ const ProductPage = () => {
 					<Link to='/main'>главная</Link>
 					<Link to='/profile'>профиль</Link>
 				</div>
-				<br />
-				<br />
-				<GameInput size='small' />
-				<br />
-				<br />
-				<GameInput size='middle' />
-				<br />
-				<br />
-				<GameInput size='large' />
-				<br />
-				<br />
 			</div>
 		</Container>
 	)
