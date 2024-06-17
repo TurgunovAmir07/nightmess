@@ -3,12 +3,12 @@ import cl from './GamePage.module.scss'
 import { Points } from '@/widgets/Points'
 
 import { Stars } from '@/widgets/Stars'
-import { Skills } from '@/widgets/Skills'
 import { CartButton } from '@/features/OpenCart'
-import { InventoryButton } from '@/features/InventoryButton'
-import { CraftButton } from '@/features/CraftButton'
-import { ShopButton } from '@/features/ShopButton'
-import { GoToMainPageButton } from '@/features/GoToMainPageButton'
+import { GetCardButton } from '@/features/GetCard'
+import { GoToMainPageButton } from '@/features/GoToMainPage'
+import { OpenShopButton } from '@/features/OpenShop'
+import { OpenCaseStoreButton } from '@/features/OpenCaseStore'
+import { MiniInventory } from '@/widgets/MiniInventory'
 
 const GamePage = () => {
 	return (
@@ -25,16 +25,16 @@ const GamePage = () => {
 			<CartButton />
 			<Stars count={1} />
 			<CardSlider />
-			<Skills />
+			<MiniInventory />
 			<div className={cl.root__footer}>
 				<div className={cl.root__footer_button}>
-					<InventoryButton />
+					<OpenCaseStoreButton />
 				</div>
 				<div className={cl.root__footer_button}>
-					<CraftButton />
+					<GetCardButton />
 				</div>
 				<div className={cl.root__footer_button}>
-					<ShopButton />
+					<OpenShopButton />
 				</div>
 			</div>
 		</div>

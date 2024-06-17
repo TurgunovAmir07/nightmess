@@ -1,7 +1,7 @@
 import cl from './Header.module.scss'
-import { GoToMapPageButton } from '@/features/GoToMapPageButton'
-import { GoToGamePageButton } from '@/features/GoToGamePageButton'
-import { GoToProfilePageButton } from '@/features/GoToProfilePageButton'
+import { GoToMapPageButton } from '@/features/GoToMapPage'
+import { GoToGamePageButton } from '@/features/GoToGamePage'
+import { GoToProfilePageButton } from '@/features/GoToProfilePage'
 import { CartButton } from '@/features/OpenCart'
 
 export const Header = ({
