@@ -17,7 +17,9 @@ export class UserAchievementRepository {
 				}
 			},
 			relations: {
-				cards: true
+				cards: {
+					card: true
+				}
 			}
 		})
 	}

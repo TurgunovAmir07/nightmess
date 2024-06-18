@@ -1,15 +1,15 @@
-import { UserAchievementEntity } from '@/modules/game/entities'
+import { TGetInventory } from '@/modules/game/types'
 
-export const formatInventory = (list: UserAchievementEntity) => {
+export const formatInventory = (inventory: TGetInventory) => {
 	// eslint-disable-next-line
-	const { points, taps, stage, tries, lastTap, ...data } = list
+	// const { points, taps, stage, tries, lastTap, ...data } = list
 
 	return `
 Статистика:
 
-Рейтинг: ${points}
-Общее количество тапов: ${taps}
-Количество попыток: ${tries}
-Этап: ${stage}
+Рейтинг:
+Общее количество тапов:
+Количество попыток: 
+Этап: 
     `
 }
