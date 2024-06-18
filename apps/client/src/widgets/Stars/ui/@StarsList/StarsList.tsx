@@ -7,7 +7,7 @@ export const StarsList = ({ count }: { count: number }) => {
 				<img
 					key={index}
 					draggable={false}
-					className={cl.root__wrap_star}
+					className={cl.root}
 					src='/icon-star.png'
 					alt='star'
 				/>
