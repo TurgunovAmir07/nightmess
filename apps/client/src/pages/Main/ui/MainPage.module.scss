@@ -25,21 +25,13 @@
 		width: 100%;
 		text-align: center;
 
-		&_btn {
-			background: inherit;
-			border: none;
+		&_link {
+			text-decoration: none;
 			text-align: center;
+			color: #d02314;
+			font-family: 'Panton';
+			font-size: 18px;
 			width: fit-content;
-			cursor: pointer;
-
-			&_link {
-				text-decoration: none;
-				text-align: center;
-				color: #d02314;
-				font-family: 'Panton';
-				font-size: 18px;
-				width: fit-content;
-			}
 		}
 	}
 }
