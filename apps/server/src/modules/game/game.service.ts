@@ -29,8 +29,7 @@ export class GameService {
 		}
 
 		const isUserHaveTries = achievement.tries > 0
-		// const isDateArrived = await this.isDateArrived(achievement.lastTap)
-		const isDateArrived = true
+		const isDateArrived = await this.isDateArrived(achievement.lastTap)
 		const isFreeTry = Math.random() * 100 <= +tryChance.value
 
 		console.log(isDateArrived, isUserHaveTries, isFreeTry)
