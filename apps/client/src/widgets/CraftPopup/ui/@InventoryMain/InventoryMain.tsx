@@ -28,6 +28,7 @@ export const InventoryMain = () => {
 			<div className={cl.root__inventory}>
 				{inventoryItemsData.map((item, index) => (
 					<InventoryItem
+						isActive={isActive}
 						isChecked={selectedItemId === item.id}
 						handleChecked={() => handleChecked(item.id)}
 						item={item}

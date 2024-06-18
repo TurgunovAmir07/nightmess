@@ -3,18 +3,24 @@ import cl from './InventoryItem.module.scss'
 export const InventoryItem = ({
 	item,
 	isChecked,
-	handleChecked
+	handleChecked,
+	isActive
 }: {
 	// eslint-disable-next-line
 	item: any
 	isChecked: boolean
+	isActive: boolean
 	handleChecked: () => void
 }) => {
 	return (
 		<div className={cl.root}>
 			{item?.src ? (
 				<>
-					<label className={cl.root__label}>
+					<label
+						className={`${cl.root__label} ${
+							isActive && cl.root__label_active
+						}`}
+					>
 						<input
 							checked={isChecked}
 							onChange={handleChecked}

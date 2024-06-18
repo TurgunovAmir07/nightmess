@@ -2,8 +2,6 @@
 	position: absolute;
 
 	&__label {
-		cursor: pointer;
-
 		&_img {
 			transition: all;
 			transition-duration: 200ms;
@@ -15,6 +13,10 @@
 		}
 		&_radio {
 			display: none;
+		}
+
+		&_active {
+			cursor: pointer;
 		}
 	}
 
