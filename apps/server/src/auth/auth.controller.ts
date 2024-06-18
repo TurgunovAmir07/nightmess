@@ -84,7 +84,7 @@ export class AuthController {
 	@ApiOperation({
 		summary: 'Выход из профиля'
 	})
-	@HttpCode(200)
+	@HttpCode(204)
 	@Get('logout')
 	public async logout(
 		@Cookie('refresh') refresh: string,
