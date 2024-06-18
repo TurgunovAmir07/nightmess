@@ -1,8 +1,22 @@
 .root {
 	position: absolute;
 
-	&_img {
-		max-width: 50px;
+	&__label {
+		cursor: pointer;
+
+		&_img {
+			transition: all;
+			transition-duration: 200ms;
+			max-width: 50px;
+
+			&_checked {
+				scale: 1.1;
+			}
+		}
+
+		&_radio {
+			display: none;
+		}
 	}
 
 	&_lock {
@@ -60,6 +74,10 @@
 .root:nth-child(12) {
 	top: 444px;
 	left: 279px;
+}
+
+.blackout {
+	position: fixed;
 }
 
 @media (max-width: 410px) {
