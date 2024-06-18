@@ -1,1 +1,1 @@
-export * from './ui/CraftPopup'
+export * from './ui/Inventory'

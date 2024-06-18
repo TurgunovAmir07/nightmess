@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { InventoryHeader } from './@InventoryHeader/InventoryHeader'
 import { InventoryMain } from './@InventoryMain/InventoryMain'
-import cl from './CraftPopup.module.scss'
+import cl from './Inventory.module.scss'
 
-export const CraftPopup = ({
+export const Inventory = ({
 	isOpen,
 	setIsOpen
 }: {

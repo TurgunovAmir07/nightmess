@@ -1,4 +1,4 @@
-import { CraftPopup } from '@/widgets/CraftPopup'
+import { Inventory } from '@/widgets/CraftPopup'
 import { OpenInventoryButton } from './@OpenInventoryButton/OpenInventoryButton'
 import { useState } from 'react'
 
@@ -11,7 +11,7 @@ export const OpenInventory = () => {
 
 	return (
 		<>
-			<CraftPopup isOpen={isOpen} setIsOpen={setIsOpen} />
+			<Inventory isOpen={isOpen} setIsOpen={setIsOpen} />
 			<OpenInventoryButton handleInventory={handleInventory} />
 		</>
 	)
