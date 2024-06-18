@@ -3,6 +3,7 @@ import { BadRequestException, Injectable } from '@nestjs/common'
 import { SettingsService } from '../settings/settings.service'
 import { ESettingsName } from '@/common/enums'
 import { CardService } from '../card/card.service'
+import type { TGetInventory } from './types'
 
 @Injectable()
 export class GameService {
@@ -31,11 +32,13 @@ export class GameService {
 		const isDateArrived = await this.isDateArrived(achievement.lastTap)
 		const isFreeTry = Math.random() * 100 <= +tryChance.value
 
+		console.log(isDateArrived, isUserHaveTries, isFreeTry)
+
 		if (!isUserHaveTries && !isDateArrived && !isFreeTry) {
 			return { message: `Прошло недостаточное количество времени. Подождите еще!` }
 		}
 
-		const card = await this.cardService.drop()
+		const card = await this.cardService.drop(achievement)
 
 		await this.userAchievementService.drop(userId, card, isUserHaveTries || isFreeTry)
 
@@ -51,11 +54,28 @@ export class GameService {
 		return { card, message }
 	}
 
-	public async getInventory(userId: number) {
-		return this.userAchievementService.getByUserId(userId)
+	public async getInventory(userId: number): Promise<TGetInventory> {
+		const inventory = await this.userAchievementService.getByUserId(userId)
+
+		const inventoryCardsMap = inventory.cards.reduce((acc, item) => {
+			const color = item.card.color
+
+			if (acc[color]) {
+				acc[color].count += 1
+			} else {
+				acc[color] = { ...item, count: 1 }
+			}
+
+			return acc
+		}, {})
+
+		return {
+			...inventory,
+			cards: Object.keys(inventoryCardsMap).map(i => inventoryCardsMap[i])
+		}
 	}
 
-	private async isDateArrived(date: Date) {
+	private async isDateArrived(date: string) {
 		if (date === null) {
 			return true
 		}

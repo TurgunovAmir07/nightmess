@@ -1,7 +1,7 @@
-import { CardEntity } from '@/modules/card/entities'
+import { UserCardEntity } from '@/modules/card/entities'
 
-export const formatTapResponse = ({ card, message }: { card: CardEntity; message: string }) => {
-	const { rarity, color, name, description } = card
+export const formatTapResponse = ({ card, message }: { card: UserCardEntity; message: string }) => {
+	const { rarity, color, name, description } = card.card
 
 	return `
     ${message}

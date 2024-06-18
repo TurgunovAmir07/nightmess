@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
 import { UserAchievementRepository } from './user-achievement.repository'
-import { CardEntity } from '../card/entities'
+import { UserCardEntity } from '../card/entities'
 import { getEnumItemIndex } from './utils'
 import { ECardRarity } from '@/common/enums'
 import { UserEntity } from '../user/entities'
@@ -17,7 +17,7 @@ export class UserAchievementService {
 		return this.userAchievementRepository.create(user)
 	}
 
-	public async drop(userId: number, card: CardEntity, isUseTry: boolean) {
+	public async drop(userId: number, userCard: UserCardEntity, isUseTry: boolean) {
 		const achievement = await this.getByUserId(userId)
 
 		if (!achievement) {
@@ -26,15 +26,14 @@ export class UserAchievementService {
 
 		await this.userAchievementRepository.update({
 			...achievement,
-			cards: [...achievement.cards, card],
-			lastTap: isUseTry ? achievement.lastTap : new Date(),
+			lastTap: isUseTry ? achievement.lastTap : new Date().toISOString(),
 			taps: achievement.taps + 1,
 			points: achievement.points + 1,
 			tries: isUseTry ? achievement.tries - 1 : achievement.tries,
 			stage:
-				getEnumItemIndex(ECardRarity, card.rarity) >
+				getEnumItemIndex(ECardRarity, userCard.card.rarity) >
 				getEnumItemIndex(ECardRarity, achievement.stage)
-					? card.rarity
+					? userCard.card.rarity
 					: achievement.stage
 		})
 	}

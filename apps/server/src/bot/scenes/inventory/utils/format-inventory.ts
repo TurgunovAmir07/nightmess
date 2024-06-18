@@ -1,15 +1,6 @@
-import { UserAchievementEntity } from '@/modules/game/entities'
+import type { TGetInventory, TGetInventoryItem } from '@/modules/game/types'
 
-export const formatInventory = (list: UserAchievementEntity) => {
-	// eslint-disable-next-line
-	const { points, taps, stage, tries, lastTap, ...data } = list
-
-	return `
-Статистика:
-
-Рейтинг: ${points}
-Общее количество тапов: ${taps}
-Количество попыток: ${tries}
-Этап: ${stage}
-    `
-}
+export const formatInventory = (inventory: TGetInventory) =>
+	inventory.cards.reduce((acc, item: TGetInventoryItem, index) => {
+		return acc + `${index + 1}. ${item.card.name} x${item.count} \n`
+	}, 'Инвентарь: \n\n')

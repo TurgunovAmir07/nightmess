@@ -39,14 +39,16 @@ export class InventoryScene extends Scene {
 						return ctx.reply(res.message)
 					} else {
 						console.log(
-							this.configService.get('VITE_SERVER_STATIC_URL') + '/' + res.card.image
+							this.configService.get('VITE_SERVER_STATIC_URL') +
+								'/' +
+								res.card.card.image
 						)
 						return ctx.replyWithPhoto(
 							{
 								url:
 									this.configService.get('VITE_SERVER_STATIC_URL') +
 									'/' +
-									res.card.image
+									res.card.card.image
 							},
 							{
 								// @ts-expect-error card always exist after check
