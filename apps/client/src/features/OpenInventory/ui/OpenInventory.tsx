@@ -1,4 +1,4 @@
-import { Inventory } from '@/widgets/CraftPopup'
+import { Inventory } from '@/widgets/Inventory'
 import { OpenInventoryButton } from './@OpenInventoryButton/OpenInventoryButton'
 import { useState } from 'react'
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { inventoryItemsData } from '../../model/data/craftPopup.data'
+import { inventoryItemsData } from '../../model/data/inventory.data'
 import { InventoryItem } from '../@InventoryItem/InventoryItem'
 import cl from './InventoryMain.module.scss'
 import { ChooseInventoryItemButton } from '@/features/ChooseInventoryItem'
