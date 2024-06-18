@@ -75,6 +75,14 @@ export class GameService {
 		}
 	}
 
+	public async checkGettingCardStatus(userId: number) {
+		const achievement = await this.userAchievementService.getByUserId(userId)
+
+		const result = await this.isDateArrived(achievement.lastTap)
+
+		return { result }
+	}
+
 	private async isDateArrived(date: string) {
 		if (date === null) {
 			return true
