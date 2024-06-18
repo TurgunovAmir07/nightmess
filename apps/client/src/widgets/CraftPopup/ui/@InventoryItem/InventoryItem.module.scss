@@ -1,0 +1,187 @@
+.root {
+	position: absolute;
+
+	&_img {
+		max-width: 50px;
+	}
+
+	&_lock {
+		margin-left: 15px;
+		margin-top: 13.5px;
+		max-width: 20px;
+		cursor: not-allowed;
+	}
+}
+
+.root:nth-child(1) {
+	top: 272px;
+	left: 67px;
+}
+.root:nth-child(2) {
+	top: 357px;
+	left: 67px;
+}
+.root:nth-child(3) {
+	top: 444px;
+	left: 67px;
+}
+.root:nth-child(4) {
+	top: 272px;
+	left: 137.5px;
+}
+.root:nth-child(5) {
+	top: 357px;
+	left: 137.5px;
+}
+.root:nth-child(6) {
+	top: 444px;
+	left: 137.5px;
+}
+.root:nth-child(7) {
+	top: 272px;
+	left: 209px;
+}
+.root:nth-child(8) {
+	top: 357px;
+	left: 209px;
+}
+.root:nth-child(9) {
+	top: 444px;
+	left: 209px;
+}
+.root:nth-child(10) {
+	top: 272px;
+	left: 279px;
+}
+.root:nth-child(11) {
+	top: 357px;
+	left: 279px;
+}
+.root:nth-child(12) {
+	top: 444px;
+	left: 279px;
+}
+
+@media (max-width: 410px) {
+	.root {
+		&_img {
+			max-width: 45px;
+		}
+
+		&_lock {
+			margin-left: 13px;
+			margin-top: 10px;
+		}
+	}
+
+	.root:nth-child(1) {
+		top: 242px;
+		left: 59px;
+	}
+	.root:nth-child(2) {
+		top: 317px;
+		left: 59px;
+	}
+	.root:nth-child(3) {
+		top: 394px;
+		left: 59px;
+	}
+	.root:nth-child(4) {
+		top: 242px;
+		left: 121px;
+	}
+	.root:nth-child(5) {
+		top: 317px;
+		left: 121px;
+	}
+	.root:nth-child(6) {
+		top: 394px;
+		left: 121px;
+	}
+	.root:nth-child(7) {
+		top: 242px;
+		left: 184px;
+	}
+	.root:nth-child(8) {
+		top: 317px;
+		left: 184px;
+	}
+	.root:nth-child(9) {
+		top: 394px;
+		left: 184px;
+	}
+	.root:nth-child(10) {
+		top: 242px;
+		left: 247px;
+	}
+	.root:nth-child(11) {
+		top: 317px;
+		left: 247px;
+	}
+	.root:nth-child(12) {
+		top: 394px;
+		left: 247px;
+	}
+}
+@media (max-width: 360px) {
+	.root {
+		&_img {
+			max-width: 40px;
+		}
+
+		&_lock {
+			margin-left: 12px;
+			margin-top: 11px;
+			max-width: 15px;
+		}
+	}
+
+	.root:nth-child(1) {
+		top: 211.5px;
+		left: 51px;
+	}
+	.root:nth-child(2) {
+		top: 278px;
+		left: 51px;
+	}
+	.root:nth-child(3) {
+		top: 345px;
+		left: 51px;
+	}
+	.root:nth-child(4) {
+		top: 211.5px;
+		left: 106px;
+	}
+	.root:nth-child(5) {
+		top: 278px;
+		left: 106px;
+	}
+	.root:nth-child(6) {
+		top: 345px;
+		left: 106px;
+	}
+	.root:nth-child(7) {
+		top: 212px;
+		left: 161px;
+	}
+	.root:nth-child(8) {
+		top: 278px;
+		left: 161px;
+	}
+	.root:nth-child(9) {
+		top: 345px;
+		left: 161px;
+	}
+	.root:nth-child(10) {
+		top: 212px;
+		left: 216.5px;
+	}
+	.root:nth-child(11) {
+		top: 278px;
+		left: 216.5px;
+	}
+	.root:nth-child(12) {
+		top: 345px;
+		left: 216.5px;
+	}
+}

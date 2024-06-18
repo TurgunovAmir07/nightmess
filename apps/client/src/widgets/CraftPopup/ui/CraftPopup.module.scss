@@ -1,0 +1,72 @@
+.root {
+	z-index: 9;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transition: all;
+	transition-duration: 300ms;
+	opacity: 0;
+	visibility: hidden;
+
+	&_open {
+		opacity: 1;
+		visibility: visible;
+		max-height: 100%;
+	}
+
+	&__content {
+		transition: all;
+		transition-duration: 300ms;
+		background-image: url('/illustration-craft-popup.png');
+		background-size: cover;
+		width: 400px;
+		height: 585px;
+		scale: 0.5;
+
+		&_open {
+			scale: 1;
+		}
+	}
+}
+@media (max-width: 410px) {
+	.root {
+		&__content {
+			width: 350px;
+			height: 520px;
+		}
+	}
+}
+@media (max-width: 360px) {
+	.root {
+		&__content {
+			width: 310px;
+			height: 455px;
+		}
+	}
+}
+
+.blackout {
+	z-index: 1;
+	transition: all;
+	transition-duration: 300ms;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	visibility: hidden;
+
+	&_open {
+		opacity: 1;
+		visibility: visible;
+	}
+}
