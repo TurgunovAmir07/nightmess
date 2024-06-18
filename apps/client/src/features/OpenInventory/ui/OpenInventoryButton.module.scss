@@ -1,0 +1,12 @@
+.root {
+	position: absolute;
+	background-color: inherit;
+	border: none;
+	top: 10px;
+	left: calc(50% - -121px);
+
+	&__text {
+		font-size: 11px;
+		color: #440707;
+	}
+}
