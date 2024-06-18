@@ -6,7 +6,7 @@ import 'swiper/scss'
 import 'swiper/scss/pagination'
 import 'swiper/scss/effect-coverflow'
 import 'swiper/scss/navigation'
-import { NavigateSliderElementsButton } from '@/features/NavigateSliderElements/ui/NavigateSliderElementsButton'
+import { NavigateSliderElementsButton } from '@/features/NavigateSliderElements'
 
 export const CardSlider = () => {
 	return (
