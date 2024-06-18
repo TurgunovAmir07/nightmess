@@ -1,0 +1,12 @@
+.root {
+	cursor: pointer;
+	background-color: inherit;
+	border: none;
+	font-size: 11px;
+	color: #440707;
+}
+@media (max-width: 375px) {
+	.root {
+		font-size: 10px;
+	}
+}
