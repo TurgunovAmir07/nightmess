@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { OpenCartButton } from './@OpenCartButton/OpenCartButton'
 
 export const CartButton = ({ removeTop }: { removeTop?: boolean }) => {
-	const [isOpen, setIsOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState<boolean>(false)
 
 	const handleCart = () => {
 		setIsOpen(prev => !prev)

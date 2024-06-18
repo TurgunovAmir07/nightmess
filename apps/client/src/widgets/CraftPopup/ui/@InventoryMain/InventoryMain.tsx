@@ -6,7 +6,7 @@ import { ChooseInventoryItemButton } from '@/features/ChooseInventoryItem'
 
 export const InventoryMain = () => {
 	const [selectedItemId, setSelectedItemId] = useState<number | null>(null)
-	const [isActive, setIsActive] = useState(false)
+	const [isActive, setIsActive] = useState<boolean>(false)
 
 	const handleChecked = (id: number) => {
 		if (isActive === true) {
