@@ -26,6 +26,10 @@ export const CraftPopup = ({
 		}
 	}, [isOpen, setIsOpen])
 
+	const handleInventory = () => {
+		setIsOpen(false)
+	}
+
 	return (
 		<>
 			<span
@@ -42,7 +46,7 @@ export const CraftPopup = ({
 						isOpen && cl.root__content_open
 					}`}
 				>
-					<InventoryHeader handleInventory={() => setIsOpen(false)} />
+					<InventoryHeader handleInventory={handleInventory} />
 					<InventoryMain />
 				</div>
 			</div>
