@@ -1,6 +1,7 @@
 import cl from './MiniInventory.module.scss'
 import { MiniInventoryItem } from '.'
 import { miniInventoryData } from '../model/data/miniInventory.data'
+import { OpenInventory } from '@/features/OpenInventory'
 
 export const MiniInventory = () => {
 	return (
@@ -13,7 +14,9 @@ export const MiniInventory = () => {
 					alt='skills'
 				/>
 				<span className={cl.root__wrap_text}>2/9</span>
-				<span className={cl.root__wrap_text}>OPEN</span>
+				<span className={cl.root__wrap_text}>
+					<OpenInventory />
+				</span>
 				{miniInventoryData.map((item, index) => (
 					<div className={cl.root__wrap__frame} key={index}>
 						<MiniInventoryItem
