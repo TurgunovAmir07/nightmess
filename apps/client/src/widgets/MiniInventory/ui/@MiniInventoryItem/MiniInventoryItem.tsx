@@ -12,6 +12,7 @@ export const MiniInventoryItem = ({
 			{!isEmpty ? (
 				<>
 					<img
+						draggable={false}
 						className={cl.root__skill}
 						src='/icon-inventory-item.png'
 						alt='empty'
