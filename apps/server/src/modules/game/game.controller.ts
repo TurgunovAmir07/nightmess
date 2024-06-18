@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common'
 import { GameService } from './game.service'
 import { User } from '@/common/decorators'
 import { AccessGuard } from '@/auth/guards/access.guard'
@@ -27,5 +27,15 @@ export class GameController {
 	@Get('inventory')
 	public async getInventory(@User('id') userId: number) {
 		return this.gameService.getInventory(userId)
+	}
+
+	@ApiOperation({
+		summary: 'Проверка статуса получения карточки'
+	})
+	@HttpCode(HttpStatus.OK)
+	@AccessGuard()
+	@Get('status')
+	public async checkStatus(@User('id') userId: number) {
+		return this.gameService.checkGettingCardStatus(userId)
 	}
 }
