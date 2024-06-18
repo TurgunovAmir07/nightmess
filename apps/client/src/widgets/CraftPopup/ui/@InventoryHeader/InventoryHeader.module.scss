@@ -5,6 +5,12 @@
 		text-align: center;
 		color: #440707;
 	}
+
+	&_close {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+	}
 }
 
 @media (max-width: 410px) {
@@ -12,6 +18,12 @@
 		&_title {
 			padding-top: 9px;
 			font-size: 18px;
+		}
+
+		&_close {
+			position: absolute;
+			top: -5px;
+			right: -5px;
 		}
 	}
 }
@@ -21,6 +33,12 @@
 		&_title {
 			padding-top: 7px;
 			font-size: 16px;
+		}
+
+		&_close {
+			position: absolute;
+			top: -5px;
+			right: -5px;
 		}
 	}
 }
