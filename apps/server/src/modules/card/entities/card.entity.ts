@@ -29,6 +29,9 @@ export class CardEntity extends BaseEntity {
 	@Column()
 	public image: string
 
+	@Column()
+	public miniature: string
+
 	@Exclude()
 	@Column()
 	public chance: string
