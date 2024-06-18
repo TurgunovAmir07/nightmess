@@ -1,15 +1,15 @@
 interface TTopbarData {
 	path: string
-	label: string
+	text: string
 }
 
 export const topbarData: TTopbarData[] = [
 	{
 		path: '/game',
-		label: 'GAME'
+		text: 'GAME'
 	},
 	{
 		path: '/profile',
-		label: 'PROFILE'
+		text: 'PROFILE'
 	}
 ]
