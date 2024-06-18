@@ -25,7 +25,7 @@ export const InventoryItem = ({
 						<img
 							draggable={false}
 							className={`${cl.root__label_img} ${
-								isChecked ? cl.root__label_img_checked : ''
+								isChecked && cl.root__label_img_checked
 							}`}
 							src={item.src}
 							alt={item.alt}

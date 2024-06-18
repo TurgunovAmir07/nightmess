@@ -13,7 +13,6 @@
 				scale: 1.1;
 			}
 		}
-
 		&_radio {
 			display: none;
 		}
@@ -82,10 +81,11 @@
 
 @media (max-width: 410px) {
 	.root {
-		&_img {
-			max-width: 45px;
+		&__label {
+			&_img {
+				max-width: 45px;
+			}
 		}
-
 		&_lock {
 			margin-left: 13px;
 			margin-top: 10px;
@@ -143,17 +143,17 @@
 }
 @media (max-width: 360px) {
 	.root {
-		&_img {
-			max-width: 40px;
+		&__label {
+			&_img {
+				max-width: 40px;
+			}
 		}
-
 		&_lock {
 			margin-left: 12px;
 			margin-top: 11px;
 			max-width: 15px;
 		}
 	}
-
 	.root:nth-child(1) {
 		top: 211.5px;
 		left: 51px;
