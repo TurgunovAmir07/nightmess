@@ -1,8 +1,8 @@
 import { ECardRarity, ECardColor } from '@/common/enums'
 import { BaseEntity } from '@/core/database/entities'
-import { UserAchievementEntity } from '@/modules/game/entities'
-import { Column, Entity, ManyToMany } from 'typeorm'
+import { Column, Entity, OneToMany } from 'typeorm'
 import { Exclude } from 'class-transformer'
+import { UserCardEntity } from './user-card.entity'
 
 @Entity('Card')
 export class CardEntity extends BaseEntity {
@@ -29,10 +29,13 @@ export class CardEntity extends BaseEntity {
 	@Column()
 	public image: string
 
+	@Column()
+	public miniature: string
+
 	@Exclude()
 	@Column()
 	public chance: string
 
-	@ManyToMany(() => UserAchievementEntity)
-	public readonly achievements: UserAchievementEntity[]
+	@OneToMany(() => UserCardEntity, userCard => userCard.card)
+	public readonly userCards: UserCardEntity[]
 }

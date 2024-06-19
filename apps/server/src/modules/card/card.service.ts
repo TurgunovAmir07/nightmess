@@ -4,12 +4,15 @@ import { ESettingsName } from '@/common/enums'
 import { CardRepository } from './card.repository'
 import { cardGenerate } from '@/core/seeder/generate/card.generate'
 import { CardEntity } from './entities'
+import { UserCardService } from './user-card.service'
+import { UserAchievementEntity } from '../game/entities'
 
 @Injectable()
 export class CardService {
 	constructor(
 		private readonly settingsService: SettingsService,
-		private readonly cardRepository: CardRepository
+		private readonly cardRepository: CardRepository,
+		private readonly userCardService: UserCardService
 	) {}
 
 	private async findAndFormatCards(levelChancesMap: { [key: string]: string }) {
@@ -42,7 +45,7 @@ export class CardService {
 		}
 	}
 
-	public async drop() {
+	public async drop(achievement: UserAchievementEntity) {
 		const settingsParamNames = [
 			ESettingsName.ZERO_LEVEL_CHANCE,
 			ESettingsName.FIRST_LEVEL_CHANCE,
@@ -59,7 +62,11 @@ export class CardService {
 
 		const cards = await this.findAndFormatCards(settingsMap)
 
-		return this.getDropCard(cards)
+		const card = this.getDropCard(cards)
+
+		const createdCard = await this.userCardService.create({ card, achievement })
+
+		return createdCard
 	}
 
 	public async _seeding() {

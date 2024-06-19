@@ -23,6 +23,7 @@ export const cardGenerate = () => {
 
 		card.rarity = i
 		card.image = `${cardName.toLowerCase()}.png`
+		card.miniature = `${cardName.toLowerCase()}-min.png`
 		card.color = cardName
 		card.name = cardName
 		card.description = cardName

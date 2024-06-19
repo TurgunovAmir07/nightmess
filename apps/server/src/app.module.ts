@@ -15,7 +15,7 @@ import { join } from 'path'
 	imports: [
 		ConfigModule.forRoot(EnvConfigOptions),
 		BotModule.forRootAsync({
-			imports: [BotModule, AuthModule],
+			imports: [BotModule, AuthModule, GameModule],
 			inject: [ConfigService],
 			useFactory: getBotConfig
 		}),

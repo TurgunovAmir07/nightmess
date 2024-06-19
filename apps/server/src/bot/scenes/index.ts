@@ -1,2 +1,3 @@
-export * from './auth.scene'
-export * from './abstract.scene'
+export * from './auth'
+export * from './abstract'
+export * from './inventory'
