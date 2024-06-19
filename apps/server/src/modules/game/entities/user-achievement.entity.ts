@@ -37,6 +37,6 @@ export class UserAchievementEntity extends BaseEntity {
 	@JoinColumn()
 	public readonly user: UserEntity
 
-	@OneToMany(() => UserCardEntity, userCard => userCard.achievement)
-	public readonly cards: UserCardEntity[]
+	@OneToMany(() => UserCardEntity, userCard => userCard.achievement, { cascade: true })
+	public cards: UserCardEntity[]
 }
