@@ -1,12 +1,7 @@
 import { GameInputButton } from '../@GameInputButton/GameInputButton'
 import cl from './GameInput.module.scss'
 
-export const GameInput = ({
-	size
-}: {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	size: 'large' | 'middle' | 'small'
-}) => {
+export const GameInput = ({ size }: { size: 'large' | 'middle' | 'small' }) => {
 	switch (size) {
 		case 'small':
 			return (
