@@ -6,6 +6,7 @@ import { SettingsModule } from '../settings/settings.module'
 import { CardModule } from '../card/card.module'
 import { GameController } from './game.controller'
 import { UserModule } from '../user/user.module'
+import { CacheService } from '@/core/cache/cache.service'
 
 @Module({
 	imports: [
@@ -14,7 +15,7 @@ import { UserModule } from '../user/user.module'
 		CardModule,
 		UserModule
 	],
-	providers: [GameService],
+	providers: [GameService, CacheService],
 	controllers: [GameController],
 	exports: [GameService]
 })

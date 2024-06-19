@@ -4,13 +4,18 @@ import { SettingsService } from '../settings/settings.service'
 import { ESettingsName } from '@/common/enums'
 import { CardService } from '../card/card.service'
 import type { TGetInventory } from './types'
+import { CacheService } from '@/core/cache/cache.service'
+import { UserService } from '../user/user.service'
+import { FormatMap } from './utils'
 
 @Injectable()
 export class GameService {
 	constructor(
 		private readonly userAchievementService: UserAchievementService,
 		private readonly settingsService: SettingsService,
-		private readonly cardService: CardService
+		private readonly cardService: CardService,
+		private readonly cacheService: CacheService,
+		private readonly userService: UserService
 	) {}
 
 	public async tap(userId: number) {
@@ -83,6 +88,16 @@ export class GameService {
 		return { result }
 	}
 
+	public async getRating(userId: number) {
+		const rating = await this.cacheService
+			.get('rating')
+			.then(res => (res ? JSON.parse(res) : null))
+
+		if (!rating) {
+			this.setRating()
+		}
+	}
+
 	private async isDateArrived(date: string) {
 		if (date === null) {
 			return true
@@ -100,5 +115,27 @@ export class GameService {
 
 		dateForCheck.setHours(dateForCheck.getHours() + +tapInterval.value)
 		return new Date() > dateForCheck
+	}
+
+	private async setRating() {
+		const users = await this.userService.getAll({
+			relations: {
+				achievement: true
+			},
+			order: {
+				achievement: {
+					points: 'DESC'
+				}
+			}
+		})
+
+		const usersMap = users.reduce((acc, item, index) => {
+			acc.set(item.id, { place: index + 1, points: item.achievement.points })
+			return acc
+		}, new Map())
+
+		const test = new FormatMap(usersMap).result
+
+		console.log(typeof test)
 	}
 }

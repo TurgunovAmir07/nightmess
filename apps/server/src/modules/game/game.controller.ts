@@ -38,4 +38,14 @@ export class GameController {
 	public async checkStatus(@User('id') userId: number) {
 		return this.gameService.checkGettingCardStatus(userId)
 	}
+
+	@ApiOperation({
+		summary: 'Получение таблицы рейтинга'
+	})
+	@HttpCode(HttpStatus.OK)
+	@AccessGuard()
+	@Get('rating')
+	public async getRating(@User('id') userId: number) {
+		return this.gameService.getRating(userId)
+	}
 }

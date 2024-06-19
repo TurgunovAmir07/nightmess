@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { UserRepository } from './user.repository'
+import { FindManyOptions } from 'typeorm'
+import { UserEntity } from './entities'
 
 @Injectable()
 export class UserService {
@@ -7,6 +9,10 @@ export class UserService {
 
 	public async getByTgId(id: string) {
 		return this.userRepository.getByTgId(id)
+	}
+
+	public async getAll(options?: FindManyOptions<UserEntity>) {
+		return this.userRepository.getAll(options)
 	}
 
 	public async create(tg_id: string) {
