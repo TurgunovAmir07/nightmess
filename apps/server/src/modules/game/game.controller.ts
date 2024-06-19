@@ -1,9 +1,11 @@
-import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common'
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, UsePipes } from '@nestjs/common'
 import { GameService } from './game.service'
 import { User } from '@/common/decorators'
 import { AccessGuard } from '@/auth/guards/access.guard'
 import { UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { CraftDto, craftSchema } from './dto'
+import { ZodValidationPipe } from '@/common/pipes'
 
 @ApiTags('Игра')
 @Controller('game')
@@ -37,5 +39,16 @@ export class GameController {
 	@Get('status')
 	public async checkStatus(@User('id') userId: number) {
 		return this.gameService.checkGettingCardStatus(userId)
+	}
+
+	@ApiOperation({
+		summary: 'Крафт карточки'
+	})
+	@HttpCode(HttpStatus.OK)
+	@AccessGuard()
+	@UsePipes(new ZodValidationPipe(craftSchema))
+	@Post('craft')
+	public craft(@User('id') userId: number, @Body() craftDto: CraftDto) {
+		return this.gameService.craft(userId, craftDto)
 	}
 }

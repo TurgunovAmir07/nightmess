@@ -1,16 +1,20 @@
 import { UserAchievementService } from './user-achievement.service'
-import { BadRequestException, Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { SettingsService } from '../settings/settings.service'
-import { ESettingsName } from '@/common/enums'
+import { ECardRarity, ESettingsName } from '@/common/enums'
 import { CardService } from '../card/card.service'
-import type { TGetInventory } from './types'
+import type { TGetInventory, TGetInventoryItem } from './types'
+import { CraftDto } from './dto'
+import { UserCardService } from '../card/user-card.service'
+import { chanceByLevelDto } from '@/common/dto'
 
 @Injectable()
 export class GameService {
 	constructor(
 		private readonly userAchievementService: UserAchievementService,
 		private readonly settingsService: SettingsService,
-		private readonly cardService: CardService
+		private readonly cardService: CardService,
+		private readonly userCardService: UserCardService
 	) {}
 
 	public async tap(userId: number) {
@@ -100,5 +104,41 @@ export class GameService {
 
 		dateForCheck.setHours(dateForCheck.getHours() + +tapInterval.value)
 		return new Date() > dateForCheck
+	}
+
+	public async craft(userId: number, { color, count }: CraftDto) {
+		const totalCount = count * 9
+		const { cards } = await this.getInventory(userId)
+		const cardByInventory = cards.find(card => card.card.color === color) as TGetInventoryItem
+		if (!cardByInventory) {
+			throw new NotFoundException('Карточка с таким цветом не найдена в инвентаре')
+		}
+		const rarity = cardByInventory.card.rarity
+
+		if (rarity === ECardRarity.THREE) throw new BadRequestException('Крафт невозможен')
+
+		if (cardByInventory.count < totalCount) {
+			throw new BadRequestException('Недостаточно карточек для крафта')
+		}
+
+		const { value: chance } = await this.settingsService.getSettingsParamByName(
+			chanceByLevelDto[rarity]
+		)
+
+		const successArray = []
+		for (let i = 0; i < count; i++) {
+			const isSuccess = Math.random() * 100 <= Number(chance)
+			successArray.push(isSuccess)
+		}
+		const message = `Успешно скрафчено: ${successArray.filter(Boolean).length}`
+		const newCards = await this.userCardService.craft(userId, successArray, rarity, color)
+
+		return {
+			cards: newCards.map(card => {
+				delete card.achievement
+				return card
+			}),
+			message
+		}
 	}
 }
