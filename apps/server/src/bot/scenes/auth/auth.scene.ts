@@ -17,20 +17,28 @@ export class AuthScene extends Scene {
 		super()
 		this.composer = new Composer<IBotContext>()
 		this.scene = new Scenes.WizardScene(AUTH_SCENE, async ctx => {
-			const { link } = await this.authService.login(String(ctx.from.id))
+			this.authService
+				.login(String(ctx.from.id))
+				.then(async res => {
+					const { link } = res
 
-			// DON'T TOUCH ONLY FOR DEV
-			console.log(link, 'link')
+					// DON'T TOUCH ONLY FOR DEV
+					console.log(link, 'link')
 
-			await ctx.reply(
-				'Нажмите на ссылку ниже',
-				Markup.inlineKeyboard([
-					Markup.button.url(
-						'Авторизоваться',
-						this.configService.get('NODE_ENV') === 'production' ? link : 'https://ya.ru'
+					await ctx.reply(
+						'Нажмите на ссылку ниже',
+						Markup.inlineKeyboard([
+							Markup.button.url(
+								'Авторизоваться',
+								this.configService.get('NODE_ENV') === 'production'
+									? link
+									: 'https://ya.ru'
+							)
+						])
 					)
-				])
-			)
+				})
+				.catch(async e => await ctx.reply(e.response.message ?? 'Неожиданная ошибка'))
+
 			return ctx.wizard.next()
 		})
 

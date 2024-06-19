@@ -1,5 +1,5 @@
 import { UserService } from '@/modules/user/user.service'
-import { Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { randomUUID } from 'crypto'
 import { TokenService } from './token.service'
@@ -31,6 +31,10 @@ export class AuthService {
 
 	public async login(userId: string) {
 		const user = await this.userService.getByTgId(userId)
+
+		if (!user) {
+			throw new BadRequestException('Пользователь не найден. Начните чат с ботом заново!')
+		}
 
 		const link = randomUUID()
 
