@@ -16,4 +16,8 @@ export class UserCardRepository {
 
 		return this.userCardRepository.save(createdUserCard)
 	}
+
+	public async removeMany(cards: UserCardEntity[]) {
+		return this.userCardRepository.remove(cards)
+	}
 }

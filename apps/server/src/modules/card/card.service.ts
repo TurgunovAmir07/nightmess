@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
 import { SettingsService } from '../settings/settings.service'
-import { ESettingsName } from '@/common/enums'
+import { ECardColor, ECardRarity, ESettingsName } from '@/common/enums'
 import { CardRepository } from './card.repository'
 import { cardGenerate } from '@/core/seeder/generate/card.generate'
 import { CardEntity } from './entities'
@@ -75,5 +75,13 @@ export class CardService {
 		await this.cardRepository
 			.deleteMany(oldCards)
 			.then(() => this.cardRepository.saveMany(cards))
+	}
+
+	public async getByRarity(rarity: ECardRarity) {
+		return this.cardRepository.getByRarity(rarity)
+	}
+
+	public async getByColor(color: ECardColor) {
+		return this.cardRepository.getByColor(color)
 	}
 }

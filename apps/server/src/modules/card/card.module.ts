@@ -8,14 +8,16 @@ import { DatabaseModule } from '@/core/database'
 import { UserCardEntity } from './entities'
 import { UserCardRepository } from './user-card.repository'
 import { UserCardService } from './user-card.service'
+import { UserModule } from '../user/user.module'
 
 @Module({
 	imports: [
 		TypeOrmModule.forFeature([CardEntity, UserCardEntity]),
 		SettingsModule,
+		UserModule,
 		DatabaseModule
 	],
 	providers: [CardService, CardRepository, UserCardService, UserCardRepository],
-	exports: [CardService]
+	exports: [CardService, UserCardService]
 })
 export class CardModule {}
