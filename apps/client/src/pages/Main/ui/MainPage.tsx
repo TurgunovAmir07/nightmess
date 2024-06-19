@@ -25,11 +25,9 @@ const MainPage = () => {
 					</div>
 				</div>
 				<div className={cl.root__footer}>
-					<button className={cl.root__footer_btn}>
-						<Link to='/info' className={cl.root__footer_btn_link}>
-							INFO
-						</Link>
-					</button>
+					<Link to='/info' className={cl.root__footer_link}>
+						INFO
+					</Link>
 				</div>
 			</div>
 		</Container>

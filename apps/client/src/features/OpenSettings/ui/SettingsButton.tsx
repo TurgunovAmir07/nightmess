@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { OpenSettingsButton } from './@OpenSettingsButton/OpenSettingsButton'
 
 export const SettingsButton = () => {
-	const [isOpen, setIsOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState<boolean>(false)
 
 	const handleSettings = () => {
 		setIsOpen(prev => !prev)

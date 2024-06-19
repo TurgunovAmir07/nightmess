@@ -1,0 +1,22 @@
+.root {
+	display: flex;
+	flex-direction: column;
+
+	&_text {
+		font-weight: 600;
+		font-family: 'Tilda Sans';
+		text-align: end;
+		transition: all;
+		transition-duration: 500ms;
+	}
+
+	&_total {
+		margin-top: 10px;
+		text-align: end;
+		font-size: 15px;
+		font-family: 'Tilda Sans';
+		font-weight: 800;
+		transition: all;
+		transition-duration: 500ms;
+	}
+}

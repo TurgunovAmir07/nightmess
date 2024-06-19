@@ -4,8 +4,8 @@ import cl from './Cart.module.scss'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { useActions, useCart, useTypedSelector } from '@/store'
 import { cartFieldsArr } from '../model/data/cartFields.data'
-import { DeleteFromCartButton } from '@/features/DeleteFromCart'
-import { CartProduct } from './@CartProduct/CartProduct'
+import { CartProductsList } from './@CartProductsList/CartProductsList'
+import { CartOrderInfo } from './@CartOrderInfo/CartOrderInfo'
 
 export const Cart = ({
 	isOpen,
@@ -22,7 +22,7 @@ export const Cart = ({
 		formState: { errors }
 	} = useForm()
 
-	const { setOrder, changeQuantity } = useActions()
+	const { setOrder } = useActions()
 
 	const onSubmit = (data: FieldValues) => {
 		setOrder({
@@ -91,51 +91,7 @@ export const Cart = ({
 					onSubmit={handleSubmit(onSubmit)}
 					className={cl.root__content}
 				>
-					<div className={cl.root__content__products}>
-						{cart.length === 0 ? (
-							<h2 className={cl.root__content__products__title}>
-								Корзина пуста :( <br />
-								вы можете исправить это выбрав товар в магазине
-								:D
-							</h2>
-						) : (
-							cart.map((item, index) => (
-								<div
-									className={cl.root__content__products__item}
-									key={index}
-								>
-									<div
-										className={
-											cl.root__content__products__item_container
-										}
-									>
-										<CartProduct
-											key={item.product.name}
-											name={item.product.name}
-											price={item.product.price}
-											img={item.product.img}
-											quantity={item.quantity}
-											minus={() =>
-												changeQuantity({
-													id: item.id,
-													type: 'minus'
-												})
-											}
-											plus={() =>
-												changeQuantity({
-													id: item.id,
-													type: 'plus'
-												})
-											}
-										/>
-										<DeleteFromCartButton
-											id={item.product.id}
-										/>
-									</div>
-								</div>
-							))
-						)}
-					</div>
+					<CartProductsList />
 					<div className={cl.root__content__total}>
 						СУММА: {total} RUB
 					</div>
@@ -244,25 +200,12 @@ export const Cart = ({
 							)
 						)}
 					</div>
-					<div className={cl.root__content__orderInfo}>
-						<span className={cl.root__content__orderInfo_text}>
-							Сумма: {total} RUB.
-						</span>
-						<span className={cl.root__content__orderInfo_text}>
-							Доставка: (
-							{selectedDelivery
-								? selectedDelivery.label
-								: 'не выбрано'}
-							):
-							{' ' + deliveryPrice} RUB.
-						</span>
-						<span className={cl.root__content__orderInfo_text}>
-							Россия, {city ? 'г.' + city : 'город не выбран'}
-						</span>
-						<span className={cl.root__content__orderInfo_total}>
-							Итоговая сумма: {total + deliveryPrice} RUB.
-						</span>
-					</div>
+					<CartOrderInfo
+						total={total}
+						city={city}
+						deliveryPrice={deliveryPrice}
+						selectedDelivery={selectedDelivery}
+					/>
 					<div className={cl.root__content_submitBtn}>
 						<GameButton
 							src='/icon-mark.png'
