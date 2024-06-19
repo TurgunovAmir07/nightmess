@@ -1,0 +1,16 @@
+.root {
+	padding: 10px 20px 0 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+
+	&_empty {
+		display: block;
+	}
+
+	&_text {
+		font-size: 24px;
+		color: #ffffff;
+		text-align: center;
+		padding-top: 5px;
+	}
+}

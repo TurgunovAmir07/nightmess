@@ -33,22 +33,9 @@ export const Topbar = () => {
 							to={item.path}
 							className={cl.root__container__item}
 						>
-							<label className={cl.root__container__item_label}>
-								<input
-									className={
-										cl.root__container__item_label__radio
-									}
-									type='radio'
-									name='topbar'
-								/>
-								<span
-									className={
-										cl.root__container__item_label__text
-									}
-								>
-									{item.label}
-								</span>
-							</label>
+							<span className={cl.root__container__item__text}>
+								{item.text}
+							</span>
 						</Link>
 					))}
 				</nav>

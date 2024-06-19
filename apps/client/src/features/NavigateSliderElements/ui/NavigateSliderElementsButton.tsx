@@ -12,6 +12,7 @@ export const NavigateSliderElementsButton = ({
 			return (
 				<button className={`${cl.root} ${className}`}>
 					<img
+						draggable={false}
 						className={cl.root__icon}
 						src='/button-arrow-right.png'
 						alt='slider_nav'
@@ -22,6 +23,7 @@ export const NavigateSliderElementsButton = ({
 			return (
 				<button className={`${cl.root} ${className}`}>
 					<img
+						draggable={false}
 						className={`${cl.root__icon} ${cl.root__icon_left}`}
 						src='/button-arrow-right.png'
 						alt='slider_nav'

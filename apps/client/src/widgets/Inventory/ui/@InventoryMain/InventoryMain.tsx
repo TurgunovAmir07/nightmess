@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { inventoryItemsData } from '../../model/data/craftPopup.data'
+import { inventoryItemsData } from '../../model/data/inventory.data'
 import { InventoryItem } from '../@InventoryItem/InventoryItem'
 import cl from './InventoryMain.module.scss'
 import { ChooseInventoryItemButton } from '@/features/ChooseInventoryItem'
 
 export const InventoryMain = () => {
 	const [selectedItemId, setSelectedItemId] = useState<number | null>(null)
-	const [isActive, setIsActive] = useState(false)
+	const [isActive, setIsActive] = useState<boolean>(false)
 
 	const handleChecked = (id: number) => {
 		if (isActive === true) {

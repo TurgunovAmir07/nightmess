@@ -47,18 +47,9 @@
 			text-decoration: none;
 			cursor: pointer;
 
-			&_label {
-				cursor: pointer;
-
-				&__radio {
-					width: 0;
-					height: 0;
-				}
-
-				&__text {
-					z-index: 3;
-					color: #fff !important;
-				}
+			&__text {
+				z-index: 3;
+				color: #fff !important;
 			}
 		}
 	}

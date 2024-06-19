@@ -1,9 +1,9 @@
-import { Inventory } from '@/widgets/CraftPopup'
+import { Inventory } from '@/widgets/Inventory'
 import { OpenInventoryButton } from './@OpenInventoryButton/OpenInventoryButton'
 import { useState } from 'react'
 
 export const OpenInventory = () => {
-	const [isOpen, setIsOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState<boolean>(false)
 
 	const handleInventory = () => {
 		setIsOpen(prev => !prev)
