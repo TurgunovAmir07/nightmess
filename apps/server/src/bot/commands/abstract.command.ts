@@ -1,8 +1,7 @@
-import { Telegraf } from 'telegraf'
-import { IBotContext } from '../context'
+import TelegramBot from 'node-telegram-bot-api'
 
 export abstract class Command {
-	constructor(public bot: Telegraf<IBotContext>) {}
+	constructor(public bot: TelegramBot) {}
 
 	public abstract handle(): void
 }
