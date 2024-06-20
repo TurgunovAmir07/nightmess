@@ -7,7 +7,7 @@ import { AuthScene, InventoryScene } from './scenes'
 import { IBotContext, ISessionData } from './context'
 import { AuthService } from '@/auth/auth.service'
 import { ConfigService } from '@nestjs/config'
-import { getRedisConfig } from '@/configs'
+import { getRedisTelegrafSessionConfig } from '@/configs'
 import { Redis } from '@telegraf/session/redis'
 import { GameService } from '@/modules/game/game.service'
 
@@ -30,7 +30,7 @@ export class BotService {
 			new AuthScene(this.authService, this.configService).scene,
 			new InventoryScene(this.gameService, this.configService).scene
 		])
-		this.store = Redis(getRedisConfig(this.configService))
+		this.store = Redis(getRedisTelegrafSessionConfig(this.configService))
 		this.init()
 	}
 
