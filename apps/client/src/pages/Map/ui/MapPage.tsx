@@ -1,8 +1,8 @@
 import { Container } from '@/shared'
 import { Header } from '@/widgets/Header'
 import cl from './MapPage.module.scss'
-import { mapNicknamesData } from '../model/data/map.data'
 import { MapCrossItems } from './@MapCrossItem/MapCrossItems'
+import { RatingTop } from '@/widgets/RatingTop'
 
 const MapPage = () => {
 	return (
@@ -13,16 +13,7 @@ const MapPage = () => {
 					<MapCrossItems />
 				</div>
 				<div className={cl.root__footer}>
-					<div className={cl.root__footer__top}>
-						{mapNicknamesData.map((item, index) => (
-							<div
-								key={index}
-								className={cl.root__footer__top_text}
-							>
-								{item.nickname}
-							</div>
-						))}
-					</div>
+					<RatingTop />
 					<div className={cl.root__footer_name}>nickname</div>
 				</div>
 			</div>

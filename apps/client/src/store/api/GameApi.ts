@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { TypeRootState, inventoryModel } from '@/store'
+import { IRating } from '../model/rating/rating.model'
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/game`,
@@ -31,8 +32,14 @@ export const gameApi = createApi({
 			query: () => ({
 				url: 'inventory'
 			})
+		}),
+		getRating: build.query<IRating[], void>({
+			query: () => ({
+				url: 'rating'
+			})
 		})
 	})
 })
 
-export const { useGetCardQuery, useGetInventoryQuery } = gameApi
+export const { useGetCardQuery, useGetInventoryQuery, useGetRatingQuery } =
+	gameApi
