@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { TypeRootState } from '@/store'
+import { TypeRootState, inventoryModel } from '@/store'
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/game`,
@@ -27,8 +27,7 @@ export const cardApi = createApi({
 				url: 'tap'
 			})
 		}),
-		// eslint-disable-next-line
-		getInventory: build.query<any, void>({
+		getInventory: build.query<inventoryModel, void>({
 			query: () => ({
 				url: 'inventory'
 			})
