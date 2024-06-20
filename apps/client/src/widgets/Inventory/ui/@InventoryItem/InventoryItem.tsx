@@ -32,7 +32,9 @@ export const InventoryItem = ({
 						className={`${cl.root__label_img} ${
 							isChecked && cl.root__label_img_checked
 						}`}
-						src={`http://147.45.109.182:7031/static/${item.card.miniature}`}
+						src={`${import.meta.env.VITE_SERVER_STATIC_URL}/${
+							item.card.miniature
+						}`}
 						alt={item.card.name}
 					/>
 					<InventoryItemBage count={item.count} />
