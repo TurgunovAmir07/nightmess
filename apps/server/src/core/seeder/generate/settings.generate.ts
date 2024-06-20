@@ -60,6 +60,12 @@ export const settingsGenerate = (i: ESettingsName) => {
 				setting.value = '40'
 			}
 			break
+		case ESettingsName.RATING_LIVE_TIME:
+			{
+				setting.description = 'Частота обновления рейтинга (ч.)'
+				setting.value = '1'
+			}
+			break
 	}
 
 	return setting

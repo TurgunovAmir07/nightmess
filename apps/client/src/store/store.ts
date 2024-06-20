@@ -11,7 +11,7 @@ import {
 	persistReducer
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { authApi, cardApi } from './api'
+import { authApi, gameApi } from './api'
 
 const persistConfig = {
 	key: 'nighmess',
@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
 	userData: UserDataSlice.reducer,
 	authApi: authApi.reducer,
 	authSlice: authSlice.reducer,
-	cardApi: cardApi.reducer
+	gameApi: gameApi.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -45,7 +45,7 @@ export const setupStore = () => {
 						REGISTER
 					]
 				}
-			}).concat([authApi.middleware, cardApi.middleware])
+			}).concat([authApi.middleware, gameApi.middleware])
 	})
 }
 

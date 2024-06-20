@@ -7,6 +7,10 @@ import type { TGetInventory, TGetInventoryItem } from './types'
 import { CraftDto } from './dto'
 import { UserCardService } from '../card/user-card.service'
 import { chanceByLevelDto } from '@/common/dto'
+import { CacheService } from '@/core/cache/cache.service'
+import { UserService } from '../user/user.service'
+import { FormatMap } from './utils'
+import { RATING_CACHE } from './game.constants'
 
 @Injectable()
 export class GameService {
@@ -14,7 +18,9 @@ export class GameService {
 		private readonly userAchievementService: UserAchievementService,
 		private readonly settingsService: SettingsService,
 		private readonly cardService: CardService,
-		private readonly userCardService: UserCardService
+		private readonly userCardService: UserCardService,
+		private readonly cacheService: CacheService,
+		private readonly userService: UserService
 	) {}
 
 	public async tap(userId: number) {
@@ -87,6 +93,27 @@ export class GameService {
 		return { result }
 	}
 
+	public async getRating(userId: number | null) {
+		// @ts-expect-error only map will be return, because res from redis can by only string
+		let rating: Map<unknown, unknown> | null = await this.cacheService
+			.get(RATING_CACHE)
+			.then(res => (res ? new FormatMap(res).result : null))
+
+		if (!rating) {
+			rating = await this.setRating()
+		}
+
+		// eslint-disable-next-line
+		const formatRating = [...rating].slice(0, 3).reduce((acc, [_, value]) => {
+			acc.push(value)
+			return acc
+		}, [])
+
+		const userFromRating = formatRating.find(i => i.id === userId)
+
+		return !userFromRating && userId ? [...formatRating, rating.get(userId)] : formatRating
+	}
+
 	private async isDateArrived(date: string) {
 		if (date === null) {
 			return true
@@ -140,5 +167,39 @@ export class GameService {
 			}),
 			message
 		}
+	}
+	private async setRating() {
+		const users = await this.userService.getAll({
+			relations: {
+				achievement: true
+			},
+			order: {
+				achievement: {
+					points: 'DESC'
+				}
+			}
+		})
+
+		const ratingLiveTime = await this.settingsService.getSettingsParamByName(
+			ESettingsName.RATING_LIVE_TIME
+		)
+
+		if (!ratingLiveTime) {
+			throw new BadRequestException('Параметр не найден. 2')
+		}
+
+		const usersMap = users.reduce((acc, item, index) => {
+			const { name, id } = item
+			acc.set(item.id, { name, id, place: index + 1 })
+			return acc
+		}, new Map())
+
+		await this.cacheService.set(
+			RATING_CACHE,
+			new FormatMap(usersMap).result as string,
+			+ratingLiveTime.value * 60 * 60 * 1000
+		)
+
+		return usersMap
 	}
 }

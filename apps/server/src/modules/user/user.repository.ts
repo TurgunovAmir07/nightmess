@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UserEntity } from './entities'
-import { DeepPartial, Repository } from 'typeorm'
+import { DeepPartial, FindManyOptions, Repository } from 'typeorm'
 
 @Injectable()
 export class UserRepository {
@@ -43,5 +43,9 @@ export class UserRepository {
 				link
 			}
 		})
+	}
+
+	public async getAll(options?: FindManyOptions<UserEntity>) {
+		return this.userRepository.find(options)
 	}
 }
