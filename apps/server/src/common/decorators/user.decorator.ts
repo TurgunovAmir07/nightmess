@@ -6,5 +6,9 @@ export const User = createParamDecorator((key: keyof JwtPayload, ctx: ExecutionC
 
 	const user = req.user
 
+	if (!user) {
+		return null
+	}
+
 	return key ? user[key] : user
 })

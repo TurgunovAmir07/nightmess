@@ -89,7 +89,7 @@ export class GameService {
 		return { result }
 	}
 
-	public async getRating(userId: number) {
+	public async getRating(userId: number | null) {
 		// @ts-expect-error only map will be return, because res from redis can by only string
 		let rating: Map<unknown, unknown> | null = await this.cacheService
 			.get(RATING_CACHE)
@@ -107,7 +107,7 @@ export class GameService {
 
 		const userFromRating = formatRating.find(i => i.id === userId)
 
-		return userFromRating ? formatRating : [...formatRating, rating.get(userId)]
+		return !userFromRating && userId ? [...formatRating, rating.get(userId)] : formatRating
 	}
 
 	private async isDateArrived(date: string) {
