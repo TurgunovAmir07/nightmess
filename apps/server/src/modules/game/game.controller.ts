@@ -4,6 +4,7 @@ import { User } from '@/common/decorators'
 import { AccessGuard } from '@/auth/guards/access.guard'
 import { UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { UserAuthNoRequiredGuard } from '@/auth/guards'
 
 @ApiTags('Игра')
 @Controller('game')
@@ -43,7 +44,7 @@ export class GameController {
 		summary: 'Получение таблицы рейтинга'
 	})
 	@HttpCode(HttpStatus.OK)
-	@AccessGuard()
+	@UserAuthNoRequiredGuard()
 	@Get('rating')
 	public async getRating(@User('id') userId: number) {
 		return this.gameService.getRating(userId)

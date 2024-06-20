@@ -4,6 +4,7 @@ import { JWT_MODULE_OPTIONS } from './auth.constants'
 import { getJwtConfig } from '@/configs'
 import { UserEntity } from '@/modules/user/entities'
 import { SessionRepository } from './session.repository'
+import { JwtPayload } from './dto'
 
 @Injectable()
 export class TokenService {
@@ -35,6 +36,18 @@ export class TokenService {
 		}
 
 		return this.sessionRepository.create({ user, token })
+	}
+
+	public validateAccessToken(accessToken: string): JwtPayload | null {
+		try {
+			const { secret } = this.jwtConfig.access
+
+			return this.jwtService.verify(accessToken, {
+				secret
+			})
+		} catch (e) {
+			return null
+		}
 	}
 
 	public findSessionByToken(token: string) {
