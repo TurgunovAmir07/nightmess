@@ -1,9 +1,6 @@
-import cl from '../../ui/MapPage.module.scss'
-
 interface TMapCrossData {
 	src: string
 	alt: string
-	styles: string
 }
 
 interface TMapNicknamesData {
@@ -13,23 +10,19 @@ interface TMapNicknamesData {
 export const mapCrossData: TMapCrossData[] = [
 	{
 		src: '/icon-red-x.png',
-		alt: 'red_x',
-		styles: cl.root__main__btn__redX
+		alt: 'red_x'
 	},
 	{
 		src: '/icon-yellow-x.png',
-		alt: 'yellow_x',
-		styles: cl.root__main__btn__yellowX
+		alt: 'yellow_x'
 	},
 	{
 		src: '/icon-green-x.png',
-		alt: 'green_x',
-		styles: cl.root__main__btn__greenX
+		alt: 'green_x'
 	},
 	{
 		src: '/icon-cjan-x.png',
-		alt: 'cjan_x',
-		styles: cl.root__main__btn__cjanX
+		alt: 'cjan_x'
 	}
 ]
 

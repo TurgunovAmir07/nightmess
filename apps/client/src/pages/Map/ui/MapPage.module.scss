@@ -1,6 +1,6 @@
 .root {
 	background-image: url(/background-map.png);
-	background-size: cover;
+	background-size: 453px;
 	background-repeat: no-repeat;
 	width: 100%;
 	height: 100%;
@@ -8,468 +8,115 @@
 	user-select: none;
 
 	&__main {
+		z-index: 1;
 		height: 500px;
 		margin: 40px 0 0 0px;
-
-		&__legs {
-			z-index: 0;
-			max-width: 370px;
-		}
-
-		&__btn {
-			background: inherit;
-			border: none;
-			cursor: pointer;
-
-			&__redX {
-				max-width: 85px;
-				position: absolute;
-				top: 506px;
-				left: 0px;
-			}
-
-			&__yellowX {
-				max-width: 85px;
-				position: absolute;
-				top: 390px;
-				left: 114px;
-			}
-
-			&__greenX {
-				max-width: 85px;
-				position: absolute;
-				top: 260px;
-				left: 200px;
-			}
-
-			&__cjanX {
-				max-width: 85px;
-				position: absolute;
-				top: 132px;
-				left: 285px;
-			}
-		}
-	}
-
-	@media (max-width: 415px) {
-		&__main {
-			height: 480px;
-
-			&__legs {
-				max-width: 355px;
-			}
-			&__btn {
-				&__redX {
-					max-width: 80px;
-					top: 493px;
-				}
-
-				&__yellowX {
-					max-width: 80px;
-					top: 382px;
-					left: 111px;
-				}
-
-				&__greenX {
-					max-width: 80px;
-					top: 255px;
-					left: 193px;
-				}
-
-				&__cjanX {
-					max-width: 80px;
-					top: 131px;
-					left: 276px;
-				}
-			}
-		}
-	}
-	@media (max-width: 403px) {
-		&__main {
-			height: 470px;
-
-			&__legs {
-				max-width: 350px;
-			}
-			&__btn {
-				&__redX {
-					max-width: 78px;
-					top: 487px;
-				}
-
-				&__yellowX {
-					max-width: 78px;
-					top: 379px;
-					left: 109px;
-				}
-
-				&__greenX {
-					max-width: 78px;
-					top: 253px;
-					left: 191px;
-				}
-
-				&__cjanX {
-					max-width: 78px;
-					top: 130px;
-					left: 272px;
-				}
-			}
-		}
-	}
-	@media (max-width: 395px) {
-		&__main {
-			height: 460px;
-
-			&__legs {
-				margin-left: 10px;
-				max-width: 340px;
-			}
-			&__btn {
-				&__redX {
-					max-width: 76px;
-					top: 478px;
-					left: 10px;
-				}
-
-				&__yellowX {
-					max-width: 76px;
-					top: 371px;
-					left: 115px;
-				}
-
-				&__greenX {
-					max-width: 76px;
-					top: 251px;
-					left: 195px;
-				}
-
-				&__cjanX {
-					max-width: 76px;
-					top: 130px;
-					left: 273px;
-				}
-			}
-		}
-	}
-	@media (max-width: 390px) {
-		&__main {
-			&__legs {
-				margin-left: 7px;
-			}
-			&__btn {
-				&__redX {
-					left: 7px;
-				}
-
-				&__yellowX {
-					left: 112px;
-				}
-
-				&__greenX {
-					left: 192px;
-				}
-
-				&__cjanX {
-					left: 271px;
-				}
-			}
-		}
-	}
-	@media (max-width: 386px) {
-		&__main {
-			height: 450px;
-			&__legs {
-				max-width: 330px;
-				margin-top: 5px;
-			}
-			&__btn {
-				&__redX {
-					top: 470px;
-				}
-
-				&__yellowX {
-					top: 368px;
-					left: 109px;
-				}
-
-				&__greenX {
-					left: 185px;
-				}
-
-				&__cjanX {
-					top: 135px;
-					left: 262px;
-				}
-			}
-		}
-	}
-	@media (max-width: 380px) {
-		&__main {
-			height: 440px;
-			&__legs {
-				max-width: 325px;
-				margin-top: 5px;
-			}
-			&__btn {
-				&__redX {
-					top: 465px;
-				}
-
-				&__yellowX {
-					top: 365px;
-					left: 105px;
-				}
-
-				&__greenX {
-					top: 248px;
-					left: 182px;
-				}
-
-				&__cjanX {
-					top: 135px;
-					left: 257px;
-				}
-			}
-		}
-	}
-	@media (max-width: 370px) {
-		&__main {
-			height: 430px;
-			&__legs {
-				max-width: 320px;
-				margin-top: 0px;
-			}
-			&__btn {
-				&__redX {
-					max-width: 70px;
-					top: 457px;
-					left: 8px;
-				}
-
-				&__yellowX {
-					max-width: 70px;
-					top: 358px;
-					left: 108px;
-				}
-
-				&__greenX {
-					max-width: 70px;
-					top: 243px;
-				}
-
-				&__cjanX {
-					max-width: 70px;
-					top: 132px;
-					left: 256px;
-				}
-			}
-		}
-	}
-	@media (max-width: 362px) {
-		&__main {
-			height: 410px;
-			&__legs {
-				max-width: 305px;
-				margin-top: 4px;
-				margin-left: 10px;
-			}
-			&__btn {
-				&__redX {
-					max-width: 68px;
-					top: 445px;
-					left: 10px;
-				}
-
-				&__yellowX {
-					max-width: 68px;
-					top: 350px;
-					left: 104px;
-				}
-
-				&__greenX {
-					max-width: 68px;
-					top: 240px;
-					left: 176px;
-				}
-
-				&__cjanX {
-					max-width: 68px;
-					top: 134px;
-					left: 247px;
-				}
-			}
-		}
-	}
-	@media (max-width: 354px) {
-		&__main {
-			height: 390px;
-			&__legs {
-				max-width: 295px;
-			}
-			&__btn {
-				&__redX {
-					max-width: 65px;
-					top: 435px;
-					left: 10px;
-				}
-
-				&__yellowX {
-					max-width: 65px;
-					top: 345px;
-					left: 102px;
-				}
-
-				&__greenX {
-					max-width: 65px;
-					top: 239px;
-					left: 170px;
-				}
-
-				&__cjanX {
-					max-width: 65px;
-					top: 135px;
-					left: 240px;
-				}
-			}
-		}
-	}
-	@media (max-width: 350px) {
-		&__main {
-			&__legs {
-				margin-top: -2px;
-			}
-			&__btn {
-				&__redX {
-					top: 430px;
-				}
-
-				&__yellowX {
-					top: 338px;
-				}
-
-				&__greenX {
-					top: 232px;
-				}
-
-				&__cjanX {
-					top: 130px;
-					left: 238px;
-				}
-			}
-		}
-	}
-	@media (max-width: 330px) {
-		&__main {
-			height: 370px;
-			&__legs {
-				max-width: 280px;
-				margin-top: 0px;
-			}
-			&__btn {
-				&__redX {
-					max-width: 60px;
-					top: 417px;
-					left: 12px;
-				}
-
-				&__yellowX {
-					max-width: 60px;
-					top: 330px;
-					left: 99px;
-				}
-
-				&__greenX {
-					max-width: 60px;
-					left: 164px;
-					top: 231px;
-				}
-
-				&__cjanX {
-					max-width: 60px;
-					top: 132.5px;
-					left: 229px;
-				}
-			}
-		}
+		position: relative;
 	}
 
 	&__footer {
+		position: relative;
+		z-index: 2;
+		background-image: url(/illustration-top-gamers.png);
+		background-size: 425px;
+		width: 425px;
+		height: 267px;
 		margin-top: 95px;
-
-		&_img {
-			width: calc(100% - 0px);
-		}
 
 		&__top {
 			position: absolute;
-			bottom: 10px;
-			left: calc(50% - 0px);
+			bottom: 7px;
+			left: 215px;
 
 			&_text {
 				font-size: 11px;
 			}
 		}
 
-		@media (max-width: 402px) {
+		&_name {
+			text-align: center;
+			position: absolute;
+			bottom: 7px;
+			left: 45px;
+			font-size: 10px;
+		}
+	}
+}
+
+@media (max-width: 375px) {
+	.root {
+		background-size: 425px;
+
+		&__footer {
+			background-size: 375px;
+			height: 236px;
+			margin-top: 45px;
+
 			&__top {
 				bottom: 5px;
-			}
-		}
-		@media (max-width: 367px) {
-			&__top {
-				bottom: 2px;
+				left: 190px;
 
 				&_text {
 					font-size: 10px;
 				}
 			}
+
+			&_name {
+				bottom: 6px;
+				left: 35px;
+				font-size: 10px;
+			}
+		}
+	}
+}
+@media (max-width: 355px) {
+	.root {
+		background-size: 400px;
+
+		&__footer {
+			background-size: 355px;
+			height: 223px;
+			margin-top: 2px;
+
+			&__top {
+				bottom: 2px;
+				left: 180px;
+
+				&_text {
+					font-size: 10px;
+				}
+			}
+
+			&_name {
+				bottom: 5px;
+				left: 33px;
+			}
+		}
+	}
+}
+@media (max-width: 335px) {
+	.root {
+		background-size: 380px;
+
+		&__main {
+			z-index: 1;
+			height: 500px;
+			margin: 20px 0 0 0px;
 		}
 
-		&_name {
-			text-align: center;
-			position: absolute;
-			bottom: 10px;
-			left: 45px;
-			font-size: 10px;
-		}
-		@media (max-width: 406px) {
-			&_name {
-				left: 40px;
+		&__footer {
+			background-size: 335px;
+			height: 211px;
+			margin-top: -10px;
+
+			&__top {
+				bottom: 0px;
+				left: 170px;
 			}
-		}
-		@media (max-width: 384px) {
+
 			&_name {
-				left: 40px;
-				bottom: 9px;
-			}
-		}
-		@media (max-width: 386px) {
-			&_name {
-				left: 38px;
-				bottom: 9px;
-			}
-		}
-		@media (max-width: 375px) {
-			&_name {
-				left: 38.5px;
-				font-size: 9px;
-			}
-		}
-		@media (max-width: 355px) {
-			&_name {
-				left: 36px;
-			}
-		}
-		@media (max-width: 341px) {
-			&_name {
-				bottom: 7.5px;
-				left: 31px;
-			}
-		}
-		@media (max-width: 325px) {
-			&_name {
-				left: 29px;
+				bottom: 5px;
+				left: 28px;
 			}
 		}
 	}

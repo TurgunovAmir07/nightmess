@@ -1,0 +1,112 @@
+.root {
+	width: 100%;
+	height: 100%;
+
+	&__item {
+		z-index: 1;
+		background-image: url(/illustration-map-cross-leg.png);
+		background-size: cover;
+		height: 215px;
+		width: 80px;
+		position: absolute;
+
+		&__btn {
+			cursor: pointer;
+			background-color: transparent;
+			border: none;
+
+			&__img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		&:nth-child(1) {
+			top: 381px;
+		}
+		&:nth-child(2) {
+			top: 268px;
+			left: 115px;
+		}
+		&:nth-child(3) {
+			top: 140px;
+			left: 210px;
+		}
+		&:nth-child(4) {
+			top: 20px;
+			left: 292px;
+		}
+	}
+}
+
+@media (max-width: 375px) {
+	.root {
+		&__item {
+			height: 190px;
+			width: 70px;
+
+			&:nth-child(1) {
+				top: 361px;
+			}
+			&:nth-child(2) {
+				top: 255px;
+			}
+			&:nth-child(3) {
+				top: 135px;
+				left: 200px;
+			}
+			&:nth-child(4) {
+				top: 20px;
+				left: 282px;
+			}
+		}
+	}
+}
+@media (max-width: 355px) {
+	.root {
+		&__item {
+			height: 173px;
+			width: 65px;
+
+			&:nth-child(1) {
+				top: 333px;
+			}
+			&:nth-child(2) {
+				top: 237px;
+				left: 112px;
+			}
+			&:nth-child(3) {
+				top: 125px;
+				left: 183px;
+			}
+			&:nth-child(4) {
+				top: 20px;
+				left: 250px;
+			}
+		}
+	}
+}
+@media (max-width: 335px) {
+	.root {
+		&__item {
+			height: 173px;
+			width: 65px;
+
+			&:nth-child(1) {
+				top: 323px;
+			}
+			&:nth-child(2) {
+				top: 230px;
+				left: 102px;
+			}
+			&:nth-child(3) {
+				top: 125px;
+				left: 180px;
+			}
+			&:nth-child(4) {
+				top: 25px;
+				left: 250px;
+			}
+		}
+	}
+}
