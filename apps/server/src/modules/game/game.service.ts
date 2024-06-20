@@ -1,13 +1,16 @@
 import { UserAchievementService } from './user-achievement.service'
-import { BadRequestException, Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { SettingsService } from '../settings/settings.service'
-import { ESettingsName } from '@/common/enums'
+import { ECardRarity, ESettingsName } from '@/common/enums'
 import { CardService } from '../card/card.service'
-import type { TGetInventory } from './types'
-import { CacheService } from '@/core/cache/cache.service'
+import type { TGetInventory, TGetInventoryItem } from './types'
+import { CraftDto } from './dto'
+import { UserCardService } from '../card/user-card.service'
+import { chanceByLevelDto } from '@/common/dto'
 import { UserService } from '../user/user.service'
+import { CacheService } from '@/core/cache/cache.service'
 import { FormatMap } from './utils'
-import { RATING_CACHE } from './game.constants'
+import { RATING_CACHE, CRAFT_COUNT } from './game.constants'
 
 @Injectable()
 export class GameService {
@@ -15,6 +18,7 @@ export class GameService {
 		private readonly userAchievementService: UserAchievementService,
 		private readonly settingsService: SettingsService,
 		private readonly cardService: CardService,
+		private readonly userCardService: UserCardService,
 		private readonly cacheService: CacheService,
 		private readonly userService: UserService
 	) {}
@@ -35,7 +39,9 @@ export class GameService {
 		}
 
 		const isUserHaveTries = achievement.tries > 0
-		const isDateArrived = await this.isDateArrived(achievement.lastTap)
+		// FIX
+		// const isDateArrived = await this.isDateArrived(achievement.lastTap)
+		const isDateArrived = true
 		const isFreeTry = Math.random() * 100 <= +tryChance.value
 
 		console.log(isDateArrived, isUserHaveTries, isFreeTry)
@@ -64,15 +70,17 @@ export class GameService {
 		const inventory = await this.userAchievementService.getByUserId(userId)
 
 		const inventoryCardsMap = inventory.cards.reduce((acc, item) => {
-			const color = item.card.color
+			if (item.card) {
+				const color = item.card.color
 
-			if (acc[color]) {
-				acc[color].count += 1
-			} else {
-				acc[color] = { ...item, count: 1 }
+				if (acc[color]) {
+					acc[color].count += 1
+				} else {
+					acc[color] = { ...item, count: 1 }
+				}
+
+				return acc
 			}
-
-			return acc
 		}, {})
 
 		return {
@@ -127,6 +135,48 @@ export class GameService {
 
 		dateForCheck.setHours(dateForCheck.getHours() + +tapInterval.value)
 		return new Date() > dateForCheck
+	}
+
+	public async craft(userId: number, { color, count }: CraftDto) {
+		const totalCount = count * CRAFT_COUNT
+		const { cards } = await this.getInventory(userId)
+
+		const cardByInventory = cards.find(card => card.card.color === color) as TGetInventoryItem
+
+		if (!cardByInventory) {
+			throw new NotFoundException('Карточка с таким цветом не найдена в инвентаре')
+		}
+		const rarity = cardByInventory.card.rarity
+
+		if (rarity === ECardRarity.THREE) throw new BadRequestException('Крафт невозможен')
+
+		if (cardByInventory.count < totalCount) {
+			throw new BadRequestException('Недостаточно карточек для крафта')
+		}
+
+		const levelChance = await this.settingsService.getSettingsParamByName(
+			chanceByLevelDto[rarity]
+		)
+
+		if (!levelChance) {
+			throw new BadRequestException('Параметр не найден. 3')
+		}
+
+		const successArray = []
+		for (let i = 0; i < count; i++) {
+			const isSuccess = Math.random() * 100 <= Number(levelChance.value)
+			successArray.push(isSuccess)
+		}
+		const message = `Успешно скрафчено: ${successArray.filter(Boolean).length}`
+		const newCards = await this.userCardService.craft(userId, successArray, rarity, color)
+
+		return {
+			cards: newCards.map(card => {
+				delete card.achievement
+				return card
+			}),
+			message
+		}
 	}
 
 	private async setRating() {

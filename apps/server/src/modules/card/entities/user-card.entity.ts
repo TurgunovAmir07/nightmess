@@ -5,9 +5,11 @@ import { UserAchievementEntity } from '@/modules/game/entities'
 
 @Entity('UserCard')
 export class UserCardEntity extends BaseEntity {
-	@ManyToOne(() => CardEntity, card => card.userCards)
+	@ManyToOne(() => CardEntity, card => card.userCards, { onDelete: 'SET NULL' })
 	public readonly card: CardEntity
 
-	@ManyToOne(() => UserAchievementEntity, achievement => achievement.cards)
-	public readonly achievement: UserAchievementEntity
+	@ManyToOne(() => UserAchievementEntity, achievement => achievement.cards, {
+		onDelete: 'CASCADE'
+	})
+	public achievement: UserAchievementEntity
 }

@@ -36,6 +36,6 @@ export class CardEntity extends BaseEntity {
 	@Column()
 	public chance: string
 
-	@OneToMany(() => UserCardEntity, userCard => userCard.card)
+	@OneToMany(() => UserCardEntity, userCard => userCard.card, { cascade: true })
 	public readonly userCards: UserCardEntity[]
 }
