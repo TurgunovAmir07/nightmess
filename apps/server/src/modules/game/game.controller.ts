@@ -43,6 +43,16 @@ export class GameController {
 	}
 
 	@ApiOperation({
+		summary: 'Получение таблицы рейтинга'
+	})
+	@HttpCode(HttpStatus.OK)
+	@UserAuthNoRequiredGuard()
+	@Get('rating')
+	public async getRating(@User('id') userId: number) {
+		return this.gameService.getRating(userId)
+	}
+
+	@ApiOperation({
 		summary: 'Крафт карточки'
 	})
 	@HttpCode(HttpStatus.OK)
@@ -51,15 +61,5 @@ export class GameController {
 	@Post('craft')
 	public craft(@User('id') userId: number, @Body() craftDto: CraftDto) {
 		return this.gameService.craft(userId, craftDto)
-	}
-
-	@ApiOperation({
-		summary: 'Получение таблицы рейтинга'
-	})
-	@HttpCode(HttpStatus.OK)
-	@UserAuthNoRequiredGuard()
-	@Get('rating')
-	public async getRating(@User('id') userId: number) {
-		return this.gameService.getRating(userId)
 	}
 }

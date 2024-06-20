@@ -7,8 +7,8 @@ import type { TGetInventory, TGetInventoryItem } from './types'
 import { CraftDto } from './dto'
 import { UserCardService } from '../card/user-card.service'
 import { chanceByLevelDto } from '@/common/dto'
-import { CacheService } from '@/core/cache/cache.service'
 import { UserService } from '../user/user.service'
+import { CacheService } from '@/core/cache/cache.service'
 import { FormatMap } from './utils'
 import { RATING_CACHE } from './game.constants'
 
@@ -168,6 +168,7 @@ export class GameService {
 			message
 		}
 	}
+
 	private async setRating() {
 		const users = await this.userService.getAll({
 			relations: {
