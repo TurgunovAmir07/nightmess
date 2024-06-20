@@ -2,8 +2,7 @@ export class FormatMap {
 	public result: unknown
 
 	constructor(value: string | Map<unknown, unknown>) {
-		// @ts-expect-error any except string
-		this.result = value === 'string' ? this.parse(value) : this.stringify(value)
+		this.result = typeof value === 'string' ? this.parse(value) : this.stringify(value)
 	}
 
 	private replacer(key: unknown, value: unknown) {

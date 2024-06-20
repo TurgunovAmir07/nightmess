@@ -7,6 +7,7 @@ import type { TGetInventory } from './types'
 import { CacheService } from '@/core/cache/cache.service'
 import { UserService } from '../user/user.service'
 import { FormatMap } from './utils'
+import { RATING_CACHE } from './game.constants'
 
 @Injectable()
 export class GameService {
@@ -89,13 +90,24 @@ export class GameService {
 	}
 
 	public async getRating(userId: number) {
-		const rating = await this.cacheService
-			.get('rating')
-			.then(res => (res ? JSON.parse(res) : null))
+		// @ts-expect-error only map will be return, because res from redis can by only string
+		let rating: Map<unknown, unknown> | null = await this.cacheService
+			.get(RATING_CACHE)
+			.then(res => (res ? new FormatMap(res).result : null))
 
 		if (!rating) {
-			this.setRating()
+			rating = await this.setRating()
 		}
+
+		// eslint-disable-next-line
+		const formatRating = [...rating].slice(0, 3).reduce((acc, [_, value]) => {
+			acc.push(value)
+			return acc
+		}, [])
+
+		const userFromRating = formatRating.find(i => i.id === userId)
+
+		return userFromRating ? formatRating : [...formatRating, rating.get(userId)]
 	}
 
 	private async isDateArrived(date: string) {
@@ -129,13 +141,26 @@ export class GameService {
 			}
 		})
 
+		const ratingLiveTime = await this.settingsService.getSettingsParamByName(
+			ESettingsName.RATING_LIVE_TIME
+		)
+
+		if (!ratingLiveTime) {
+			throw new BadRequestException('Параметр не найден. 2')
+		}
+
 		const usersMap = users.reduce((acc, item, index) => {
-			acc.set(item.id, { place: index + 1, points: item.achievement.points })
+			const { name, id } = item
+			acc.set(item.id, { name, id, place: index + 1 })
 			return acc
 		}, new Map())
 
-		const test = new FormatMap(usersMap).result
+		await this.cacheService.set(
+			RATING_CACHE,
+			new FormatMap(usersMap).result as string,
+			+ratingLiveTime.value * 60 * 60 * 1000
+		)
 
-		console.log(typeof test)
+		return usersMap
 	}
 }

@@ -10,8 +10,8 @@ export class CacheService {
 		return this.cache.get(key)
 	}
 
-	public async set(key: string, value: string) {
-		await this.cache.set(key, value)
+	public async set(key: string, value: string, ttl?: number) {
+		await this.cache.set(key, value, ttl)
 	}
 
 	public async del(key: string) {
