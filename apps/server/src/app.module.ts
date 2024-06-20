@@ -10,6 +10,7 @@ import { CardModule } from './modules/card/card.module'
 import { GameModule } from './modules/game/game.module'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { join } from 'path'
+import { CacheModule } from './core/cache/cache.module'
 
 @Module({
 	imports: [
@@ -28,7 +29,8 @@ import { join } from 'path'
 		ServeStaticModule.forRoot({
 			rootPath: join(__dirname, '..', 'static'),
 			serveRoot: '/api/static'
-		})
+		}),
+		CacheModule
 	]
 })
 export class AppModule {}

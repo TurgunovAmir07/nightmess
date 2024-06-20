@@ -1,6 +1,7 @@
 import { BaseEntity } from '@/core/database/entities'
-import { Column, Entity } from 'typeorm'
+import { Column, Entity, OneToOne } from 'typeorm'
 import { Exclude } from 'class-transformer'
+import { UserAchievementEntity } from '@/modules/game/entities'
 
 @Entity('User')
 export class UserEntity extends BaseEntity {
@@ -43,4 +44,7 @@ export class UserEntity extends BaseEntity {
 		nullable: true
 	})
 	public readonly link: string | null
+
+	@OneToOne(() => UserAchievementEntity, achievement => achievement.user)
+	public readonly achievement: UserAchievementEntity
 }

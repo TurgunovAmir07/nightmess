@@ -6,6 +6,7 @@ import { UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { CraftDto, craftSchema } from './dto'
 import { ZodValidationPipe } from '@/common/pipes'
+import { UserAuthNoRequiredGuard } from '@/auth/guards'
 
 @ApiTags('Игра')
 @Controller('game')
@@ -39,6 +40,16 @@ export class GameController {
 	@Get('status')
 	public async checkStatus(@User('id') userId: number) {
 		return this.gameService.checkGettingCardStatus(userId)
+	}
+
+	@ApiOperation({
+		summary: 'Получение таблицы рейтинга'
+	})
+	@HttpCode(HttpStatus.OK)
+	@UserAuthNoRequiredGuard()
+	@Get('rating')
+	public async getRating(@User('id') userId: number) {
+		return this.gameService.getRating(userId)
 	}
 
 	@ApiOperation({

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { TypeRootState } from '@/store'
+import { TypeRootState, inventoryModel } from '@/store'
+import { IRating } from '../model/rating/rating.model'
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/game`,
@@ -17,8 +18,8 @@ const baseQuery = fetchBaseQuery({
 	}
 })
 
-export const cardApi = createApi({
-	reducerPath: 'cardApi',
+export const gameApi = createApi({
+	reducerPath: 'gameApi',
 	baseQuery: baseQuery,
 	endpoints: build => ({
 		// eslint-disable-next-line
@@ -27,13 +28,18 @@ export const cardApi = createApi({
 				url: 'tap'
 			})
 		}),
-		// eslint-disable-next-line
-		getInventory: build.query<any, void>({
+		getInventory: build.query<inventoryModel, void>({
 			query: () => ({
 				url: 'inventory'
+			})
+		}),
+		getRating: build.query<IRating[], void>({
+			query: () => ({
+				url: 'rating'
 			})
 		})
 	})
 })
 
-export const { useGetCardQuery, useGetInventoryQuery } = cardApi
+export const { useGetCardQuery, useGetInventoryQuery, useGetRatingQuery } =
+	gameApi

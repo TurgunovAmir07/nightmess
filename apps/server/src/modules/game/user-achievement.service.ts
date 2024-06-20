@@ -29,7 +29,11 @@ export class UserAchievementService {
 			lastTap: isUseTry ? achievement.lastTap : new Date().toISOString(),
 			taps: achievement.taps + 1,
 			points: achievement.points + 1,
-			tries: isUseTry ? achievement.tries - 1 : achievement.tries,
+			tries: isUseTry
+				? achievement.tries
+					? achievement.tries - 1
+					: achievement.tries
+				: achievement.tries,
 			stage:
 				getEnumItemIndex(ECardRarity, userCard.card.rarity) >
 				getEnumItemIndex(ECardRarity, achievement.stage)

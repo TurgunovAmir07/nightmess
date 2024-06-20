@@ -1,4 +1,4 @@
-import { cardApi, useTypedDispatch } from '@/store'
+import { gameApi, useTypedDispatch } from '@/store'
 import cl from './GetCardButton.module.scss'
 
 export const GetCardButton = () => {
@@ -6,7 +6,7 @@ export const GetCardButton = () => {
 
 	const handleGetCard = async () => {
 		try {
-			const result = await dispatch(cardApi.endpoints.getCard.initiate())
+			const result = await dispatch(gameApi.endpoints.getCard.initiate())
 			console.log(result)
 		} catch (error) {
 			console.error('Failed to fetch card:', error)
