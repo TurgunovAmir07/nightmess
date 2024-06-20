@@ -17,8 +17,8 @@ const baseQuery = fetchBaseQuery({
 	}
 })
 
-export const cardApi = createApi({
-	reducerPath: 'cardApi',
+export const gameApi = createApi({
+	reducerPath: 'gameApi',
 	baseQuery: baseQuery,
 	endpoints: build => ({
 		// eslint-disable-next-line
@@ -35,4 +35,4 @@ export const cardApi = createApi({
 	})
 })
 
-export const { useGetCardQuery, useGetInventoryQuery } = cardApi
+export const { useGetCardQuery, useGetInventoryQuery } = gameApi
