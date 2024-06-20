@@ -16,7 +16,7 @@ import { CacheModule } from './core/cache/cache.module'
 	imports: [
 		ConfigModule.forRoot(EnvConfigOptions),
 		BotModule.forRootAsync({
-			imports: [BotModule],
+			imports: [BotModule, AuthModule, ConfigModule],
 			inject: [ConfigService],
 			useFactory: getBotConfig
 		}),
