@@ -1,2 +1,2 @@
 export * from './AuthApi'
-export * from './CardApi'
+export * from './GameApi'
