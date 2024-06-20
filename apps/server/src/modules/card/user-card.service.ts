@@ -68,7 +68,7 @@ export class UserCardService {
 			await query.manager.save(UserAchievementEntity, inventory)
 
 			await query.manager.save(UserCardEntity, newUserCards)
-			console.log(newUserCards.map(c => c.card.color))
+			// console.log(newUserCards.map(c => c.card.color))
 			return newUserCards
 		})
 	}

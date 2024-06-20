@@ -59,7 +59,7 @@ export class GameController {
 	@AccessGuard()
 	@UsePipes(new ZodValidationPipe(craftSchema))
 	@Post('craft')
-	public craft(@User('id') userId: number, @Body() craftDto: CraftDto) {
+	public async craft(@User('id') userId: number, @Body() craftDto: CraftDto) {
 		return this.gameService.craft(userId, craftDto)
 	}
 }

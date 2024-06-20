@@ -38,11 +38,6 @@ export class InventoryScene extends Scene {
 					if (!res.card) {
 						return ctx.reply(res.message)
 					} else {
-						console.log(
-							this.configService.get('VITE_SERVER_STATIC_URL') +
-								'/' +
-								res.card.card.image
-						)
 						return ctx.replyWithPhoto(
 							{
 								url:
