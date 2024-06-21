@@ -12,6 +12,13 @@
 	left: 274px;
 	border: none;
 	background-color: inherit;
+	transition: all;
+	transition-duration: 300ms;
+
+	&_disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+	}
 
 	&_text {
 		color: #440707;
