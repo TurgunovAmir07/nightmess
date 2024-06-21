@@ -11,7 +11,9 @@ export class CacheService {
 	}
 
 	public async set(key: string, value: string, ttl?: number) {
-		await this.cache.set(key, value, ttl)
+		const res = await this.cache.set(key, value, ttl)
+
+		console.log(res)
 	}
 
 	public async del(key: string) {
