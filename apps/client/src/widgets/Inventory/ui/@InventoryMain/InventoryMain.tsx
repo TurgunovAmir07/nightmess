@@ -11,12 +11,10 @@ import {
 } from '@/store'
 
 export const InventoryMain = () => {
-	// const [selectedItemId, setSelectedItemId] = useState<number | null>(null)
 	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
 	const isActive = useTypedSelector(
 		state => state.inventorySlice.isCardsActive
 	)
-
 	const choosedCard = useTypedSelector(
 		state => state.inventorySlice.choosedCard
 	)

@@ -21,22 +21,26 @@ const baseQuery = fetchBaseQuery({
 export const gameApi = createApi({
 	reducerPath: 'gameApi',
 	baseQuery: baseQuery,
+	tagTypes: ['Inventory'],
 	endpoints: build => ({
 		// eslint-disable-next-line
 		getCard: build.query<any, void>({
 			query: () => ({
 				url: 'tap'
-			})
+			}),
+			providesTags: ['Inventory']
 		}),
 		getInventory: build.query<inventoryModel, void>({
 			query: () => ({
 				url: 'inventory'
-			})
+			}),
+			providesTags: ['Inventory']
 		}),
 		getRating: build.query<IRating[], void>({
 			query: () => ({
 				url: 'rating'
-			})
+			}),
+			providesTags: ['Inventory']
 		})
 	})
 })
