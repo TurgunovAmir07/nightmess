@@ -1,0 +1,43 @@
+.root {
+	background-image: url('/illustration-cards-quantity.png');
+	background-size: cover;
+	width: 67px;
+	height: 40px;
+	top: 11px;
+	left: 1px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&_text {
+		font-size: 16px;
+		color: #440707;
+		margin-bottom: 2px;
+		margin-left: 4px;
+	}
+}
+@media (max-width: 410px) {
+	.root {
+		width: 58px;
+		height: 35px;
+		top: 10px;
+		left: 1px;
+
+		&_text {
+			font-size: 14px;
+		}
+	}
+}
+@media (max-width: 360px) {
+	.root {
+		width: 51px;
+		height: 30px;
+		top: 10px;
+		left: 1px;
+
+		&_text {
+			font-size: 14px;
+		}
+	}
+}

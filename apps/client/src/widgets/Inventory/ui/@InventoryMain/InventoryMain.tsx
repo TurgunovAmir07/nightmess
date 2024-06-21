@@ -9,6 +9,7 @@ import {
 	useTypedSelector,
 	useActions
 } from '@/store'
+import { CardsHaveBage } from '../@CardsHaveBage/CardsHaveBage'
 
 export const InventoryMain = () => {
 	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
@@ -18,6 +19,8 @@ export const InventoryMain = () => {
 	const choosedCard = useTypedSelector(
 		state => state.inventorySlice.choosedCard
 	)
+
+	const [cardsHave, setCardsHave] = useState<string>('0/9')
 
 	const { toggleCardsActiveState, chooseCard } = useActions()
 
@@ -38,11 +41,13 @@ export const InventoryMain = () => {
 		if (data && data.cards) {
 			const sorted = sorterItems(data.cards)
 			setSortedItems(sorted)
+			setCardsHave(`${data.cards.length}/9`)
 		}
 	}, [data])
 
 	return (
 		<div className={cl.root}>
+			<CardsHaveBage quantity={cardsHave} />
 			<ChooseInventoryItemButton
 				handleActive={handleActive}
 				isActive={isActive}
