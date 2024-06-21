@@ -2,14 +2,16 @@ import { gameApi } from '@/store/api'
 import type { ICard, TCards } from '@/store/model'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+interface ICraft {
+	color: ICard['color'] | null
+	count: TCards['count']
+}
+
 interface IInventoryInitialState {
 	cards: TCards[]
 	choosedCard: TCards | null
 	isCardsActive: boolean
-	craft: {
-		color: ICard['color']
-		count: TCards['count']
-	}
+	craft: ICraft
 	counterQuantity: number
 }
 
@@ -18,7 +20,7 @@ const initialState: IInventoryInitialState = {
 	choosedCard: null,
 	isCardsActive: false,
 	craft: {
-		color: '',
+		color: null,
 		count: 0
 	},
 	counterQuantity: 1
@@ -48,6 +50,15 @@ export const InventorySlice = createSlice({
 			} else {
 				state.counterQuantity--
 			}
+		},
+		updateCraftState: (
+			state,
+			action: PayloadAction<{
+				color: ICard['color']
+				count: TCards['count']
+			}>
+		) => {
+			state.craft = action.payload
 		}
 	},
 	extraReducers: builder => {
