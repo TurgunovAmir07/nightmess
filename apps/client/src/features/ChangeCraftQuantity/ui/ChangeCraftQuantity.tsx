@@ -32,11 +32,9 @@ export const ChangeCraftQuantity = () => {
 					onClick={() => changeCounterQuantity('plus')}
 					type='button'
 					disabled={
-						choosedCard &&
 						(choosedCard.count * count) / choosedCard.count === 9
 					}
 					className={`${cl.root__counter__btn} ${
-						choosedCard &&
 						(choosedCard.count * count) / choosedCard.count === 9 &&
 						cl.root__counter__btn_disabled
 					}`}

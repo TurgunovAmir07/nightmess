@@ -44,8 +44,8 @@ export const CraftMain = () => {
 								className={cl.root__craft_result_img}
 								src={`${
 									import.meta.env.VITE_SERVER_STATIC_URL
-								}/${craftedCard?.card.miniature}`}
-								alt={craftedCard?.card.name}
+								}/${craftedCard.card.miniature}`}
+								alt={craftedCard.card.name}
 							/>
 						)}
 					</div>
