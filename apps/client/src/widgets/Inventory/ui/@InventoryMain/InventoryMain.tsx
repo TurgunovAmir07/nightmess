@@ -52,7 +52,7 @@ export const InventoryMain = () => {
 					<InventoryItem
 						key={index}
 						item={item}
-						isChecked={item ? choosedCard === item.id : false}
+						isChecked={item ? choosedCard?.id === item.id : false}
 						isActive={isActive}
 						handleChecked={() => item && handleChecked(item.id)}
 					/>
