@@ -4,7 +4,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface IInventoryInitialState {
 	cards: TCards[]
-	choosedCard: TCards['id'] | null
+	choosedCard: TCards | null
 	isCardsActive: boolean
 	craft: {
 		color: ICard['color']
@@ -35,7 +35,9 @@ export const InventorySlice = createSlice({
 			state,
 			action: PayloadAction<{ id: TCards['id'] | null }>
 		) => {
-			state.choosedCard = action.payload.id
+			const card =
+				state.cards.find(card => card.id === action.payload.id) || null
+			state.choosedCard = card
 		},
 		changeCounterQuantity: (
 			state,

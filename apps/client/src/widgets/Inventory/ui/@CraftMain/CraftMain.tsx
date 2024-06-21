@@ -1,36 +1,34 @@
 import { useTypedSelector } from '@/store'
 import cl from './CraftMain.module.scss'
-import { useMemo } from 'react'
 import { ChangeCraftQuantity } from '@/features/ChangeCraftQuantity'
 
 export const CraftMain = () => {
 	const choosedCard = useTypedSelector(
 		state => state.inventorySlice.choosedCard
 	)
-
-	const cards = useTypedSelector(state => state.inventorySlice.cards)
-
-	const card = useMemo(() => {
-		return cards.find(item => item.id === choosedCard)
-	}, [cards, choosedCard])
-
 	return (
 		<>
 			{choosedCard && <ChangeCraftQuantity />}
 			<div className={cl.root}>
 				<div className={cl.root__craft}>
 					{/*  */}
-					{Array.from({ length: Number(card?.count) }).map(
-						(_, index) => (
-							<div key={index} className={cl.root__craft_item}>
-								<img
-									className={cl.root__craft_item_img}
-									src={card?.card.miniature}
-									alt={card?.card.name}
-								/>
-							</div>
+					{Array.from({
+						length: Number(
+							choosedCard && choosedCard?.count >= 9
+								? 9
+								: choosedCard?.count
 						)
-					)}
+					}).map((_, index) => (
+						<div key={index} className={cl.root__craft_item}>
+							<img
+								className={cl.root__craft_item_img}
+								src={`${
+									import.meta.env.VITE_SERVER_STATIC_URL
+								}/${choosedCard?.card.miniature}`}
+								alt={choosedCard?.card.name}
+							/>
+						</div>
+					))}
 					{/*  */}
 					<div className={cl.root__craft_result}>
 						<img
