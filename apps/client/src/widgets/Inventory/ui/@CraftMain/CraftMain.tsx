@@ -7,6 +7,11 @@ export const CraftMain = () => {
 	const choosedCard = useTypedSelector(
 		state => state.inventorySlice.choosedCard
 	)
+
+	const craftedCard = useTypedSelector(
+		state => state.inventorySlice.craftedCard
+	)
+
 	return (
 		<>
 			{choosedCard && <ChangeCraftQuantity />}
@@ -33,7 +38,16 @@ export const CraftMain = () => {
 					))}
 					{/*  */}
 					<div className={cl.root__craft_result}>
-						<></>
+						{craftedCard && (
+							<img
+								draggable={false}
+								className={cl.root__craft_result_img}
+								src={`${
+									import.meta.env.VITE_SERVER_STATIC_URL
+								}/${craftedCard?.card.miniature}`}
+								alt={craftedCard?.card.name}
+							/>
+						)}
 					</div>
 				</div>
 			</div>
