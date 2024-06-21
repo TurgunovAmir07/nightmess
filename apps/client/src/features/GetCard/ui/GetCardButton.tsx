@@ -7,7 +7,9 @@ export const GetCardButton = () => {
 	const handleGetCard = async () => {
 		try {
 			const result = await dispatch(gameApi.endpoints.getCard.initiate())
-			console.log(result)
+			if (result) {
+				dispatch(gameApi.util.invalidateTags(['Inventory']))
+			}
 		} catch (error) {
 			console.error('Failed to fetch card:', error)
 		}
