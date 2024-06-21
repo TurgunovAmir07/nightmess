@@ -69,6 +69,10 @@ export class GameService {
 	public async getInventory(userId: number): Promise<TGetInventory> {
 		const inventory = await this.userAchievementService.getByUserId(userId)
 
+		if (!inventory) {
+			throw new BadRequestException('Инвентарь не найден. Обратитесь в поддержку')
+		}
+
 		const inventoryCardsMap = inventory.cards.reduce((acc, item) => {
 			if (item.card) {
 				const color = item.card.color
