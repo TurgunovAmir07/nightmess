@@ -10,7 +10,8 @@ export const ChangeCraftQuantity = () => {
 	// @ts-ignore
 	const { changeCounterQuantity, choosedCard } = useActions()
 
-	const isPlusDisabled = choosedCard && choosedCard.count % count === 0
+	const isPlusDisabled =
+		choosedCard && (choosedCard.count * count) / choosedCard.count === 1
 
 	return (
 		<div className={cl.root}>

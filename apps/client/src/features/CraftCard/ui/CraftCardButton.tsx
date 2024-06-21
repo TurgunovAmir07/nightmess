@@ -1,9 +1,15 @@
-import { useActions, useCraftCardMutation, useTypedSelector } from '@/store'
+import {
+	gameApi,
+	useActions,
+	useCraftCardMutation,
+	useTypedDispatch,
+	useTypedSelector
+} from '@/store'
 import cl from './CraftCardButton.module.scss'
 import { LoaderSpinner } from '@/shared'
 
 export const CraftCardButton = () => {
-	const { updateCraftState } = useActions()
+	const { getCraftState } = useActions()
 	const choosedCard = useTypedSelector(
 		state => state.inventorySlice.choosedCard
 	)
@@ -11,18 +17,22 @@ export const CraftCardButton = () => {
 		state => state.inventorySlice.counterQuantity
 	)
 
+	const dispatch = useTypedDispatch()
+
 	const [craftCard, { isLoading }] = useCraftCardMutation()
 
 	if (isLoading) return <LoaderSpinner />
 
-	const handleCraft = () => {
+	const handleCraft = async () => {
 		if (choosedCard) {
 			const craftData = {
 				color: choosedCard.card.color,
 				count: count
 			}
-			updateCraftState(craftData)
 			craftCard(craftData)
+			dispatch(gameApi.util.invalidateTags(['Inventory']))
+			const result = await craftCard(craftData).unwrap()
+			getCraftState(result)
 		}
 	}
 
