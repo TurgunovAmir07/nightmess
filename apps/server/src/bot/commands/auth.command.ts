@@ -16,7 +16,7 @@ export class AuthCommand extends Command {
 
 	public handle(): void {
 		this.bot.onText(getCommandRegexp(AUTH_COMMAND), async msg => {
-			const { message_id, chat } = await this.bot.sendMessage(msg.chat.id, ' ', {
+			this.bot.sendMessage(msg.chat.id, 'Ожидайте...', {
 				reply_markup: {
 					remove_keyboard: true
 				}
@@ -28,37 +28,21 @@ export class AuthCommand extends Command {
 					// DON'T TOUCH ONLY FOR DEV
 					console.log(link, 'link')
 
-					this.bot.editMessageText('', {
-						chat_id: chat.id,
-						message_id,
+					this.bot.sendMessage(msg.chat.id, 'Нажмите на ссылку ниже', {
 						reply_markup: {
 							inline_keyboard: [
-								{
-									text: 'Авторизоваться',
-									url:
-										this.configService.get('NODE_ENV') === 'production'
-											? link
-											: 'https://ya.ru'
-								}
+								[
+									{
+										text: 'Авторизоваться',
+										url:
+											this.configService.get('NODE_ENV') === 'production'
+												? link
+												: 'https://ya.ru'
+									}
+								]
 							]
 						}
 					})
-
-					// this.bot.sendMessage(msg.chat.id, 'Нажмите на ссылку ниже', {
-					// 	reply_markup: {
-					// 		inline_keyboard: [
-					// 			[
-					// 				{
-					// 					text: 'Авторизоваться',
-					// 					url:
-					// 						this.configService.get('NODE_ENV') === 'production'
-					// 							? link
-					// 							: 'https://ya.ru'
-					// 				}
-					// 			]
-					// 		]
-					// 	}
-					// })
 				})
 				.catch(e =>
 					this.bot.sendMessage(msg.chat.id, e.response.message ?? 'Неожиданная ошибка')
