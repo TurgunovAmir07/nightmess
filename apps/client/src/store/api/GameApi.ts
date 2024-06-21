@@ -41,9 +41,25 @@ export const gameApi = createApi({
 				url: 'rating'
 			}),
 			providesTags: ['Inventory']
+		}),
+		// eslint-disable-next-line
+		craftCard: build.mutation<any, any>({
+			query: ({ color, count }) => ({
+				url: 'craft',
+				method: 'POST',
+				body: {
+					color,
+					count
+				},
+				providesTags: ['Inventory']
+			})
 		})
 	})
 })
 
-export const { useGetCardQuery, useGetInventoryQuery, useGetRatingQuery } =
-	gameApi
+export const {
+	useGetCardQuery,
+	useGetInventoryQuery,
+	useGetRatingQuery,
+	useCraftCardMutation
+} = gameApi

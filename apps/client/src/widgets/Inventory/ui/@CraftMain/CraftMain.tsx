@@ -1,6 +1,7 @@
 import { useTypedSelector } from '@/store'
 import cl from './CraftMain.module.scss'
 import { ChangeCraftQuantity } from '@/features/ChangeCraftQuantity'
+import { CraftCardButton } from '@/features/CraftCard'
 
 export const CraftMain = () => {
 	const choosedCard = useTypedSelector(
@@ -9,6 +10,7 @@ export const CraftMain = () => {
 	return (
 		<>
 			{choosedCard && <ChangeCraftQuantity />}
+			{choosedCard && <CraftCardButton />}
 			<div className={cl.root}>
 				<div className={cl.root__craft}>
 					{/*  */}
@@ -31,12 +33,7 @@ export const CraftMain = () => {
 					))}
 					{/*  */}
 					<div className={cl.root__craft_result}>
-						<img
-							draggable={false}
-							className={cl.root__craft_result_img}
-							src='/icon-inventory-item.png'
-							alt='result'
-						/>
+						<></>
 					</div>
 				</div>
 			</div>

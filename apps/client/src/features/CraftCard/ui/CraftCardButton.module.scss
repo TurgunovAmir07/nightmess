@@ -1,0 +1,22 @@
+.root {
+	cursor: pointer;
+	background-image: url('/button-feature-btn.png');
+	background-size: cover;
+	width: 110px;
+	height: 43.5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 245px;
+	left: 274px;
+	border: none;
+	background-color: inherit;
+
+	&_text {
+		color: #440707;
+		font-size: 11px;
+		padding-bottom: 1px;
+		padding-left: 2px;
+	}
+}

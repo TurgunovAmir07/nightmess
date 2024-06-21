@@ -6,7 +6,11 @@ export const ChangeCraftQuantity = () => {
 		state => state.inventorySlice.counterQuantity
 	)
 
-	const { changeCounterQuantity } = useActions()
+	// eslint-disable-next-line
+	// @ts-ignore
+	const { changeCounterQuantity, choosedCard } = useActions()
+
+	const isPlusDisabled = choosedCard && choosedCard.count % count === 0
 
 	return (
 		<div className={cl.root}>
@@ -29,6 +33,7 @@ export const ChangeCraftQuantity = () => {
 				<button
 					onClick={() => changeCounterQuantity('plus')}
 					type='button'
+					disabled={isPlusDisabled}
 					className={cl.root__counter__btn}
 				>
 					<img
