@@ -17,6 +17,8 @@ export const CraftCardButton = () => {
 		state => state.inventorySlice.counterQuantity
 	)
 
+	const { toggleCardsActiveState, chooseCard } = useActions()
+
 	const dispatch = useTypedDispatch()
 
 	const [craftCard, { isLoading }] = useCraftCardMutation()
@@ -31,6 +33,8 @@ export const CraftCardButton = () => {
 			}
 			craftCard(craftData)
 			dispatch(gameApi.util.invalidateTags(['Inventory']))
+			toggleCardsActiveState()
+			chooseCard({ id: null })
 			const result = await craftCard(craftData).unwrap()
 			getCraftState(result)
 		}
