@@ -6,6 +6,7 @@ import { BotStartCommand, Command, AuthCommand, InventoryCommand } from './comma
 import { AuthService } from '@/auth/auth.service'
 import { ConfigService } from '@nestjs/config'
 import { GameService } from '@/modules/game/game.service'
+import { CacheService } from '@/core/cache/cache.service'
 
 @Injectable()
 export class BotService {
@@ -16,13 +17,14 @@ export class BotService {
 		@Inject(BOT_MODULE_OPTIONS) options: IBotOptions,
 		private readonly authService: AuthService,
 		private readonly configService: ConfigService,
-		private readonly gameService: GameService
+		private readonly gameService: GameService,
+		private readonly cacheService: CacheService
 	) {
 		this.bot = new TelegramBot(options.token, { polling: true })
 		this.commands = [
-			new BotStartCommand(this.bot),
+			new BotStartCommand(this.bot, this.authService),
 			new AuthCommand(this.bot, this.authService, this.configService),
-			new InventoryCommand(this.bot, this.gameService)
+			new InventoryCommand(this.bot, this.gameService, this.cacheService, this.configService)
 		]
 		this.init()
 	}

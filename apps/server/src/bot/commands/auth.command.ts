@@ -4,7 +4,6 @@ import { AUTH_COMMAND } from '../bot.constants'
 import { getCommandRegexp } from '../utils'
 import { AuthService } from '@/auth/auth.service'
 import { ConfigService } from '@nestjs/config'
-import { botUserMiddleware } from '../middlewares'
 
 export class AuthCommand extends Command {
 	constructor(
@@ -16,28 +15,50 @@ export class AuthCommand extends Command {
 	}
 
 	public handle(): void {
-		this.bot.onText(getCommandRegexp(AUTH_COMMAND), botUserMiddleware(msg) => {
+		this.bot.onText(getCommandRegexp(AUTH_COMMAND), async msg => {
+			const { message_id, chat } = await this.bot.sendMessage(msg.chat.id, ' ', {
+				reply_markup: {
+					remove_keyboard: true
+				}
+			})
 			this.authService
 				.login(String(msg.from.id))
-				.then(res => {
+				.then(async res => {
 					const { link } = res
 					// DON'T TOUCH ONLY FOR DEV
 					console.log(link, 'link')
-					this.bot.sendMessage(msg.chat.id, 'Нажмите на ссылку ниже', {
+
+					this.bot.editMessageText('', {
+						chat_id: chat.id,
+						message_id,
 						reply_markup: {
 							inline_keyboard: [
-								[
-									{
-										text: 'Авторизоваться',
-										url:
-											this.configService.get('NODE_ENV') === 'production'
-												? link
-												: 'https://ya.ru'
-									}
-								]
+								{
+									text: 'Авторизоваться',
+									url:
+										this.configService.get('NODE_ENV') === 'production'
+											? link
+											: 'https://ya.ru'
+								}
 							]
 						}
 					})
+
+					// this.bot.sendMessage(msg.chat.id, 'Нажмите на ссылку ниже', {
+					// 	reply_markup: {
+					// 		inline_keyboard: [
+					// 			[
+					// 				{
+					// 					text: 'Авторизоваться',
+					// 					url:
+					// 						this.configService.get('NODE_ENV') === 'production'
+					// 							? link
+					// 							: 'https://ya.ru'
+					// 				}
+					// 			]
+					// 		]
+					// 	}
+					// })
 				})
 				.catch(e =>
 					this.bot.sendMessage(msg.chat.id, e.response.message ?? 'Неожиданная ошибка')
