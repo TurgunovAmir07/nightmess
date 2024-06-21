@@ -10,7 +10,7 @@ export const CraftMain = () => {
 	return (
 		<>
 			{choosedCard && <ChangeCraftQuantity />}
-			<CraftCardButton />
+			{choosedCard && <CraftCardButton />}
 			<div className={cl.root}>
 				<div className={cl.root__craft}>
 					{/*  */}
@@ -33,12 +33,7 @@ export const CraftMain = () => {
 					))}
 					{/*  */}
 					<div className={cl.root__craft_result}>
-						<img
-							draggable={false}
-							className={cl.root__craft_result_img}
-							src='/icon-inventory-item.png'
-							alt='result'
-						/>
+						<></>
 					</div>
 				</div>
 			</div>
