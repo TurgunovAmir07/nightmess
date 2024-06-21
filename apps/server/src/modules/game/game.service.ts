@@ -180,7 +180,6 @@ export class GameService {
 				getEnumItemIndex(ECardRarity, stage)
 		)
 
-		console.log(newCardStage)
 		if (newCardStage) {
 			await this.userAchievementService.setStage(userId, newCardStage.card.rarity)
 		}
