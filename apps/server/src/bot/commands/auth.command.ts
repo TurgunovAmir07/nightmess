@@ -4,6 +4,7 @@ import { AUTH_COMMAND } from '../bot.constants'
 import { getCommandRegexp } from '../utils'
 import { AuthService } from '@/auth/auth.service'
 import { ConfigService } from '@nestjs/config'
+import { botUserMiddleware } from '../middlewares'
 
 export class AuthCommand extends Command {
 	constructor(
@@ -15,7 +16,7 @@ export class AuthCommand extends Command {
 	}
 
 	public handle(): void {
-		this.bot.onText(getCommandRegexp(AUTH_COMMAND), msg => {
+		this.bot.onText(getCommandRegexp(AUTH_COMMAND), botUserMiddleware(msg) => {
 			this.authService
 				.login(String(msg.from.id))
 				.then(res => {
