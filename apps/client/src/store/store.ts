@@ -1,5 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { CartSlice, OrderSlice, UserDataSlice, authSlice } from './lib'
+import {
+	CartSlice,
+	InventorySlice,
+	OrderSlice,
+	UserDataSlice,
+	authSlice
+} from './lib'
 
 import {
 	FLUSH,
@@ -25,7 +31,8 @@ const rootReducer = combineReducers({
 	userData: UserDataSlice.reducer,
 	authApi: authApi.reducer,
 	authSlice: authSlice.reducer,
-	gameApi: gameApi.reducer
+	gameApi: gameApi.reducer,
+	inventorySlice: InventorySlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

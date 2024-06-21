@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { InventoryHeader } from './@InventoryHeader/InventoryHeader'
 import { InventoryMain } from './@InventoryMain/InventoryMain'
 import cl from './Inventory.module.scss'
+import { CraftMain } from './@CraftMain/CraftMain'
 
 export const Inventory = ({
 	isOpen,
@@ -47,6 +48,7 @@ export const Inventory = ({
 					}`}
 				>
 					<InventoryHeader handleInventory={handleInventory} />
+					<CraftMain />
 					<InventoryMain />
 				</div>
 			</div>
