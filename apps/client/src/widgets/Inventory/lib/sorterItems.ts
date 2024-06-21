@@ -1,9 +1,26 @@
 import type { TCards } from '@/store'
 
+const colorOrder = [
+	'ONE',
+	'TWO',
+	'THREE',
+	'FOUR',
+	'FIVE',
+	'SIX',
+	'SEVEN',
+	'EIGHT',
+	'NINE'
+]
+
 export const sorterItems = (cards: TCards[]): (TCards | null)[] => {
-	const sortedItemsTemp: (TCards | null)[] = Array(12).fill(null)
+	const sortedItemsTemp: (TCards | null)[] = Array(colorOrder.length).fill(
+		null
+	)
 	cards.forEach(item => {
-		sortedItemsTemp[item.card.id - 1] = item
+		const colorIndex = colorOrder.indexOf(item.card.color)
+		if (colorIndex !== -1) {
+			sortedItemsTemp[colorIndex] = item
+		}
 	})
 	return sortedItemsTemp
 }
