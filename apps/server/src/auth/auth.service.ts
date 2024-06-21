@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config'
 import { randomUUID } from 'crypto'
 import { TokenService } from './token.service'
 import { UserAchievementService } from '@/modules/game/user-achievement.service'
+import { CacheService } from '@/core/cache/cache.service'
 
 @Injectable()
 export class AuthService {
@@ -11,22 +12,23 @@ export class AuthService {
 		private readonly userService: UserService,
 		private readonly configService: ConfigService,
 		private readonly tokenService: TokenService,
-		private readonly userAchievementService: UserAchievementService
+		private readonly userAchievementService: UserAchievementService,
+		private readonly cacheService: CacheService
 	) {}
 
 	public async registration(tg_id: string) {
-		const user = await this.userService.getByTgId(tg_id)
+		let user = await this.userService.getByTgId(tg_id)
 
-		if (user) {
-			return user
+		if (!user) {
+			user = await this.userService.create(tg_id).then(async res => {
+				await this.userAchievementService.create(res)
+				return res
+			})
 		}
 
-		const createdUser = this.userService.create(tg_id).then(async res => {
-			await this.userAchievementService.create(res)
-			return res
-		})
+		await this.cacheService.set(tg_id, String(user.id))
 
-		return createdUser
+		return user
 	}
 
 	public async login(userId: string) {

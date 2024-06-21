@@ -1,51 +1,37 @@
 import { Inject, Injectable } from '@nestjs/common'
-import { Telegraf, Scenes, Middleware, session, SessionStore } from 'telegraf'
+import * as TelegramBot from 'node-telegram-bot-api'
 import { BOT_MODULE_OPTIONS } from './bot.constants'
 import type { IBotOptions } from './bot.interface'
-import { BotStartCommand, Command } from './commands'
-import { AuthScene, InventoryScene } from './scenes'
-import { IBotContext, ISessionData } from './context'
+import { BotStartCommand, Command, AuthCommand, InventoryCommand } from './commands'
 import { AuthService } from '@/auth/auth.service'
 import { ConfigService } from '@nestjs/config'
-import { getRedisTelegrafSessionConfig } from '@/configs'
-import { Redis } from '@telegraf/session/redis'
 import { GameService } from '@/modules/game/game.service'
+import { CacheService } from '@/core/cache/cache.service'
 
 @Injectable()
 export class BotService {
-	public bot: Telegraf<IBotContext>
+	public bot: TelegramBot
 	private commands: Command[]
-	private stage: Middleware<IBotContext>
-	private store: SessionStore<ISessionData>
 
 	constructor(
 		@Inject(BOT_MODULE_OPTIONS) options: IBotOptions,
 		private readonly authService: AuthService,
 		private readonly configService: ConfigService,
-		private readonly gameService: GameService
+		private readonly gameService: GameService,
+		private readonly cacheService: CacheService
 	) {
-		this.bot = new Telegraf(options.token)
-		this.commands = [new BotStartCommand(this.bot, this.authService)]
-		this.stage = new Scenes.Stage([
-			new AuthScene(this.authService, this.configService).scene,
-			new InventoryScene(this.gameService, this.configService).scene
-		])
-		this.store = Redis(getRedisTelegrafSessionConfig(this.configService))
+		this.bot = new TelegramBot(options.token, { polling: true })
+		this.commands = [
+			new BotStartCommand(this.bot, this.authService),
+			new AuthCommand(this.bot, this.authService, this.configService),
+			new InventoryCommand(this.bot, this.gameService, this.cacheService, this.configService)
+		]
 		this.init()
 	}
 
 	private init() {
-		this.bot.use(
-			session({
-				store: this.store
-			})
-		)
-		// @ts-expect-error fix!
-		this.bot.use(this.stage.middleware())
 		for (const command of this.commands) {
 			command.handle()
 		}
-
-		this.bot.launch()
 	}
 }
