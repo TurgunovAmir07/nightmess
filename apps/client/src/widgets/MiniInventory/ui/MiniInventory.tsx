@@ -9,10 +9,12 @@ export const MiniInventory = () => {
 	const { data } = useGetInventoryQuery()
 
 	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
+	const [cardsHave, setCardsHave] = useState<string>('0/9')
 
 	useEffect(() => {
 		if (data && data.cards) {
 			const sorted = sorterItems([...data.cards]).slice(0, 4)
+			setCardsHave(`${data.cards.length}/9`)
 			setSortedItems(sorted)
 		}
 	}, [data])
@@ -26,7 +28,7 @@ export const MiniInventory = () => {
 					src='/illustration-skills-showcase.png'
 					alt='skills'
 				/>
-				<span className={cl.root__wrap_text}>2/9</span>
+				<span className={cl.root__wrap_text}>{cardsHave}</span>
 				<span className={cl.root__wrap_text}>
 					<OpenInventory />
 				</span>
