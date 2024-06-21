@@ -18,10 +18,13 @@ export const InventorySlice = createSlice({
 	name: 'inventorySlice',
 	initialState,
 	reducers: {
-		toggleCardsActive: state => {
+		toggleCardsActiveState: state => {
 			state.isCardsActive = !state.isCardsActive
 		},
-		chooseCard: (state, action: PayloadAction<{ id: TCards['id'] }>) => {
+		chooseCard: (
+			state,
+			action: PayloadAction<{ id: TCards['id'] | null }>
+		) => {
 			state.choosedCard = action.payload.id
 		}
 	},
