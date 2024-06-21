@@ -3,24 +3,37 @@ import { InventoryItem } from '../@InventoryItem/InventoryItem'
 import cl from './InventoryMain.module.scss'
 import { ChooseInventoryItemButton } from '@/features/ChooseInventoryItem'
 import { sorterItems } from '../../lib/sorterItems'
-import { type TCards, useGetInventoryQuery } from '@/store'
+import {
+	type TCards,
+	useGetInventoryQuery,
+	useTypedSelector,
+	useActions
+} from '@/store'
 
 export const InventoryMain = () => {
-	const [selectedItemId, setSelectedItemId] = useState<number | null>(null)
-	const [isActive, setIsActive] = useState<boolean>(false)
+	// const [selectedItemId, setSelectedItemId] = useState<number | null>(null)
 	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
+	const isActive = useTypedSelector(
+		state => state.inventorySlice.isCardsActive
+	)
+
+	const choosedCard = useTypedSelector(
+		state => state.inventorySlice.choosedCard
+	)
+
+	const { toggleCardsActiveState, chooseCard } = useActions()
 
 	const { data } = useGetInventoryQuery()
 
 	const handleChecked = (id: number) => {
 		if (isActive === true) {
-			setSelectedItemId(id)
+			chooseCard({ id })
 		}
 	}
 
 	const handleActive = () => {
-		setIsActive(prev => !prev)
-		setSelectedItemId(null)
+		toggleCardsActiveState()
+		chooseCard({ id: null })
 	}
 
 	useEffect(() => {
@@ -41,7 +54,7 @@ export const InventoryMain = () => {
 					<InventoryItem
 						key={index}
 						item={item}
-						isChecked={item ? selectedItemId === item.id : false}
+						isChecked={item ? choosedCard === item.id : false}
 						isActive={isActive}
 						handleChecked={() => item && handleChecked(item.id)}
 					/>

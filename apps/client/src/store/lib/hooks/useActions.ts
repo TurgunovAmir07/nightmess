@@ -1,6 +1,7 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
 import {
 	CartSlice,
+	InventorySlice,
 	OrderSlice,
 	UserDataSlice,
 	authSlice,
@@ -12,7 +13,8 @@ const rootActions = {
 	...CartSlice.actions,
 	...OrderSlice.actions,
 	...UserDataSlice.actions,
-	...authSlice.actions
+	...authSlice.actions,
+	...InventorySlice.actions
 }
 
 export const useActions = () => {
