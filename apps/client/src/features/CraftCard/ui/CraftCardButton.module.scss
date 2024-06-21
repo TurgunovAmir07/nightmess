@@ -20,3 +20,30 @@
 		padding-left: 2px;
 	}
 }
+
+@media (max-width: 410px) {
+	.root {
+		width: 95px;
+		height: 38px;
+		top: 215px;
+		left: 246px;
+
+		&_text {
+			font-size: 10px;
+		}
+	}
+}
+@media (max-width: 360px) {
+	.root {
+		width: 77px;
+		height: 31px;
+		top: 190px;
+		left: 221px;
+
+		&_text {
+			font-size: 9px;
+			padding-bottom: 1px;
+			padding-left: 4px;
+		}
+	}
+}

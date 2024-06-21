@@ -48,7 +48,7 @@
 		width: 105px;
 		height: 36px;
 		top: 215px;
-		left: 130px;
+		left: 122px;
 
 		&__counter {
 			&__btn {
@@ -72,7 +72,7 @@
 	}
 }
 
-@media (max-width: 410px) {
+@media (max-width: 360px) {
 	.root {
 		width: 90px;
 		height: 30px;
