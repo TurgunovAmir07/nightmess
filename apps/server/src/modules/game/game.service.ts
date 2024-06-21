@@ -220,11 +220,9 @@ export class GameService {
 			return acc
 		}, new Map())
 
-		await this.cacheService.set(
-			RATING_CACHE,
-			new FormatMap(usersMap).result as string,
-			+ratingLiveTime.value * 60 * 60 * 1000
-		)
+		await this.cacheService.set(RATING_CACHE, new FormatMap(usersMap).result as string, {
+			ttl: +ratingLiveTime.value * 60 * 60
+		})
 
 		return usersMap
 	}
