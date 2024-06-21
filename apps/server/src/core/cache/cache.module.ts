@@ -12,7 +12,8 @@ import { CacheService } from './cache.service'
 			// @ts-expect-error by dock example
 			useFactory: (config: ConfigService) => {
 				return {
-					store: async () => await redisStore(getRedisConfig(config))
+					store: async () => await redisStore(getRedisConfig(config)),
+					ttl: 1000000
 				}
 			},
 			inject: [ConfigService]

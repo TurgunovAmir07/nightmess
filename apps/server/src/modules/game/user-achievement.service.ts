@@ -41,4 +41,10 @@ export class UserAchievementService {
 					: achievement.stage
 		})
 	}
+
+	public async setStage(userId: number, rarity: ECardRarity) {
+		const inventory = await this.getByUserId(userId)
+		inventory.stage = rarity
+		await this.userAchievementRepository.update(inventory)
+	}
 }
