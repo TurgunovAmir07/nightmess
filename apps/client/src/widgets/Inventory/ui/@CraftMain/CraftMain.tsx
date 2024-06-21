@@ -44,10 +44,7 @@ export const CraftMain = () => {
 								className={cl.root__craft_result_img}
 								src={`${
 									import.meta.env.VITE_SERVER_STATIC_URL
-								}/${
-									craftedCard != null &&
-									craftedCard?.card.miniature
-								}`}
+								}/${craftedCard?.card.miniature}`}
 								alt={craftedCard?.card.name}
 							/>
 						)}
