@@ -7,8 +7,11 @@ import 'swiper/scss/pagination'
 import 'swiper/scss/effect-coverflow'
 import 'swiper/scss/navigation'
 import { NavigateSliderElementsButton } from '@/features/NavigateSliderElements'
+import { useGetInventoryQuery } from '@/store'
 
 export const CardSlider = () => {
+	const { data } = useGetInventoryQuery()
+
 	return (
 		<div className={cl.root}>
 			<NavigateSliderElementsButton side='left' className='leftEl' />
@@ -33,16 +36,20 @@ export const CardSlider = () => {
 					slideShadows: false
 				}}
 			>
-				{Array.from({ length: 5 }).map((_, index) => (
-					<SwiperSlide key={index}>
-						<img
-							style={{ width: '95%' }}
-							src='/illustration-card.png'
-							alt='card'
-							draggable={false}
-						/>
-					</SwiperSlide>
-				))}
+				{Array.from({ length: Number(data?.cards.length) }).map(
+					(_, index) => (
+						<SwiperSlide key={index}>
+							<img
+								style={{ width: '95%' }}
+								src={`${
+									import.meta.env.VITE_SERVER_STATIC_URL
+								}/${data?.cards[index]?.card.image}`}
+								alt={data?.cards[index]?.card.name}
+								draggable={false}
+							/>
+						</SwiperSlide>
+					)
+				)}
 			</SwiperJs>
 			<NavigateSliderElementsButton side='right' className='rightEl' />
 		</div>
