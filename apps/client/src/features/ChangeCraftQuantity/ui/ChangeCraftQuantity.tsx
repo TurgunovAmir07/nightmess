@@ -10,9 +10,6 @@ export const ChangeCraftQuantity = () => {
 	// @ts-ignore
 	const { changeCounterQuantity, choosedCard } = useActions()
 
-	const isPlusDisabled =
-		choosedCard && (choosedCard.count * count) / choosedCard.count === 1
-
 	return (
 		<div className={cl.root}>
 			<div className={cl.root__counter}>
@@ -34,8 +31,15 @@ export const ChangeCraftQuantity = () => {
 				<button
 					onClick={() => changeCounterQuantity('plus')}
 					type='button'
-					disabled={isPlusDisabled}
-					className={cl.root__counter__btn}
+					disabled={
+						choosedCard &&
+						(choosedCard.count * count) / choosedCard.count === 9
+					}
+					className={`${cl.root__counter__btn} ${
+						choosedCard &&
+						(choosedCard.count * count) / choosedCard.count === 9 &&
+						cl.root__counter__btn_disabled
+					}`}
 				>
 					<img
 						className={cl.root__counter__btn_img}
