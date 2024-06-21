@@ -21,7 +21,7 @@ export class UserAchievementEntity extends BaseEntity {
 		enum: ECardRarity,
 		default: ECardRarity.NULL
 	})
-	public readonly stage: ECardRarity
+	public stage: ECardRarity
 
 	@Column({
 		default: 0
