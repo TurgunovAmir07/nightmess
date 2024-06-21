@@ -13,9 +13,7 @@ const colorOrder = [
 ]
 
 export const sorterItems = (cards: TCards[]): (TCards | null)[] => {
-	const sortedItemsTemp: (TCards | null)[] = Array(colorOrder.length).fill(
-		null
-	)
+	const sortedItemsTemp: (TCards | null)[] = Array(12).fill(null)
 	cards.forEach(item => {
 		const colorIndex = colorOrder.indexOf(item.card.color)
 		if (colorIndex !== -1) {
