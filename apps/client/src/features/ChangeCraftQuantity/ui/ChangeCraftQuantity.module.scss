@@ -1,0 +1,45 @@
+.root {
+	background-image: url('/illustration-craft-counter.png');
+	background-size: cover;
+	width: 120px;
+	height: 40.5px;
+	position: absolute;
+	top: 245px;
+	left: 146px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__counter {
+		width: 90%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+
+		&__btn {
+			cursor: pointer;
+			background-color: inherit;
+			border: none;
+			margin-top: 1px;
+			text-align: flex-start;
+
+			&_disabled {
+				transition: all;
+				transition-duration: 500ms;
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+
+			&_img {
+				width: 22px;
+			}
+		}
+
+		&__count {
+			margin-top: 2px;
+			font-family: 'Panton';
+			font-size: 28px;
+			color: #000;
+		}
+	}
+}
