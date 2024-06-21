@@ -102,21 +102,14 @@ export class GameService {
 	}
 
 	public async getRating(userId: number | null) {
-		// await this.cacheService.set(
-		// 	RATING_CACHE,
-		// 	`{"dataType":"Map","value":[[1,{"name":"123","id":1,"place":1}],[3,{"name":"123","id":3,"place":2}],[2,{"name":"123","id":2,"place":3}],[4,{"name":null,"id":4,"place":4}]]}`,
-		// 	1000000000000000000
-		// )
-		await this.cacheService.del(RATING_CACHE)
-
 		// @ts-expect-error only map will be return, because res from redis can by only string
-		const rating: Map<unknown, unknown> | null = await this.cacheService
+		let rating: Map<unknown, unknown> | null = await this.cacheService
 			.get(RATING_CACHE)
 			.then(res => (res ? new FormatMap(res).result : null))
 
-		// if (!rating) {
-		// 	rating = await this.setRating()
-		// }
+		if (!rating) {
+			rating = await this.setRating()
+		}
 
 		// eslint-disable-next-line
 		const formatRating = [...rating].slice(0, 3).reduce((acc, [_, value]) => {
@@ -216,11 +209,9 @@ export class GameService {
 			return acc
 		}, new Map())
 
-		await this.cacheService.set(
-			RATING_CACHE,
-			new FormatMap(usersMap).result as string,
-			+ratingLiveTime.value * 60 * 60 * 1000
-		)
+		await this.cacheService.set(RATING_CACHE, new FormatMap(usersMap).result as string, {
+			ttl: +ratingLiveTime.value * 60 * 60
+		})
 
 		return usersMap
 	}
