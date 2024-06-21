@@ -1,14 +1,31 @@
 import { useActions, useTypedSelector } from '@/store'
 import cl from './ChangeCraftQuantity.module.scss'
+import { useEffect, useState } from 'react'
 
 export const ChangeCraftQuantity = () => {
 	const count = useTypedSelector(
 		state => state.inventorySlice.counterQuantity
 	)
 
-	// eslint-disable-next-line
-	// @ts-ignore
-	const { changeCounterQuantity, choosedCard } = useActions()
+	const choosedCard = useTypedSelector(
+		state => state.inventorySlice.choosedCard
+	)
+
+	const [isDisabled, setIsDisabled] = useState<boolean>(false)
+
+	const { changeCounterQuantity } = useActions()
+
+	useEffect(() => {
+		if (
+			(choosedCard && choosedCard.count <= 9) ||
+			(choosedCard && choosedCard.count === 9) ||
+			(choosedCard && (choosedCard.count * count) % 2 === 0)
+		) {
+			setIsDisabled(true)
+		} else {
+			setIsDisabled(false)
+		}
+	}, [choosedCard, count])
 
 	return (
 		<div className={cl.root}>
@@ -31,14 +48,9 @@ export const ChangeCraftQuantity = () => {
 				<button
 					onClick={() => changeCounterQuantity('plus')}
 					type='button'
-					disabled={
-						choosedCard &&
-						(choosedCard.count * count) / choosedCard.count === 9
-					}
+					disabled={isDisabled}
 					className={`${cl.root__counter__btn} ${
-						choosedCard &&
-						(choosedCard.count * count) / choosedCard.count === 9 &&
-						cl.root__counter__btn_disabled
+						isDisabled && cl.root__counter__btn_disabled
 					}`}
 				>
 					<img

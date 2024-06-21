@@ -2,20 +2,22 @@ import cl from './MiniInventoryItem.module.scss'
 
 export const MiniInventoryItem = ({
 	count,
-	isEmpty
+	src,
+	alt
 }: {
-	count?: number
-	isEmpty: boolean
+	count: number | null
+	src: string | null
+	alt: string | ''
 }) => {
 	return (
-		<div className={`${cl.root} ${isEmpty ? cl.root__emptyFrame : ''}`}>
-			{!isEmpty ? (
+		<div className={`${cl.root} ${!src ? cl.root__emptyFrame : ''}`}>
+			{src ? (
 				<>
 					<img
 						draggable={false}
 						className={cl.root__skill}
-						src='/icon-inventory-item.png'
-						alt='empty'
+						src={`${import.meta.env.VITE_SERVER_STATIC_URL}/${src}`}
+						alt={alt}
 					/>
 					<div className={cl.root__bage}>
 						<img

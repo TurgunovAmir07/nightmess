@@ -7,6 +7,7 @@ import {
 } from '@/store'
 import cl from './CraftCardButton.module.scss'
 import { LoaderSpinner } from '@/shared'
+import { useEffect, useState } from 'react'
 
 export const CraftCardButton = () => {
 	const { getCraftState } = useActions()
@@ -16,6 +17,23 @@ export const CraftCardButton = () => {
 	const count = useTypedSelector(
 		state => state.inventorySlice.counterQuantity
 	)
+
+	useEffect(() => {
+		const updateIsDisabled = () => {
+			if (
+				(choosedCard && choosedCard.count < 9) ||
+				(choosedCard && 9 * count > choosedCard.count)
+			) {
+				setIsDisabled(true)
+			} else {
+				setIsDisabled(false)
+			}
+		}
+
+		updateIsDisabled()
+	}, [choosedCard, count])
+
+	const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
 	const { toggleCardsActiveState, chooseCard } = useActions()
 
@@ -31,17 +49,29 @@ export const CraftCardButton = () => {
 				color: choosedCard.card.color,
 				count: count
 			}
-			craftCard(craftData)
+			const result = await craftCard(craftData).unwrap()
 			dispatch(gameApi.util.invalidateTags(['Inventory']))
 			toggleCardsActiveState()
 			chooseCard({ id: null })
-			const result = await craftCard(craftData).unwrap()
-			getCraftState(result)
+			getCraftState({
+				cards: result.cards,
+				message: result.message
+			})
+			setTimeout(() => {
+				getCraftState({
+					cards: [],
+					message: ''
+				})
+			}, 2000)
 		}
 	}
 
 	return (
-		<button onClick={handleCraft} className={cl.root}>
+		<button
+			disabled={isDisabled}
+			onClick={handleCraft}
+			className={`${cl.root} ${isDisabled && cl.root_disabled}`}
+		>
 			<span className={cl.root_text}>КРАФТ</span>
 		</button>
 	)

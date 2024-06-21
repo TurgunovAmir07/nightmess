@@ -7,10 +7,18 @@ import 'swiper/scss/pagination'
 import 'swiper/scss/effect-coverflow'
 import 'swiper/scss/navigation'
 import { NavigateSliderElementsButton } from '@/features/NavigateSliderElements'
-import { useGetInventoryQuery } from '@/store'
+import { useLazyGetInventoryQuery } from '@/store'
+import { useEffect } from 'react'
+import { LoaderSpinner } from '@/shared'
 
 export const CardSlider = () => {
-	const { data } = useGetInventoryQuery()
+	const [trigger, { data, isLoading }] = useLazyGetInventoryQuery()
+
+	useEffect(() => {
+		trigger()
+	}, [trigger])
+
+	if (isLoading) return <LoaderSpinner />
 
 	return (
 		<div className={cl.root}>
@@ -36,20 +44,18 @@ export const CardSlider = () => {
 					slideShadows: false
 				}}
 			>
-				{Array.from({ length: Number(data?.cards.length) }).map(
-					(_, index) => (
-						<SwiperSlide key={index}>
-							<img
-								style={{ width: '95%' }}
-								src={`${
-									import.meta.env.VITE_SERVER_STATIC_URL
-								}/${data?.cards[index]?.card.image}`}
-								alt={data?.cards[index]?.card.name}
-								draggable={false}
-							/>
-						</SwiperSlide>
-					)
-				)}
+				{data?.cards.map((item, index) => (
+					<SwiperSlide key={index}>
+						<img
+							style={{ width: '95%' }}
+							src={`${import.meta.env.VITE_SERVER_STATIC_URL}/${
+								item.card.image
+							}`}
+							alt={item.card.name}
+							draggable={false}
+						/>
+					</SwiperSlide>
+				))}
 			</SwiperJs>
 			<NavigateSliderElementsButton side='right' className='rightEl' />
 		</div>

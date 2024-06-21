@@ -5,7 +5,7 @@
 	height: 40.5px;
 	position: absolute;
 	top: 245px;
-	left: 146px;
+	left: 140px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -40,6 +40,74 @@
 			font-family: 'Panton';
 			font-size: 28px;
 			color: #000;
+		}
+	}
+}
+@media (max-width: 410px) {
+	.root {
+		width: 105px;
+		height: 36px;
+		top: 215px;
+		left: 122px;
+
+		&__counter {
+			&__btn {
+				&_img {
+					width: 18px;
+
+					&:nth-child(1) {
+						margin-bottom: 3px;
+					}
+				}
+
+				&:nth-child(3) {
+					margin-top: 4px;
+				}
+			}
+
+			&__count {
+				font-size: 24px;
+			}
+		}
+	}
+}
+
+@media (max-width: 360px) {
+	.root {
+		width: 90px;
+		height: 30px;
+		top: 190px;
+		left: 110px;
+
+		&__counter {
+			width: 90%;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+
+			&__btn {
+				cursor: pointer;
+				background-color: inherit;
+				border: none;
+				margin-top: 1px;
+				text-align: flex-start;
+
+				&_img {
+					width: 18px;
+
+					&:nth-child(1) {
+						margin-bottom: 3px;
+					}
+				}
+
+				&:nth-child(3) {
+					margin-top: 4px;
+				}
+			}
+
+			&__count {
+				font-size: 24px;
+			}
 		}
 	}
 }

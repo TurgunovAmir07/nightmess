@@ -1,9 +1,24 @@
 import cl from './MiniInventory.module.scss'
 import { MiniInventoryItem } from '.'
-import { miniInventoryData } from '../model/data/miniInventory.data'
 import { OpenInventory } from '@/features/OpenInventory'
+import { TCards, useGetInventoryQuery } from '@/store'
+import { useEffect, useState } from 'react'
+import { sorterItems } from '../lib/sorterItems'
 
 export const MiniInventory = () => {
+	const { data } = useGetInventoryQuery()
+
+	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
+	const [cardsHave, setCardsHave] = useState<string>('0/9')
+
+	useEffect(() => {
+		if (data && data.cards) {
+			const sorted = sorterItems([...data.cards]).slice(0, 4)
+			setCardsHave(`${data.cards.length}/9`)
+			setSortedItems(sorted)
+		}
+	}, [data])
+
 	return (
 		<div className={cl.root}>
 			<div className={cl.root__wrap}>
@@ -13,18 +28,20 @@ export const MiniInventory = () => {
 					src='/illustration-skills-showcase.png'
 					alt='skills'
 				/>
-				<span className={cl.root__wrap_text}>2/9</span>
+				<span className={cl.root__wrap_text}>{cardsHave}</span>
 				<span className={cl.root__wrap_text}>
 					<OpenInventory />
 				</span>
-				{miniInventoryData.map((item, index) => (
-					<div className={cl.root__wrap__frame} key={index}>
-						<MiniInventoryItem
-							isEmpty={item.isEmpty}
-							count={item.count}
-						/>
-					</div>
-				))}
+				{data?.cards &&
+					sortedItems.map((item, index) => (
+						<div className={cl.root__wrap__frame} key={index}>
+							<MiniInventoryItem
+								count={item && item.count}
+								src={item && item.card.miniature}
+								alt={item ? item.card.name : ''}
+							/>
+						</div>
+					))}
 			</div>
 		</div>
 	)

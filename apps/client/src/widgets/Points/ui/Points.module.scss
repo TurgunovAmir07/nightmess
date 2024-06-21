@@ -14,7 +14,7 @@
 			max-width: 150px;
 		}
 
-		@media (max-width: 375px) {
+		@media (max-width: 400px) {
 			&_img {
 				max-width: 130px;
 			}
@@ -33,7 +33,7 @@
 				max-width: 20px;
 			}
 		}
-		@media (max-width: 375px) {
+		@media (max-width: 400px) {
 			&_text {
 				font-size: 14px;
 
@@ -48,7 +48,7 @@
 			right: 30px;
 			top: 29.5px;
 		}
-		@media (max-width: 375px) {
+		@media (max-width: 400px) {
 			&_text:last-child {
 				right: 30px;
 				top: 25.5px;
