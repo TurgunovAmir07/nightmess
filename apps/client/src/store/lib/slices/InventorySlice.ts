@@ -6,7 +6,10 @@ interface IInventoryInitialState {
 	cards: TCards[]
 	choosedCard: TCards | null
 	isCardsActive: boolean
-	craftedCard: TCards | null
+	craftedCard: {
+		cards: TCards[]
+		message: string
+	}
 	counterQuantity: number
 }
 
@@ -14,7 +17,10 @@ const initialState: IInventoryInitialState = {
 	cards: [],
 	choosedCard: null,
 	isCardsActive: false,
-	craftedCard: null,
+	craftedCard: {
+		cards: [],
+		message: ''
+	},
 	counterQuantity: 1
 }
 
@@ -43,7 +49,13 @@ export const InventorySlice = createSlice({
 				state.counterQuantity--
 			}
 		},
-		getCraftState: (state, action: PayloadAction<TCards>) => {
+		getCraftState: (
+			state,
+			action: PayloadAction<{
+				cards: TCards[] | []
+				message: string
+			}>
+		) => {
 			state.craftedCard = action.payload
 		}
 	},

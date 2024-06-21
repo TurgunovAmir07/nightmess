@@ -31,12 +31,24 @@ export const CraftCardButton = () => {
 				color: choosedCard.card.color,
 				count: count
 			}
-			craftCard(craftData)
+			const result = await craftCard(craftData).unwrap()
 			dispatch(gameApi.util.invalidateTags(['Inventory']))
 			toggleCardsActiveState()
 			chooseCard({ id: null })
-			const result = await craftCard(craftData).unwrap()
-			getCraftState(result)
+			console.log(result)
+			getCraftState({
+				cards: result.cards,
+				message: result.message
+			})
+
+			setTimeout(() => {
+				getCraftState({
+					cards: [],
+					message: ''
+				})
+			}, 2000)
+
+			return
 		}
 	}
 

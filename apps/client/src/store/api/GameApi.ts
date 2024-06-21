@@ -60,6 +60,7 @@ export const gameApi = createApi({
 export const {
 	useGetCardQuery,
 	useGetInventoryQuery,
+	useLazyGetInventoryQuery,
 	useGetRatingQuery,
 	useCraftCardMutation
 } = gameApi

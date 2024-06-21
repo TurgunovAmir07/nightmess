@@ -38,16 +38,18 @@ export const CraftMain = () => {
 						</div>
 					))}
 					<div className={cl.root__craft_result}>
-						{craftedCard?.card && (
-							<img
-								draggable={false}
-								className={cl.root__craft_result_img}
-								src={`${
-									import.meta.env.VITE_SERVER_STATIC_URL
-								}/${craftedCard?.card.miniature}`}
-								alt={craftedCard?.card.name}
-							/>
-						)}
+						{craftedCard?.cards &&
+							craftedCard.cards.length > 0 &&
+							craftedCard.cards[0].card && (
+								<img
+									draggable={false}
+									className={cl.root__craft_result_img}
+									src={`${
+										import.meta.env.VITE_SERVER_STATIC_URL
+									}/${craftedCard.cards[0].card.miniature}`}
+									alt={craftedCard.cards[0].card.name}
+								/>
+							)}
 					</div>
 				</div>
 			</div>
