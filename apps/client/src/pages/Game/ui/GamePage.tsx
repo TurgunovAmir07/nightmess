@@ -2,7 +2,6 @@ import { CardSlider } from '@/widgets/CardSlider'
 import cl from './GamePage.module.scss'
 import { Points } from '@/widgets/Points'
 
-import { Stars } from '@/widgets/Stars'
 import { CartButton } from '@/features/OpenCart'
 import { GetCardButton } from '@/features/GetCard'
 import { GoToMainPageButton } from '@/features/GoToMainPage'
@@ -23,7 +22,6 @@ const GamePage = () => {
 			<GoToMainPageButton />
 			<Points />
 			<CartButton />
-			<Stars count={1} />
 			<CardSlider />
 			<MiniInventory />
 			<div className={cl.root__footer}>
