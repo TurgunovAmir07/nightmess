@@ -10,8 +10,9 @@ export class CacheService {
 		return this.cache.get(key)
 	}
 
-	public async set(key: string, value: string, ttl?: number) {
-		await this.cache.set(key, value, ttl)
+	public async set(key: string, value: string, options?: { ttl: number }) {
+		// @ts-expect-error fix lib types bug
+		await this.cache.set(key, value, options)
 	}
 
 	public async del(key: string) {

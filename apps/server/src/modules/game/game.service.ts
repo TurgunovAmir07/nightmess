@@ -9,7 +9,7 @@ import { UserCardService } from '../card/user-card.service'
 import { chanceByLevelDto } from '@/common/dto'
 import { UserService } from '../user/user.service'
 import { CacheService } from '@/core/cache/cache.service'
-import { FormatMap } from './utils'
+import { FormatMap, getEnumItemIndex } from './utils'
 import { RATING_CACHE, CRAFT_COUNT } from './game.constants'
 
 @Injectable()
@@ -143,7 +143,7 @@ export class GameService {
 
 	public async craft(userId: number, { color, count }: CraftDto) {
 		const totalCount = count * CRAFT_COUNT
-		const { cards } = await this.getInventory(userId)
+		const { cards, stage } = await this.getInventory(userId)
 
 		const cardByInventory = cards.find(card => card.card.color === color) as TGetInventoryItem
 
@@ -173,6 +173,16 @@ export class GameService {
 		}
 		const message = `Успешно скрафчено: ${successArray.filter(Boolean).length}`
 		const newCards = await this.userCardService.craft(userId, successArray, rarity, color)
+
+		const newCardStage = newCards.find(
+			uCard =>
+				getEnumItemIndex(ECardRarity, uCard.card.rarity) >
+				getEnumItemIndex(ECardRarity, stage)
+		)
+
+		if (newCardStage) {
+			await this.userAchievementService.setStage(userId, newCardStage.card.rarity)
+		}
 
 		return {
 			cards: newCards.map(card => {
@@ -209,11 +219,9 @@ export class GameService {
 			return acc
 		}, new Map())
 
-		await this.cacheService.set(
-			RATING_CACHE,
-			new FormatMap(usersMap).result as string,
-			+ratingLiveTime.value * 60 * 60 * 1000
-		)
+		await this.cacheService.set(RATING_CACHE, new FormatMap(usersMap).result as string, {
+			ttl: +ratingLiveTime.value * 60 * 60
+		})
 
 		return usersMap
 	}
