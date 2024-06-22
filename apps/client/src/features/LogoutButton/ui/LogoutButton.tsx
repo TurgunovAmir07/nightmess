@@ -7,6 +7,7 @@ export const LogoutButton = () => {
 	const handleLogout = async () => {
 		try {
 			await dispatch(authApi.endpoints.logoutUser.initiate())
+			dispatch(authApi.util.invalidateTags(['Auth']))
 		} catch (error) {
 			console.log(error)
 		}
