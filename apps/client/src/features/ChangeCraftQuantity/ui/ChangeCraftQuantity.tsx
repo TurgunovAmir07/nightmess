@@ -17,9 +17,8 @@ export const ChangeCraftQuantity = () => {
 
 	useEffect(() => {
 		if (
-			(choosedCard && choosedCard.count <= 9) ||
-			(choosedCard && choosedCard.count === 9) ||
-			(choosedCard && (choosedCard.count * count) % 2 === 0)
+			(choosedCard && Math.floor(choosedCard.count / 9) === count) ||
+			(choosedCard && count * 9 > choosedCard.count)
 		) {
 			setIsDisabled(true)
 		} else {

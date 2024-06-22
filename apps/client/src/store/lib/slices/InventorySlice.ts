@@ -38,6 +38,7 @@ export const InventorySlice = createSlice({
 			const card =
 				state.cards.find(card => card.id === action.payload.id) || null
 			state.choosedCard = card
+			state.counterQuantity = 1
 		},
 		changeCounterQuantity: (
 			state,
