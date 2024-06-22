@@ -23,7 +23,7 @@ export const GetCardButton = () => {
 		}, 15000)
 
 		return () => clearInterval(intervalId)
-	}, [trigger, data])
+	}, [trigger])
 
 	return (
 		<div className={cl.root}>
