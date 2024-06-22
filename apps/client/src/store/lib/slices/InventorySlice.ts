@@ -37,6 +37,11 @@ export const InventorySlice = createSlice({
 		) => {
 			const card =
 				state.cards.find(card => card.id === action.payload.id) || null
+			if (card?.card.color === 'NINE') {
+				state.cards = state.cards.filter(
+					card => card.card.color !== 'NINE'
+				)
+			}
 			state.choosedCard = card
 			state.counterQuantity = 1
 		},
