@@ -99,7 +99,7 @@ export const Stars = ({ count }: { count: string }) => {
 						<img
 							draggable={false}
 							className={cl.root__wrap_text}
-							src='/illustration-rating-text.png'
+							src='/illustration-card-name-dead.png'
 							alt='stars-text'
 						/>
 					</div>
