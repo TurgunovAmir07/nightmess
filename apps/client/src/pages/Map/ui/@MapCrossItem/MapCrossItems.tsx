@@ -5,21 +5,14 @@ import cl from './MapCrossItems.module.scss'
 export const MapCrossItems = () => {
 	const { data } = useGetInventoryQuery()
 
+	const stageIndex = data
+		? mapCrossData.findIndex(item => item.stage === data.stage)
+		: 0
+
 	return (
 		<div className={cl.root}>
-			{mapCrossData.map((item, index) => (
-				<div
-					key={index}
-					className={`${cl.root__item} ${
-						item.stage &&
-						data?.stage === 'NULL' &&
-						cl.root__item_null
-					}
-					${item.stage && data?.stage === 'ONE' && cl.root__item_null_one}
-					${item.stage && data?.stage === 'TWO' && cl.root__item_null_one_two}
-					${item.stage && data?.stage === 'THREE' && cl.root__item_null_one_two_three}
-					`}
-				>
+			{mapCrossData.slice(0, stageIndex + 1).map((item, index) => (
+				<div key={index} className={cl.root__item}>
 					<button className={cl.root__item__btn}>
 						<img
 							draggable={false}
