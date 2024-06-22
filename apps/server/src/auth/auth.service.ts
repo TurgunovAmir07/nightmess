@@ -3,7 +3,7 @@ import { BadRequestException, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { randomUUID } from 'crypto'
 import { TokenService } from './token.service'
-import { UserAchievementService } from '@/modules/game/user-achievement.service'
+import { UserAchievementService } from '@/modules/user/user-achievement.service'
 import { CacheService } from '@/core/cache/cache.service'
 
 @Injectable()

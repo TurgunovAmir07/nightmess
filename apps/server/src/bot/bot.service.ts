@@ -20,13 +20,13 @@ export class BotService {
 		private readonly gameService: GameService,
 		private readonly cacheService: CacheService
 	) {
-		this.bot = new TelegramBot(options.token, { polling: true })
+		// this.bot = new TelegramBot(options.token, { polling: true })
 		this.commands = [
 			new BotStartCommand(this.bot, this.authService),
 			new AuthCommand(this.bot, this.authService, this.configService),
 			new InventoryCommand(this.bot, this.gameService, this.cacheService, this.configService)
 		]
-		this.init()
+		// this.init()
 	}
 
 	private init() {
