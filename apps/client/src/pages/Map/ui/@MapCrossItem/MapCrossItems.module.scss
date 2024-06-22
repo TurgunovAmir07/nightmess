@@ -9,6 +9,7 @@
 		height: 215px;
 		width: 80px;
 		position: absolute;
+		display: none;
 
 		&__btn {
 			cursor: pointer;
@@ -35,6 +36,22 @@
 		&:nth-child(4) {
 			top: 20px;
 			left: 292px;
+		}
+
+		&_null {
+			display: block;
+
+			&_one {
+				display: block;
+
+				&_two {
+					display: block;
+
+					&_three {
+						display: block;
+					}
+				}
+			}
 		}
 	}
 }
