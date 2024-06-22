@@ -10,7 +10,7 @@ import { chanceByLevelDto } from '@/common/dto'
 import { UserService } from '../user/user.service'
 import { CacheService } from '@/core/cache/cache.service'
 import { FormatMap, getEnumItemIndex } from './utils'
-import { RATING_CACHE, CRAFT_COUNT } from './game.constants'
+import { RATING_CACHE_KEY, CRAFT_COUNT } from './game.constants'
 
 @Injectable()
 export class GameService {
@@ -104,7 +104,7 @@ export class GameService {
 	public async getRating(userId: number | null) {
 		// @ts-expect-error only map will be return, because res from redis can by only string
 		let rating: Map<unknown, unknown> | null = await this.cacheService
-			.get(RATING_CACHE)
+			.get(RATING_CACHE_KEY)
 			.then(res => (res ? new FormatMap(res).result : null))
 
 		if (!rating) {
@@ -219,7 +219,7 @@ export class GameService {
 			return acc
 		}, new Map())
 
-		await this.cacheService.set(RATING_CACHE, new FormatMap(usersMap).result as string, {
+		await this.cacheService.set(RATING_CACHE_KEY, new FormatMap(usersMap).result as string, {
 			ttl: +ratingLiveTime.value * 60 * 60
 		})
 

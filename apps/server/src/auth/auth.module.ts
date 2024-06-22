@@ -7,25 +7,15 @@ import { JwtModule } from '@nestjs/jwt'
 import { JWT_MODULE_OPTIONS } from './auth.constants'
 import { ConfigService } from '@nestjs/config'
 import { getJwtConfig } from '@/configs'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { SessionEntity } from './entities'
-import { SessionRepository } from './session.repository'
 import { AccessJwtStrategy, RefreshJwtStrategy } from './strategies'
 import { DatabaseModule } from '@/core/database'
 import { CacheModule } from '@/core/cache/cache.module'
 
 @Module({
-	imports: [
-		TypeOrmModule.forFeature([SessionEntity]),
-		UserModule,
-		JwtModule.register({}),
-		DatabaseModule,
-		CacheModule
-	],
+	imports: [UserModule, JwtModule.register({}), DatabaseModule, CacheModule],
 	controllers: [AuthController],
 	providers: [
 		AuthService,
-		SessionRepository,
 		TokenService,
 		AccessJwtStrategy,
 		RefreshJwtStrategy,
