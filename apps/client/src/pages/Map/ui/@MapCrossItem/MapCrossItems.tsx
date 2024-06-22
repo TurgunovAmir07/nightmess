@@ -8,6 +8,7 @@ export const MapCrossItems = () => {
 				<div key={index} className={cl.root__item}>
 					<button className={cl.root__item__btn}>
 						<img
+							draggable={false}
 							className={cl.root__item__btn__img}
 							src={item.src}
 							alt={item.alt}

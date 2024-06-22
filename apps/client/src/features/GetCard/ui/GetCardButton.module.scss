@@ -11,6 +11,11 @@
 		height: 80px;
 		width: 175px;
 
+		&_disabled {
+			background-image: url(/button-get-card-inversion.png);
+			cursor: not-allowed;
+		}
+
 		&_text {
 			color: #440707;
 			font-size: 24px;

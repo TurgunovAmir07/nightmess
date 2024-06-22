@@ -53,6 +53,13 @@ export const gameApi = createApi({
 				},
 				providesTags: ['Inventory']
 			})
+		}),
+		// eslint-disable-next-line
+		checkStatus: build.query<any, void>({
+			query: () => ({
+				url: 'status'
+			}),
+			providesTags: ['Inventory']
 		})
 	})
 })
@@ -60,6 +67,7 @@ export const gameApi = createApi({
 export const {
 	useGetCardQuery,
 	useGetInventoryQuery,
+	useLazyCheckStatusQuery,
 	useLazyGetInventoryQuery,
 	useGetRatingQuery,
 	useCraftCardMutation
