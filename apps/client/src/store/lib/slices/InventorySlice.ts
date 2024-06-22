@@ -11,6 +11,7 @@ interface IInventoryInitialState {
 		message: string
 	}
 	counterQuantity: number
+	stage: string
 }
 
 const initialState: IInventoryInitialState = {
@@ -21,7 +22,8 @@ const initialState: IInventoryInitialState = {
 		cards: [],
 		message: ''
 	},
-	counterQuantity: 1
+	counterQuantity: 1,
+	stage: 'NULL'
 }
 
 export const InventorySlice = createSlice({
@@ -37,7 +39,9 @@ export const InventorySlice = createSlice({
 		) => {
 			const card =
 				state.cards.find(card => card.id === action.payload.id) || null
+			state.cards = state.cards.filter(card => card.card.color !== 'NINE')
 			state.choosedCard = card
+			state.counterQuantity = 1
 		},
 		changeCounterQuantity: (
 			state,
@@ -62,8 +66,12 @@ export const InventorySlice = createSlice({
 	extraReducers: builder => {
 		builder.addMatcher(
 			gameApi.endpoints.getInventory.matchFulfilled,
-			(state, action: PayloadAction<{ cards: TCards[] }>) => {
+			(
+				state,
+				action: PayloadAction<{ cards: TCards[]; stage: string }>
+			) => {
 				state.cards = action.payload.cards
+				state.stage = action.payload.stage
 			}
 		)
 	}

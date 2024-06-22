@@ -24,10 +24,11 @@
 		margin-top: 95px;
 
 		&_name {
+			width: 120px;
 			text-align: center;
 			position: absolute;
 			bottom: 7px;
-			left: 45px;
+			left: 27px;
 			font-size: 10px;
 		}
 	}
@@ -43,8 +44,9 @@
 			margin-top: 45px;
 
 			&_name {
+				width: 105px;
 				bottom: 6px;
-				left: 35px;
+				left: 23px;
 				font-size: 10px;
 			}
 		}
@@ -60,8 +62,9 @@
 			margin-top: 2px;
 
 			&_name {
+				width: 100px;
 				bottom: 5px;
-				left: 33px;
+				left: 22px;
 			}
 		}
 	}
@@ -82,8 +85,9 @@
 			margin-top: -10px;
 
 			&_name {
+				width: 94px;
 				bottom: 5px;
-				left: 28px;
+				left: 21px;
 			}
 		}
 	}

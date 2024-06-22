@@ -57,12 +57,14 @@ export const CraftCardButton = () => {
 				cards: result.cards,
 				message: result.message
 			})
-			setTimeout(() => {
+			const timeoutId = setTimeout(() => {
 				getCraftState({
 					cards: [],
 					message: ''
 				})
 			}, 2000)
+
+			return () => clearTimeout(timeoutId)
 		}
 	}
 

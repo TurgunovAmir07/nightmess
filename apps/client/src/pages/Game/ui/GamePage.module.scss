@@ -16,6 +16,30 @@
 		}
 	}
 
+	&__noAuth {
+		display: flex;
+		justify-content: center;
+		z-index: 9;
+		margin-top: 40px;
+		flex-direction: column;
+		align-items: center;
+
+		&_title {
+			padding: 20px 10px;
+			width: 290px;
+			font-size: 16px;
+			background-color: #fff;
+			text-align: center;
+		}
+
+		&_text {
+			padding: 20px 10px;
+			background-color: #fff;
+			text-align: center;
+			width: 290px;
+		}
+	}
+
 	&__footer {
 		margin-top: 10px;
 		display: flex;

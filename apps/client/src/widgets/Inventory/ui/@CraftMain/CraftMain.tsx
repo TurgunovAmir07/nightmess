@@ -14,8 +14,11 @@ export const CraftMain = () => {
 
 	return (
 		<>
-			{choosedCard && <ChangeCraftQuantity />}
-			{choosedCard && <CraftCardButton />}
+			{choosedCard && (
+				<>
+					<ChangeCraftQuantity /> <CraftCardButton />
+				</>
+			)}
 			<div className={cl.root}>
 				<div className={cl.root__craft}>
 					{Array.from({
