@@ -52,6 +52,7 @@ const baseQueryWithReauth: BaseQueryFn<
 export const authApi = createApi({
 	reducerPath: 'authApi',
 	baseQuery: baseQueryWithReauth,
+	tagTypes: ['Auth'],
 	endpoints: build => ({
 		// FIXME: типизировать
 		// eslint-disable-next-line
@@ -60,13 +61,15 @@ export const authApi = createApi({
 				url: 'login',
 				method: 'POST',
 				body: user
-			})
+			}),
+			providesTags: ['Auth']
 		}),
 		logoutUser: build.query<void, void>({
 			query: () => ({
 				method: 'GET',
 				url: 'logout'
-			})
+			}),
+			providesTags: ['Auth']
 		}),
 		// FIXME: типизировать
 		// eslint-disable-next-line
@@ -75,14 +78,16 @@ export const authApi = createApi({
 				url: 'register',
 				method: 'POST',
 				body: user
-			})
+			}),
+			providesTags: ['Auth']
 		}),
 		// FIXME: типизировать
 		// eslint-disable-next-line
 		refreshToken: build.query<any, void>({
 			query: () => ({
 				url: 'refresh'
-			})
+			}),
+			providesTags: ['Auth']
 		})
 	})
 })
