@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { TypeRootState, inventoryModel } from '@/store'
 import { IRating } from '../model/rating/rating.model'
+import { GetCardResponse } from '../model/inventory/get-card.response'
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/game`,
@@ -23,8 +24,7 @@ export const gameApi = createApi({
 	baseQuery: baseQuery,
 	tagTypes: ['Inventory'],
 	endpoints: build => ({
-		// eslint-disable-next-line
-		getCard: build.query<any, void>({
+		getCard: build.query<GetCardResponse, void>({
 			query: () => ({
 				url: 'tap'
 			}),
@@ -53,6 +53,13 @@ export const gameApi = createApi({
 				},
 				providesTags: ['Inventory']
 			})
+		}),
+		// eslint-disable-next-line
+		checkStatus: build.query<any, void>({
+			query: () => ({
+				url: 'status'
+			}),
+			providesTags: ['Inventory']
 		})
 	})
 })
@@ -60,6 +67,7 @@ export const gameApi = createApi({
 export const {
 	useGetCardQuery,
 	useGetInventoryQuery,
+	useLazyCheckStatusQuery,
 	useLazyGetInventoryQuery,
 	useGetRatingQuery,
 	useCraftCardMutation

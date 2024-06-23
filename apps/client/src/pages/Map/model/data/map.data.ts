@@ -1,42 +1,28 @@
 interface TMapCrossData {
 	src: string
 	alt: string
-}
-
-interface TMapNicknamesData {
-	nickname: string
+	stage: string
 }
 
 export const mapCrossData: TMapCrossData[] = [
 	{
 		src: '/icon-red-x.png',
-		alt: 'red_x'
+		alt: 'red_x',
+		stage: 'NULL'
 	},
 	{
 		src: '/icon-yellow-x.png',
-		alt: 'yellow_x'
+		alt: 'yellow_x',
+		stage: 'ONE'
 	},
 	{
 		src: '/icon-green-x.png',
-		alt: 'green_x'
+		alt: 'green_x',
+		stage: 'TWO'
 	},
 	{
 		src: '/icon-cjan-x.png',
-		alt: 'cjan_x'
-	}
-]
-
-export const mapNicknamesData: TMapNicknamesData[] = [
-	{
-		nickname: '1. nickname'
-	},
-	{
-		nickname: '2. nickname'
-	},
-	{
-		nickname: '3. nickname'
-	},
-	{
-		nickname: '4. nickname'
+		alt: 'cjan_x',
+		stage: 'THREE'
 	}
 ]

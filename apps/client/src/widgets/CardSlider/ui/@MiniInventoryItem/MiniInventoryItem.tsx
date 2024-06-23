@@ -1,33 +1,36 @@
 import cl from './MiniInventoryItem.module.scss'
+import { MiniInventoryItemBage } from '../@MiniInventoryItemBage/MiniInventoryItemBage'
 
 export const MiniInventoryItem = ({
 	count,
 	src,
-	alt
+	alt,
+	isActive,
+	onClick
 }: {
 	count: number | null
 	src: string | null
 	alt: string | ''
+	isActive: boolean
+	onClick: () => void
 }) => {
 	return (
-		<div className={`${cl.root} ${!src ? cl.root__emptyFrame : ''}`}>
+		<div
+			onClick={onClick}
+			className={`${cl.root} ${!src && cl.root__emptyFrame}`}
+		>
 			{src ? (
 				<>
 					<img
+						onClick={onClick}
 						draggable={false}
-						className={cl.root__skill}
+						className={`${cl.root__skill} ${
+							isActive && cl.root__skill_active
+						}`}
 						src={`${import.meta.env.VITE_SERVER_STATIC_URL}/${src}`}
 						alt={alt}
 					/>
-					<div className={cl.root__bage}>
-						<img
-							draggable={false}
-							className={cl.root__bage_img}
-							src='/icon-bage.png'
-							alt='bage'
-						/>
-						<span className={cl.root__bage_count}>{count}</span>
-					</div>
+					<MiniInventoryItemBage count={count ? count : 0} />
 				</>
 			) : (
 				<img

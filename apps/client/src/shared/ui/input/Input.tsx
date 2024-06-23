@@ -8,7 +8,8 @@ export const Input = ({
 	field,
 	error,
 	label,
-	size
+	size,
+	value
 }: {
 	variant: 'form' | 'game'
 	type?: TInput
@@ -17,6 +18,7 @@ export const Input = ({
 	placeholder?: IInputProps['placeholder']
 	field?: IInputProps['field']
 	size?: 'small' | 'middle' | 'large'
+	value?: string
 }) => {
 	switch (variant) {
 		case 'form':
@@ -30,7 +32,9 @@ export const Input = ({
 				/>
 			)
 		case 'game':
-			return <GameInput size={size ?? 'small'} />
+			return (
+				<GameInput value={value ? value : ''} size={size ?? 'small'} />
+			)
 		default:
 			return <></>
 	}
