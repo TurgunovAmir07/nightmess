@@ -34,6 +34,18 @@ export const CardSlider = () => {
 		}
 	}, [trigger, data])
 
+	useEffect(() => {
+		if (data && data.cards) {
+			const sorted = sorterItems([...data.cards])
+			setSortedItems(sorted)
+
+			const initialRarity = sorted[0]?.card.rarity
+			if (initialRarity) {
+				setCurrentCardRarity(initialRarity)
+			}
+		}
+	}, [data])
+
 	// eslint-disable-next-line
 	// @ts-ignore
 	const handleSlideChange = swiper => {
@@ -41,7 +53,6 @@ export const CardSlider = () => {
 		if (rarity) {
 			setCurrentCardRarity(rarity)
 		}
-
 		setActiveIndex(swiper.activeIndex)
 
 		if (
