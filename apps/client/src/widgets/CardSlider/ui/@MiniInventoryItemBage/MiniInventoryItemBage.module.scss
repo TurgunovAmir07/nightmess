@@ -1,0 +1,29 @@
+.root {
+	top: -5px;
+	left: -8px;
+	position: absolute;
+	background-image: url('/icon-bage.png');
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&_count {
+		font-family: 'Pixel Cyr';
+		font-size: 11px;
+		margin-left: 1px;
+	}
+}
+
+@media (max-width: 360px) {
+	.root {
+		width: 15px;
+		height: 15px;
+
+		&_count {
+			font-size: 10px;
+		}
+	}
+}
