@@ -8,16 +8,18 @@ export const ChooseInventoryItemButton = ({
 	handleActive: () => void
 }) => {
 	return (
-		<label className={cl.root}>
-			<input
-				checked={isActive}
-				onChange={handleActive}
-				type='checkbox'
-				className={cl.root_input}
-			/>
-			<span className={cl.root_text}>
-				{isActive ? 'ОТМЕНА' : 'ВЫБРАТЬ'}
-			</span>
-		</label>
+		<button className={cl.root}>
+			<label className={cl.root__Label}>
+				<input
+					checked={isActive}
+					onChange={handleActive}
+					type='checkbox'
+					className={cl.root__Label_input}
+				/>
+				<span className={cl.root__Label_text}>
+					{isActive ? 'ОТМЕНА' : 'ВЫБРАТЬ'}
+				</span>
+			</label>
+		</button>
 	)
 }
