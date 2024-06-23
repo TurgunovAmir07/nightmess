@@ -7,7 +7,6 @@ import { GetCardButton } from '@/features/GetCard'
 import { GoToMainPageButton } from '@/features/GoToMainPage'
 import { OpenShopButton } from '@/features/OpenShop'
 import { OpenCaseStoreButton } from '@/features/OpenCaseStore'
-import { MiniInventory } from '@/widgets/MiniInventory'
 import { useTypedSelector } from '@/store'
 
 const GamePage = () => {
@@ -28,7 +27,6 @@ const GamePage = () => {
 			{isAuth ? (
 				<>
 					<CardSlider />
-					<MiniInventory />
 					<div className={cl.root__footer}>
 						<div className={cl.root__footer_button}>
 							<OpenCaseStoreButton />

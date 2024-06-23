@@ -6,29 +6,68 @@ import 'swiper/scss'
 import 'swiper/scss/pagination'
 import 'swiper/scss/effect-coverflow'
 import 'swiper/scss/navigation'
+
 import { NavigateSliderElementsButton } from '@/features/NavigateSliderElements'
-import { useLazyGetInventoryQuery } from '@/store'
-import { useEffect, useState } from 'react'
+import { TCards, useLazyGetInventoryQuery } from '@/store'
+import { useEffect, useRef, useState } from 'react'
 import { LoaderSpinner } from '@/shared'
 import { Stars } from './@Stars/Stars'
+import { MiniInventory } from './@MiniInventory/MiniInventory'
+import { sorterItems } from '../lib/sorterItems'
 
 export const CardSlider = () => {
 	const [trigger, { data, isLoading }] = useLazyGetInventoryQuery()
 
 	const [currentCardRarity, setCurrentCardRarity] = useState('')
+	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
+	const [activeIndex, setActiveIndex] = useState(0)
+	const [currentChunk, setCurrentChunk] = useState(0)
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const swiperRef = useRef<any>(null)
+
+	useEffect(() => {
+		trigger()
+
+		if (data && data.cards) {
+			const sorted = sorterItems([...data.cards])
+			setSortedItems(sorted)
+		}
+	}, [trigger, data])
+
+	useEffect(() => {
+		if (data && data.cards) {
+			const sorted = sorterItems([...data.cards])
+			setSortedItems(sorted)
+
+			const initialRarity = sorted[0]?.card.rarity
+			if (initialRarity) {
+				setCurrentCardRarity(initialRarity)
+			}
+		}
+	}, [data])
 
 	// eslint-disable-next-line
 	// @ts-ignore
 	const handleSlideChange = swiper => {
-		const rariry = data?.cards[swiper.activeIndex]?.card.rarity
-		if (rariry) {
-			setCurrentCardRarity(rariry)
+		const rarity = sortedItems[swiper.activeIndex]?.card.rarity
+		if (rarity) {
+			setCurrentCardRarity(rarity)
+		}
+		setActiveIndex(swiper.activeIndex)
+
+		if (
+			swiper.activeIndex % 4 === 0 ||
+			(swiper.activeIndex + 1) % 4 === 0
+		) {
+			setCurrentChunk(Math.floor(swiper.activeIndex / 4))
 		}
 	}
 
-	useEffect(() => {
-		trigger()
-	}, [trigger])
+	const handleItemClick = (index: number) => {
+		if (swiperRef.current) {
+			swiperRef.current.slideTo(index)
+		}
+	}
 
 	if (isLoading) return <LoaderSpinner />
 
@@ -38,6 +77,10 @@ export const CardSlider = () => {
 			<div className={cl.root}>
 				<NavigateSliderElementsButton side='left' className='leftEl' />
 				<SwiperJs
+					ref={swiperRef}
+					onSwiper={swiper => {
+						swiperRef.current = swiper
+					}}
 					style={{ maxWidth: '250px' }}
 					spaceBetween={50}
 					slidesPerView={1}
@@ -59,14 +102,14 @@ export const CardSlider = () => {
 					}}
 					onSlideChange={handleSlideChange}
 				>
-					{data?.cards.map((item, index) => (
+					{sortedItems.map((item, index) => (
 						<SwiperSlide key={index}>
 							<img
 								style={{ width: '95%' }}
 								src={`${
 									import.meta.env.VITE_SERVER_STATIC_URL
-								}/${item.card.image}`}
-								alt={item.card.color}
+								}/${item?.card.image}`}
+								alt={item?.card.color}
 								draggable={false}
 							/>
 						</SwiperSlide>
@@ -77,6 +120,11 @@ export const CardSlider = () => {
 					className='rightEl'
 				/>
 			</div>
+			<MiniInventory
+				activeChunk={currentChunk}
+				activeIndex={activeIndex}
+				onItemClick={handleItemClick}
+			/>
 		</>
 	)
 }

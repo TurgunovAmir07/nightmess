@@ -1,11 +1,22 @@
 import cl from './MiniInventory.module.scss'
-import { MiniInventoryItem } from '.'
 import { OpenInventory } from '@/features/OpenInventory'
 import { TCards, useGetInventoryQuery } from '@/store'
 import { useEffect, useState } from 'react'
-import { sorterItems } from '../lib/sorterItems'
+import { sorterItems } from '../../lib/sorterItems'
+import { MiniInventoryItem } from '../@MiniInventoryItem/MiniInventoryItem'
 
-export const MiniInventory = () => {
+export const MiniInventory = (
+	// { activeIndex }: { activeIndex: number }
+	{
+		activeChunk,
+		activeIndex,
+		onItemClick
+	}: {
+		activeChunk: number
+		activeIndex: number
+		onItemClick: (index: number) => void
+	}
+) => {
 	const { data } = useGetInventoryQuery()
 
 	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
@@ -13,11 +24,14 @@ export const MiniInventory = () => {
 
 	useEffect(() => {
 		if (data && data.cards) {
-			const sorted = sorterItems([...data.cards]).slice(0, 4)
+			const sorted = sorterItems([...data.cards])
+			const chunkStartIndex = activeChunk * 4
+			const chunkEndIndex = chunkStartIndex + 4
+			const chunkedItems = sorted.slice(chunkStartIndex, chunkEndIndex)
 			setCardsHave(`${data.cards.length}/9`)
-			setSortedItems(sorted)
+			setSortedItems(chunkedItems)
 		}
-	}, [data])
+	}, [data, activeChunk])
 
 	return (
 		<div className={cl.root}>
@@ -36,6 +50,10 @@ export const MiniInventory = () => {
 					sortedItems.map((item, index) => (
 						<div className={cl.root__wrap__frame} key={index}>
 							<MiniInventoryItem
+								onClick={() =>
+									onItemClick(activeChunk * 4 + index)
+								}
+								isActive={index === activeIndex % 4}
 								count={item && item.count}
 								src={item && item.card.miniature}
 								alt={item ? item.card.name : ''}

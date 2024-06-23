@@ -1,4 +1,6 @@
 .root {
+	cursor: pointer;
+
 	&__emptyFrame {
 		cursor: not-allowed;
 	}
@@ -6,6 +8,12 @@
 	&__skill {
 		margin-top: 2px;
 		max-width: 55px;
+		transition: all;
+		transition-duration: 200ms;
+
+		&_active {
+			scale: 0.8;
+		}
 	}
 
 	@media (max-width: 375px) {
