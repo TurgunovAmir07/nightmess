@@ -11,13 +11,17 @@ export const MapCrossItems = () => {
 
 	return (
 		<div className={cl.root}>
-			{mapCrossData.slice(0, stageIndex + 1).map((item, index) => (
+			{mapCrossData.map((item, index) => (
 				<div key={index} className={cl.root__item}>
 					<button className={cl.root__item__btn}>
 						<img
 							draggable={false}
 							className={cl.root__item__btn__img}
-							src={item.src}
+							src={
+								index <= stageIndex
+									? item.src
+									: 'icon-undefined-x.png'
+							}
 							alt={item.alt}
 						/>
 					</button>
