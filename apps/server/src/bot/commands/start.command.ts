@@ -1,5 +1,5 @@
 import { AuthService } from '@/auth/auth.service'
-import { AUTH_COMMAND, INVENTORY_COMMAND } from '../bot.constants'
+import { AUTH_COMMAND, INVENTORY_COMMAND, WEBAPP_COMMAND } from '../bot.constants'
 import { Command } from './abstract.command'
 import TelegramBot from 'node-telegram-bot-api'
 
@@ -27,6 +27,10 @@ export class BotStartCommand extends Command {
 				{
 					command: INVENTORY_COMMAND,
 					description: 'Инвентарь'
+				},
+				{
+					command: WEBAPP_COMMAND,
+					description: 'Webapp'
 				}
 			])
 		})

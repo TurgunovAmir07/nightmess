@@ -17,3 +17,8 @@ push-webapp:
 	docker push ${DOCKER_LOGIN}/${DOCKER_WEBAPP_NAME}:deploy
 deploy:
 	make docker-login && make build-client && make build-server && make build-webapp && make push-client && make push-server && make push-webapp
+
+up:
+	docker compose up -d
+stop:
+	docker compose down

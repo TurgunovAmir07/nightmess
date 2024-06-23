@@ -5,9 +5,11 @@ import {
 	Get,
 	HttpCode,
 	Param,
+	Query,
 	Res,
 	UnauthorizedException,
-	UseInterceptors
+	UseInterceptors,
+	UsePipes
 } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { CookieOptions, Response } from 'express'
@@ -15,6 +17,9 @@ import { RefreshGuard } from './guards'
 import { Cookie, User } from '@/common/decorators'
 import { ConfigService } from '@nestjs/config'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { ZodValidationPipe } from '@/common/pipes'
+import { confirmDto } from './dto'
+import { EZodPipeType } from '@/common/enums'
 // import type { TRefreshResponse } from '@/contracts/auth'
 
 @ApiTags('Авторизация')
@@ -64,10 +69,12 @@ export class AuthController {
 	@ApiOperation({
 		summary: 'Создание сессии при переходе по ссылке'
 	})
+	@UsePipes(new ZodValidationPipe(confirmDto, EZodPipeType.query))
 	@Get('confirm/:link')
 	public async createSession(
 		@Param('link') link: string,
-		@Res({ passthrough: true }) res: Response
+		@Res({ passthrough: true }) res: Response,
+		@Query('type') type?: string
 	) {
 		const refreshToken = await this.authService.createSession(link)
 
@@ -77,6 +84,10 @@ export class AuthController {
 		}
 
 		res.cookie('refresh', refreshToken, this.refreshCookieOptions)
+
+		if (type === 'webapp') {
+			return res.redirect(this.configService.get('WEBAPP_URL'))
+		}
 
 		return res.redirect(this.configService.get('CLIENT_URL'))
 	}

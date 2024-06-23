@@ -1,28 +1,28 @@
 import TelegramBot from 'node-telegram-bot-api'
 import { Command } from './abstract.command'
-import { AUTH_COMMAND } from '../bot.constants'
 import { getCommandRegexp } from '../utils'
-import { AuthService } from '@/auth/auth.service'
+import { WEBAPP_COMMAND } from '../bot.constants'
 import { ConfigService } from '@nestjs/config'
+import { AuthService } from '@/auth/auth.service'
 
-export class AuthCommand extends Command {
+export class WebappCommand extends Command {
 	constructor(
 		public readonly bot: TelegramBot,
-		private readonly authService: AuthService,
-		private readonly configService: ConfigService
+		private readonly configService: ConfigService,
+		private readonly authService: AuthService
 	) {
 		super(bot)
 	}
 
 	public handle(): void {
-		this.bot.onText(getCommandRegexp(AUTH_COMMAND), async msg => {
+		this.bot.onText(getCommandRegexp(WEBAPP_COMMAND), async msg => {
 			this.bot.sendMessage(msg.chat.id, 'Ожидайте...', {
 				reply_markup: {
 					remove_keyboard: true
 				}
 			})
 			this.authService
-				.login(String(msg.from.id), 'app')
+				.login(String(msg.from.id), 'webapp')
 				.then(async res => {
 					const { link } = res
 					// DON'T TOUCH ONLY FOR DEV
@@ -34,10 +34,12 @@ export class AuthCommand extends Command {
 								[
 									{
 										text: 'Авторизоваться',
-										url:
-											this.configService.get('NODE_ENV') === 'production'
-												? link
-												: 'https://ya.ru'
+										web_app: {
+											url:
+												this.configService.get('NODE_ENV') === 'production'
+													? link
+													: 'https://ya.ru'
+										}
 									}
 								]
 							]

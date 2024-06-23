@@ -6,3 +6,4 @@ export const GET_STATISTIC = 'Получить статистику'
 
 export const AUTH_COMMAND = '/auth'
 export const INVENTORY_COMMAND = '/inventory'
+export const WEBAPP_COMMAND = '/webapp'
