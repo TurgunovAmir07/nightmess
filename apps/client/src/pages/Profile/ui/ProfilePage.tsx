@@ -32,7 +32,7 @@ const ProfilePage = () => {
 								text='Войти'
 								type='secondary'
 								size='middle'
-								htmlType='submit'
+								htmlType='button'
 							/>
 						</Link>
 					)}

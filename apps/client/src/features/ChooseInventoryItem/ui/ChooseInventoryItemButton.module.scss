@@ -1,5 +1,4 @@
 .root {
-	cursor: pointer;
 	background-image: url('/button-feature-btn.png');
 	background-size: cover;
 	width: 110px;
@@ -10,16 +9,25 @@
 	position: absolute;
 	top: 245px;
 	left: 16px;
+	background-color: inherit;
+	border: none;
 
-	&_text {
-		color: #440707;
-		font-size: 11px;
-		padding-bottom: 1px;
-		padding-left: 2px;
-	}
+	&__Label {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
 
-	&_input {
-		display: none;
+		&_text {
+			color: #440707;
+			font-size: 11px;
+			margin-bottom: 1px;
+			padding-left: 2px;
+		}
+
+		&_input {
+			display: none;
+		}
 	}
 }
 
@@ -30,9 +38,11 @@
 		top: 215px;
 		left: 14px;
 
-		&_text {
-			font-size: 9px;
-			padding-bottom: 1px;
+		&__Label {
+			&_text {
+				font-size: 9px;
+				padding-bottom: 1px;
+			}
 		}
 	}
 }
@@ -43,9 +53,12 @@
 		top: 190px;
 		left: 12px;
 
-		&_text {
-			font-size: 8px;
-			padding-bottom: 1px;
+		&__Label {
+			&_text {
+				font-size: 8px;
+				padding-right: 1px;
+				padding-bottom: 1px;
+			}
 		}
 	}
 }
