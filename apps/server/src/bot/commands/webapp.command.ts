@@ -26,7 +26,7 @@ export class WebappCommand extends Command {
 				.then(async res => {
 					const { link } = res
 					// DON'T TOUCH ONLY FOR DEV
-					console.log(link, 'link')
+					console.log(link, 'link2')
 
 					this.bot.sendMessage(msg.chat.id, 'Нажмите на ссылку ниже', {
 						reply_markup: {
