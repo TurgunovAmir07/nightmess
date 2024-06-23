@@ -31,7 +31,7 @@ export class AuthService {
 		return user
 	}
 
-	public async login(userId: string) {
+	public async login(userId: string, type: 'webapp' | 'app') {
 		const user = await this.userService.getByTgId(userId)
 
 		if (!user) {
@@ -43,7 +43,7 @@ export class AuthService {
 		const updatedUser = await this.userService.updateLink(String(user.tg_id), link)
 
 		return {
-			link: `${this.configService.get('VITE_SERVER_URL')}/api/auth/confirm/${updatedUser.link}`
+			link: `${this.configService.get('VITE_SERVER_URL')}/api/auth/confirm/${updatedUser.link}?type=${type}`
 		}
 	}
 
