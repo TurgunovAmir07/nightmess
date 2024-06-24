@@ -7,7 +7,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { JWT_MODULE_OPTIONS } from './auth.constants'
 import { ConfigService } from '@nestjs/config'
 import { getJwtConfig } from '@/configs'
-import { AccessJwtStrategy, RefreshJwtStrategy } from './strategies'
+import { AccessJwtStrategy, RefreshJwtStrategy, GoogleOAuthStrategy } from './strategies'
 import { DatabaseModule } from '@/core/database'
 import { CacheModule } from '@/core/cache/cache.module'
 
@@ -19,6 +19,7 @@ import { CacheModule } from '@/core/cache/cache.module'
 		TokenService,
 		AccessJwtStrategy,
 		RefreshJwtStrategy,
+		GoogleOAuthStrategy,
 		{
 			provide: JWT_MODULE_OPTIONS,
 			inject: [ConfigService],

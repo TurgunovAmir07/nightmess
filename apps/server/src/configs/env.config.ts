@@ -31,7 +31,10 @@ const environmentVariables = z.object({
 	REDIS_USERNAME: z.string(),
 	REDIS_PASSWORD: z.string(),
 	VITE_SERVER_STATIC_URL: z.string(),
-	SERVER_WEBAPP_URL: z.string()
+	SERVER_WEBAPP_URL: z.string(),
+	GOOGLE_CLIENT_ID: z.string(),
+	GOOGLE_CLIENT_SECRET: z.string(),
+	VITE_GOOGLE_REDIRECT_URL: z.string()
 })
 
 export const EnvConfigOptions: ConfigModuleOptions = {

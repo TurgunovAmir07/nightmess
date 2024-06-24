@@ -25,6 +25,14 @@ export class UserRepository {
 		})
 	}
 
+	public async getByEmail(email: string) {
+		return this.userRepository.findOne({
+			where: {
+				email
+			}
+		})
+	}
+
 	public async create(user: DeepPartial<UserEntity>) {
 		const createdUser = this.userRepository.create({
 			...user

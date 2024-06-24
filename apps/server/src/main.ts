@@ -4,11 +4,17 @@ import { ConfigService } from '@nestjs/config'
 import * as cookieParser from 'cookie-parser'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { ENodeEnv } from './common/enums'
+import passport = require('passport')
+import { GOOGLE_OAUTH_STRATEGY } from './auth/auth.constants'
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule)
 	app.use(cookieParser())
 	app.setGlobalPrefix('/api')
+
+	passport.authenticate(GOOGLE_OAUTH_STRATEGY, {
+		session: false
+	})
 
 	const configService = app.get(ConfigService)
 	const CLIENT_URL = configService.get('CLIENT_URL')
