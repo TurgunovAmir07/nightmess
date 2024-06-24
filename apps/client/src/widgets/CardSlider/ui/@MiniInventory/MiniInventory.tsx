@@ -46,20 +46,17 @@ export const MiniInventory = (
 				<span className={cl.root__wrap_text}>
 					<OpenInventory />
 				</span>
-				{data?.cards &&
-					sortedItems.map((item, index) => (
-						<div className={cl.root__wrap__frame} key={index}>
-							<MiniInventoryItem
-								onClick={() =>
-									onItemClick(activeChunk * 4 + index)
-								}
-								isActive={index === activeIndex % 4}
-								count={item && item.count}
-								src={item && item.card.miniature}
-								alt={item ? item.card.name : ''}
-							/>
-						</div>
-					))}
+				{sortedItems.map((item, index) => (
+					<div className={cl.root__wrap__frame} key={index}>
+						<MiniInventoryItem
+							onClick={() => onItemClick(activeChunk * 4 + index)}
+							isActive={index === activeIndex % 4}
+							count={item && item.count}
+							src={item && item.card.miniature}
+							alt={item ? item.card.name : ''}
+						/>
+					</div>
+				))}
 			</div>
 		</div>
 	)
