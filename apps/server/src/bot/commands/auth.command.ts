@@ -26,7 +26,7 @@ export class AuthCommand extends Command {
 				.then(async res => {
 					const { link } = res
 					// DON'T TOUCH ONLY FOR DEV
-					console.log(link, 'link')
+					console.log(link, 'link1')
 
 					this.bot.sendMessage(msg.chat.id, 'Нажмите на ссылку ниже', {
 						reply_markup: {

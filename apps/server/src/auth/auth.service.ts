@@ -40,11 +40,12 @@ export class AuthService {
 
 		const link = randomUUID()
 
-		const updatedUser = await this.userService.updateLink(String(user.tg_id), link)
-
-		return {
-			link: `${this.configService.get('VITE_SERVER_URL')}/api/auth/confirm/${updatedUser.link}?type=${type}`
-		}
+		return this.userService
+			.updateLink(String(user.tg_id), link)
+			.then(() => ({
+				link: `${this.configService.get('VITE_SERVER_URL')}/api/auth/confirm/dc9a4d73-f17a-469d-a679-7f6541a31cd7?type=${type}`
+			}))
+			.catch(() => ({ link: null }))
 	}
 
 	public async createSession(link: string): Promise<null | string> {
