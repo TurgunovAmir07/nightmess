@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { UserRepository } from './user.repository'
-import { FindManyOptions } from 'typeorm'
+import { DeepPartial, FindManyOptions } from 'typeorm'
 import { UserEntity } from './entities'
 
 @Injectable()
@@ -19,14 +19,8 @@ export class UserService {
 		return this.userRepository.create({ tg_id })
 	}
 
-	public async updateLink(userTgId: string, link: string | null) {
-		const user = await this.userRepository.getByTgId(userTgId)
-
-		if (!user) {
-			return null
-		}
-
-		return this.userRepository.update({ ...user, link })
+	public async update(user: DeepPartial<UserEntity>) {
+		return this.userRepository.update(user)
 	}
 
 	public async getByLink(link: string) {

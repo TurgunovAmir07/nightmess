@@ -21,28 +21,31 @@ export class AuthCommand extends Command {
 					remove_keyboard: true
 				}
 			})
-			this.authService
-				.login(String(msg.from.id), 'app')
-				.then(async res => {
-					const { link } = res
+
+			return this.authService
+				.login(String(msg.from.id))
+				.then(() => this.authService.getLink(String(msg.from.id), 'app'))
+				.then(async link => {
 					// DON'T TOUCH ONLY FOR DEV
 					console.log(link, 'link1')
 
-					this.bot.sendMessage(msg.chat.id, 'Нажмите на ссылку ниже', {
-						reply_markup: {
-							inline_keyboard: [
-								[
-									{
-										text: 'Авторизоваться',
-										url:
-											this.configService.get('NODE_ENV') === 'production'
-												? link
-												: 'https://ya.ru'
-									}
+					if (link) {
+						this.bot.sendMessage(msg.chat.id, 'Нажмите на ссылку ниже', {
+							reply_markup: {
+								inline_keyboard: [
+									[
+										{
+											text: 'Авторизоваться',
+											url:
+												this.configService.get('NODE_ENV') === 'production'
+													? link
+													: 'https://ya.ru'
+										}
+									]
 								]
-							]
-						}
-					})
+							}
+						})
+					}
 				})
 				.catch(e =>
 					this.bot.sendMessage(msg.chat.id, e.response.message ?? 'Неожиданная ошибка')
