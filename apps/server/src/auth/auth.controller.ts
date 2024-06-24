@@ -13,14 +13,13 @@ import {
 } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { CookieOptions, Response } from 'express'
-import { RefreshGuard } from './guards'
+import { GoogleOAuthGuard, RefreshGuard } from './guards'
 import { Cookie, User } from '@/common/decorators'
 import { ConfigService } from '@nestjs/config'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { ZodValidationPipe } from '@/common/pipes'
 import { confirmDto } from './dto'
 import { EZodPipeType } from '@/common/enums'
-// import type { TRefreshResponse } from '@/contracts/auth'
 
 @ApiTags('Авторизация')
 @Controller('auth')
@@ -37,6 +36,26 @@ export class AuthController {
 	}
 
 	@ApiOperation({
+		summary: 'Google OAuth авторизация'
+	})
+	@Get('redirect')
+	@GoogleOAuthGuard()
+	public async redirectOAuth(@User('id') userId: number, @Res() res: Response) {
+		const data = await this.authService.refresh({ userId })
+
+		if (!data) {
+			res.clearCookie('refresh', {
+				path: this.refreshCookieOptions.path
+			})
+			throw new UnauthorizedException()
+		}
+
+		res.cookie('refresh', data.tokens.refreshToken, this.refreshCookieOptions)
+
+		return res.redirect(this.configService.get('CLIENT_URL'))
+	}
+
+	@ApiOperation({
 		summary: 'Обновление токенов'
 	})
 	@Get('refresh')
@@ -47,7 +66,7 @@ export class AuthController {
 		@User('id') userId: number,
 		@Res({ passthrough: true }) res: Response
 	) {
-		const data = await this.authService.refresh(refresh, userId)
+		const data = await this.authService.refresh({ refresh, userId })
 
 		if (!data) {
 			res.clearCookie('refresh', {

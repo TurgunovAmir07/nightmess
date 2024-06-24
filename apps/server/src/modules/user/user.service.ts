@@ -11,12 +11,16 @@ export class UserService {
 		return this.userRepository.getByTgId(id)
 	}
 
+	public getByEmail(email: string) {
+		return this.userRepository.getByEmail(email)
+	}
+
 	public async getAll(options?: FindManyOptions<UserEntity>) {
 		return this.userRepository.getAll(options)
 	}
 
-	public async create(tg_id: string) {
-		return this.userRepository.create({ tg_id })
+	public async create(user: DeepPartial<UserEntity>) {
+		return this.userRepository.create(user)
 	}
 
 	public async update(user: DeepPartial<UserEntity>) {

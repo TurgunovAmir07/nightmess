@@ -5,6 +5,7 @@ import { randomUUID } from 'crypto'
 import { TokenService } from './token.service'
 import { UserAchievementService } from '@/modules/game/user-achievement.service'
 import { CacheService } from '@/core/cache/cache.service'
+import { TUserOAuthDto } from './dto'
 
 @Injectable()
 export class AuthService {
@@ -20,7 +21,7 @@ export class AuthService {
 		let user = await this.userService.getByTgId(tg_id)
 
 		if (!user) {
-			user = await this.userService.create(tg_id).then(async res => {
+			user = await this.userService.create({ tg_id }).then(async res => {
 				await this.userAchievementService.create(res)
 				return res
 			})
@@ -67,11 +68,26 @@ export class AuthService {
 		return refreshToken
 	}
 
-	public async refresh(refresh: string, userId: number) {
-		const tokenFromDb = await this.tokenService.findSessionByToken(refresh)
+	public async refresh({
+		refresh,
+		userId,
+		isOAuth
+	}: {
+		refresh?: string
+		userId: number
+		isOAuth?: boolean
+	}) {
+		if (isOAuth) {
+			const tokenFromDb = await this.tokenService.findSessionByToken(refresh)
+
+			if (!tokenFromDb) {
+				return null
+			}
+		}
+
 		const profile = await this.userService.getById(userId)
 
-		if (!tokenFromDb || !profile) {
+		if (!profile) {
 			return null
 		}
 
@@ -84,5 +100,15 @@ export class AuthService {
 
 	public async logout(refresh: string) {
 		await this.tokenService.removeSessionByToken(refresh)
+	}
+
+	public async validateUser(profile: TUserOAuthDto) {
+		const user = await this.userService.getByEmail(profile.email)
+
+		if (user) {
+			return user
+		}
+
+		return this.userService.create(profile)
 	}
 }

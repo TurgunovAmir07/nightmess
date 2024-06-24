@@ -34,9 +34,10 @@ export class UserEntity extends BaseEntity {
 
 	@Exclude()
 	@Column({
-		unique: true
+		unique: true,
+		nullable: true
 	})
-	public readonly tg_id: string
+	public readonly tg_id: string | null
 
 	@Exclude()
 	@Column({

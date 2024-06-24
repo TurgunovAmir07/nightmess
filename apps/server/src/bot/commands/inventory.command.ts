@@ -55,7 +55,6 @@ export class InventoryCommand extends Command {
 					}
 				})
 				.catch(e => {
-					console.log(e)
 					this.bot.sendMessage(msg.chat.id, e.response?.message ?? 'Неожиданная ошибка')
 				})
 		})
