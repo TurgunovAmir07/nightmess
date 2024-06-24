@@ -4,6 +4,7 @@ import cl from './Settings.module.scss'
 import { settingsFieldsArr } from '../model/data/settingsFields.data'
 import { useEffect } from 'react'
 import { useActions, useTypedSelector } from '@/store'
+import { SettingsHeader } from './@SettingsHeader/SettingsHeader'
 
 export const Settings = ({
 	isOpen,
@@ -63,15 +64,7 @@ export const Settings = ({
 					onSubmit={handleSubmit(onSubmit)}
 					className={cl.root__content}
 				>
-					<div className={cl.root__content__header}>
-						<h2 className={cl.root__content__header_title}>
-							ДАННЫЕ ДЛЯ ЗАКАЗОВ
-						</h2>
-						<span className={cl.root__content__header_description}>
-							ВВЕДИТЕ ДЛЯ АВТОЗАПОЛНЕНИЯ <br /> ПРИ СЛЕДУЮЩИХ
-							ЗАКАЗАХ
-						</span>
-					</div>
+					<SettingsHeader />
 					<div className={cl.root__content__main}>
 						{settingsFieldsArr.map((item, index) =>
 							item.isRadio ? (

@@ -9,7 +9,7 @@ const baseQuery = fetchBaseQuery({
 
 	// Automatically use token in authorization header if it provided
 	prepareHeaders: (headers, { getState }) => {
-		const token = (getState() as TypeRootState)['authSlice'].accessToken
+		const token = (getState() as TypeRootState).authSlice.accessToken
 		if (token) {
 			headers.set('Authorization', `Bearer ${token}`)
 			headers.set('Content-Type', 'application/json')
@@ -51,7 +51,7 @@ export const gameApi = createApi({
 					color,
 					count
 				},
-				providesTags: ['Inventory']
+				invalidatesTags: ['Inventory']
 			})
 		}),
 		// eslint-disable-next-line

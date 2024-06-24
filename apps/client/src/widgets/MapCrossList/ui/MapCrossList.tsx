@@ -1,17 +1,17 @@
 import { useGetInventoryQuery } from '@/store'
-import { mapCrossData } from '../../model/data/map.data'
-import cl from './MapCrossItems.module.scss'
+import cl from './MapCrossList.module.scss'
+import { crossData } from '../model/data/cross.data'
 
-export const MapCrossItems = () => {
+export const MapCrossList = () => {
 	const { data } = useGetInventoryQuery()
 
 	const stageIndex = data
-		? mapCrossData.findIndex(item => item.stage === data.stage)
+		? crossData.findIndex(item => item.stage === data.stage)
 		: 0
 
 	return (
 		<div className={cl.root}>
-			{mapCrossData.map((item, index) => (
+			{crossData.map((item, index) => (
 				<div key={index} className={cl.root__item}>
 					<button className={cl.root__item__btn}>
 						<img

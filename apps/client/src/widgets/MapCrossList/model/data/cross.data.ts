@@ -1,10 +1,10 @@
-interface TMapCrossData {
+interface TCrossData {
 	src: string
 	alt: string
 	stage: string
 }
 
-export const mapCrossData: TMapCrossData[] = [
+export const crossData: TCrossData[] = [
 	{
 		src: '/icon-red-x.png',
 		alt: 'red_x',

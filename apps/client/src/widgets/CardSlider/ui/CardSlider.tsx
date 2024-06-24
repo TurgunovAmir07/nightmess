@@ -18,21 +18,16 @@ import { sorterItems } from '../lib/sorterItems'
 export const CardSlider = () => {
 	const [trigger, { data, isLoading }] = useLazyGetInventoryQuery()
 
-	const [currentCardRarity, setCurrentCardRarity] = useState('')
+	const [currentCardRarity, setCurrentCardRarity] = useState<string>('')
 	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
-	const [activeIndex, setActiveIndex] = useState(0)
-	const [currentChunk, setCurrentChunk] = useState(0)
+	const [activeIndex, setActiveIndex] = useState<number>(0)
+	const [currentChunk, setCurrentChunk] = useState<number>(0)
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const swiperRef = useRef<any>(null)
 
 	useEffect(() => {
 		trigger()
-
-		if (data && data.cards) {
-			const sorted = sorterItems([...data.cards])
-			setSortedItems(sorted)
-		}
-	}, [trigger, data])
+	}, [trigger])
 
 	useEffect(() => {
 		if (data && data.cards) {

@@ -1,6 +1,6 @@
 import cl from './MiniInventory.module.scss'
 import { OpenInventory } from '@/features/OpenInventory'
-import { TCards, useGetInventoryQuery } from '@/store'
+import { TCards, useTypedSelector } from '@/store'
 import { useEffect, useState } from 'react'
 import { sorterItems } from '../../lib/sorterItems'
 import { MiniInventoryItem } from '../@MiniInventoryItem/MiniInventoryItem'
@@ -17,7 +17,7 @@ export const MiniInventory = (
 		onItemClick: (index: number) => void
 	}
 ) => {
-	const { data } = useGetInventoryQuery()
+	const data = useTypedSelector(state => state.inventorySlice)
 
 	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
 	const [cardsHave, setCardsHave] = useState<string>('0/9')
@@ -46,20 +46,17 @@ export const MiniInventory = (
 				<span className={cl.root__wrap_text}>
 					<OpenInventory />
 				</span>
-				{data?.cards &&
-					sortedItems.map((item, index) => (
-						<div className={cl.root__wrap__frame} key={index}>
-							<MiniInventoryItem
-								onClick={() =>
-									onItemClick(activeChunk * 4 + index)
-								}
-								isActive={index === activeIndex % 4}
-								count={item && item.count}
-								src={item && item.card.miniature}
-								alt={item ? item.card.name : ''}
-							/>
-						</div>
-					))}
+				{sortedItems.map((item, index) => (
+					<div className={cl.root__wrap__frame} key={index}>
+						<MiniInventoryItem
+							onClick={() => onItemClick(activeChunk * 4 + index)}
+							isActive={index === activeIndex % 4}
+							count={item && item.count}
+							src={item && item.card.miniature}
+							alt={item ? item.card.name : ''}
+						/>
+					</div>
+				))}
 			</div>
 		</div>
 	)

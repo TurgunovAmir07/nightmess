@@ -86,24 +86,6 @@ export const Stars = ({ count }: { count: string }) => {
 				</div>
 			)
 		default:
-			return (
-				<div className={cl.root}>
-					<div className={cl.root__wrap}>
-						<img
-							draggable={false}
-							className={cl.root__wrap_img}
-							src='/illustration-rating.png'
-							alt='stars-back'
-						/>
-						<StarsList count={0} />
-						<img
-							draggable={false}
-							className={cl.root__wrap_text}
-							src='/illustration-card-name-dead.png'
-							alt='stars-text'
-						/>
-					</div>
-				</div>
-			)
+			return <></>
 	}
 }

@@ -3,12 +3,7 @@ import { InventoryItem } from '../@InventoryItem/InventoryItem'
 import cl from './InventoryMain.module.scss'
 import { ChooseInventoryItemButton } from '@/features/ChooseInventoryItem'
 import { sorterItems } from '../../lib/sorterItems'
-import {
-	type TCards,
-	useGetInventoryQuery,
-	useTypedSelector,
-	useActions
-} from '@/store'
+import { type TCards, useTypedSelector, useActions } from '@/store'
 import { CardsHaveBage } from '../@CardsHaveBage/CardsHaveBage'
 
 export const InventoryMain = () => {
@@ -24,7 +19,7 @@ export const InventoryMain = () => {
 
 	const { toggleCardsActiveState, chooseCard } = useActions()
 
-	const { data } = useGetInventoryQuery()
+	const data = useTypedSelector(state => state.inventorySlice)
 
 	const handleChecked = (id: number) => {
 		if (isActive === true) {
