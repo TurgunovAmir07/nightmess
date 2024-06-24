@@ -38,7 +38,7 @@ export class AuthController {
 	@ApiOperation({
 		summary: 'Google OAuth авторизация'
 	})
-	@Get('redirect')
+	@Get('google/redirect')
 	@GoogleOAuthGuard()
 	public async redirectOAuth(@User('id') userId: number, @Res() res: Response) {
 		const data = await this.authService.refresh({ userId })
