@@ -1,9 +1,9 @@
 import { Container } from '@/shared'
 import { Header } from '@/widgets/Header'
 import cl from './MapPage.module.scss'
-import { MapCrossItems } from './@MapCrossItem/MapCrossItems'
 import { RatingTop } from '@/widgets/RatingTop'
 import { useTypedSelector } from '@/store'
+import { MapCrossList } from '@/widgets/MapCrossList'
 
 const MapPage = () => {
 	const name = useTypedSelector(state => state.authSlice.user?.name)
@@ -13,7 +13,7 @@ const MapPage = () => {
 			<div className={cl.root}>
 				<Header isMap title='КАРТА' />
 				<div className={cl.root__main}>
-					<MapCrossItems />
+					<MapCrossList />
 				</div>
 				<div className={cl.root__footer}>
 					<RatingTop />
