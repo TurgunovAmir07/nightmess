@@ -38,7 +38,7 @@ const ProfilePage = () => {
 					)}
 				</div>
 
-				{import.meta.env.VITE_APP_TYPE === 'telegram' ? (
+				{import.meta.env.VITE_APP_TYPE !== 'telegram' ? (
 					<div className={cl.root__content__buttons}>
 						<ActivationButtonsFrame isAuth={isAuth} />
 					</div>
