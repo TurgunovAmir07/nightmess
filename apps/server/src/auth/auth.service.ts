@@ -31,21 +31,24 @@ export class AuthService {
 		return user
 	}
 
-	public async login(userId: string, type: 'webapp' | 'app') {
+	public async login(userId: string) {
 		const user = await this.userService.getByTgId(userId)
 
 		if (!user) {
 			throw new BadRequestException('Пользователь не найден. Начните чат с ботом заново!')
 		}
 
-		const link = randomUUID()
+		await this.userService.update({ ...user, link: randomUUID() })
+	}
 
-		return this.userService
-			.updateLink(String(user.tg_id), link)
-			.then(() => ({
-				link: `${this.configService.get('VITE_SERVER_URL')}/api/auth/confirm/dc9a4d73-f17a-469d-a679-7f6541a31cd7?type=${type}`
-			}))
-			.catch(() => ({ link: null }))
+	public async getLink(userId: string, type: 'webapp' | 'app') {
+		const user = await this.userService.getByTgId(userId)
+
+		if (!user) {
+			throw new BadRequestException('Пользователь не найден. Начните чат с ботом заново!')
+		}
+
+		return `${this.configService.get('VITE_SERVER_URL')}/api/auth/confirm/${user.link}?type=${type}`
 	}
 
 	public async createSession(link: string): Promise<null | string> {
@@ -57,7 +60,7 @@ export class AuthService {
 
 		const { refreshToken } = this.tokenService.generateTokens(user)
 
-		await this.userService.updateLink(user.tg_id, null)
+		await this.userService.update({ ...user, link: null })
 
 		await this.tokenService.saveToDb(refreshToken, user)
 
