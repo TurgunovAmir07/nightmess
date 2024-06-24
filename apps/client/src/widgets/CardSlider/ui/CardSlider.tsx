@@ -27,12 +27,7 @@ export const CardSlider = () => {
 
 	useEffect(() => {
 		trigger()
-
-		if (data && data.cards) {
-			const sorted = sorterItems([...data.cards])
-			setSortedItems(sorted)
-		}
-	}, [trigger, data])
+	}, [trigger])
 
 	useEffect(() => {
 		if (data && data.cards) {

@@ -1,6 +1,6 @@
 import cl from './MiniInventory.module.scss'
 import { OpenInventory } from '@/features/OpenInventory'
-import { TCards, useGetInventoryQuery } from '@/store'
+import { TCards, useTypedSelector } from '@/store'
 import { useEffect, useState } from 'react'
 import { sorterItems } from '../../lib/sorterItems'
 import { MiniInventoryItem } from '../@MiniInventoryItem/MiniInventoryItem'
@@ -17,7 +17,7 @@ export const MiniInventory = (
 		onItemClick: (index: number) => void
 	}
 ) => {
-	const { data } = useGetInventoryQuery()
+	const data = useTypedSelector(state => state.inventorySlice)
 
 	const [sortedItems, setSortedItems] = useState<(TCards | null)[]>([])
 	const [cardsHave, setCardsHave] = useState<string>('0/9')

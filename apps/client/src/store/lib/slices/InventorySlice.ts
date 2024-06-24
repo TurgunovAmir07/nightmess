@@ -38,8 +38,11 @@ export const InventorySlice = createSlice({
 			action: PayloadAction<{ id: TCards['id'] | null }>
 		) => {
 			const card =
-				state.cards.find(card => card.id === action.payload.id) || null
-			state.cards = state.cards.filter(card => card.card.color !== 'NINE')
+				state.cards.find(
+					card =>
+						card.id === action.payload.id &&
+						card.card.color !== 'NINE'
+				) || null
 			state.choosedCard = card
 			state.counterQuantity = 1
 		},
