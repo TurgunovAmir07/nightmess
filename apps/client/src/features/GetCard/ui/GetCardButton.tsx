@@ -1,10 +1,17 @@
-import { gameApi, useLazyCheckStatusQuery, useTypedDispatch } from '@/store'
+import {
+	gameApi,
+	useLazyCheckStatusQuery,
+	useTypedDispatch,
+	useTypedSelector
+} from '@/store'
 import cl from './GetCardButton.module.scss'
 import { useEffect } from 'react'
 
 export const GetCardButton = () => {
 	const [trigger, { data }] = useLazyCheckStatusQuery()
 	const dispatch = useTypedDispatch()
+
+	const user = useTypedSelector(state => state.authSlice.user)
 
 	const handleGetCard = async () => {
 		try {
@@ -18,12 +25,20 @@ export const GetCardButton = () => {
 	}
 
 	useEffect(() => {
-		const intervalId = setInterval(() => {
-			trigger()
-		}, 15000)
+		let intervalId: NodeJS.Timeout
 
-		return () => clearInterval(intervalId)
-	}, [trigger])
+		if (user && user?.isHasTelegram === true) {
+			intervalId = setInterval(() => {
+				trigger()
+			}, 15000)
+		}
+
+		return () => {
+			if (intervalId) {
+				clearInterval(intervalId)
+			}
+		}
+	}, [trigger, user])
 
 	return (
 		<div className={cl.root}>

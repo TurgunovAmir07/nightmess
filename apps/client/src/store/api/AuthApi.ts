@@ -1,7 +1,6 @@
 import {
 	authSlice,
 	type IRegistrationPayload,
-	type IUser,
 	type LoginErrorResponse,
 	type RefreshResponse,
 	TypeRootState
@@ -68,9 +67,9 @@ export const authApi = createApi({
 			}),
 			providesTags: ['Auth']
 		}),
-		registerUser: build.mutation<IUser, IRegistrationPayload>({
+		registerUser: build.mutation<RefreshResponse, IRegistrationPayload>({
 			query: user => ({
-				url: 'register',
+				url: 'registration',
 				method: 'POST',
 				body: user
 			}),

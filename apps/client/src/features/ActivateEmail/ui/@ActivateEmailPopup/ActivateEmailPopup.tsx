@@ -1,7 +1,8 @@
-import { GameButton, Input, Popup } from '@/shared'
+import { GameButton, Input, LoaderSpinner, Popup } from '@/shared'
 import cl from './ActivateEmailPopup.module.scss'
 import { activateEmailData } from '../../model/data/activateEmail.data'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
+import { useRegisterUserMutation } from '@/store'
 
 export const ActivateEmailPopup = ({
 	isOpen,
@@ -13,12 +14,21 @@ export const ActivateEmailPopup = ({
 	const {
 		handleSubmit,
 		control,
+		reset,
 		formState: { errors }
 	} = useForm()
 
+	const [registerUser, { isLoading }] = useRegisterUserMutation()
+
 	const onSubmit = (data: FieldValues) => {
-		console.log(data)
+		registerUser({
+			email: data.email,
+			password: data.password
+		})
+		reset()
 	}
+
+	if (isLoading) return <LoaderSpinner />
 
 	return (
 		<Popup
