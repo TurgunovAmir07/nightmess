@@ -132,7 +132,14 @@ export class AuthController {
 	})
 	@UsePipes(new ZodValidationPipe(RegistrationDto, EZodPipeType.body))
 	@Post('registration')
-	public async registration(@Body() profile: TRegistrationDto) {
-		const { tokens, user } = await this.authService.registration(profile)
+	public async registration(@Body() profile: TRegistrationDto, @Res() res: Response) {
+		const {
+			tokens: { accessToken, refreshToken },
+			user
+		} = await this.authService.registration(profile)
+
+		res.cookie('refresh', refreshToken, this.refreshCookieOptions)
+
+		return { accessToken, user }
 	}
 }
