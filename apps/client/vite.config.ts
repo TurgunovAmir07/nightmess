@@ -16,6 +16,18 @@ export default defineConfig({
 			output: {
 				entryFileNames: '[name].js',
 				chunkFileNames: '[name].js'
+				// assetFileNames: ({ name }) => {
+				// 	const ext = name?.split('.')[1]
+
+				// 	switch (ext) {
+				// 		case 'js':
+				// 			return 'scripts/[name].[ext]'
+				// 		case 'png':
+				// 			return 'images/[name].[ext]'
+				// 		default:
+				// 			return '.'
+				// 	}
+				// }
 			}
 		}
 	}
