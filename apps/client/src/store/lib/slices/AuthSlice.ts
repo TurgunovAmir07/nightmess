@@ -31,6 +31,22 @@ export const authSlice = createSlice({
 				}
 			)
 			.addMatcher(
+				authApi.endpoints.loginUser.matchFulfilled,
+				(state, { payload }) => {
+					state.accessToken = payload.accessToken
+					state.user = payload.profile
+					state.isAuth = true
+				}
+			)
+			.addMatcher(
+				authApi.endpoints.registerUser.matchFulfilled,
+				(state, { payload }) => {
+					state.accessToken = payload.accessToken
+					state.user = payload.profile
+					state.isAuth = true
+				}
+			)
+			.addMatcher(
 				authApi.endpoints.logoutUser.matchFulfilled,
 				() => initialState
 			)
