@@ -1,4 +1,11 @@
-import { authSlice, LoginErrorResponse, TypeRootState } from '@/store'
+import {
+	authSlice,
+	type IRegistrationPayload,
+	type IUser,
+	type LoginErrorResponse,
+	type RefreshResponse,
+	TypeRootState
+} from '@/store'
 import {
 	createApi,
 	BaseQueryFn,
@@ -54,16 +61,6 @@ export const authApi = createApi({
 	baseQuery: baseQueryWithReauth,
 	tagTypes: ['Auth'],
 	endpoints: build => ({
-		// FIXME: типизировать
-		// eslint-disable-next-line
-		loginUser: build.query<any, any>({
-			query: user => ({
-				url: 'login',
-				method: 'POST',
-				body: user
-			}),
-			providesTags: ['Auth']
-		}),
 		logoutUser: build.query<void, void>({
 			query: () => ({
 				method: 'GET',
@@ -71,19 +68,15 @@ export const authApi = createApi({
 			}),
 			providesTags: ['Auth']
 		}),
-		// FIXME: типизировать
-		// eslint-disable-next-line
-		registerUser: build.query<any, any>({
+		registerUser: build.mutation<IUser, IRegistrationPayload>({
 			query: user => ({
 				url: 'register',
 				method: 'POST',
 				body: user
 			}),
-			providesTags: ['Auth']
+			invalidatesTags: ['Auth']
 		}),
-		// FIXME: типизировать
-		// eslint-disable-next-line
-		refreshToken: build.query<any, void>({
+		refreshToken: build.query<RefreshResponse, void>({
 			query: () => ({
 				url: 'refresh'
 			}),
@@ -93,8 +86,7 @@ export const authApi = createApi({
 })
 
 export const {
-	useLoginUserQuery,
 	useRefreshTokenQuery,
 	useLogoutUserQuery,
-	useRegisterUserQuery
+	useRegisterUserMutation
 } = authApi
