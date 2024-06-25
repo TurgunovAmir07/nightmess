@@ -7,6 +7,7 @@ import { UserAchievementService } from '@/modules/user/user-achievement.service'
 import { CacheService } from '@/core/cache/cache.service'
 import { TUserOAuthDto, type TAuthDto } from './dto'
 import * as bcrypt from 'bcrypt'
+import { formatProfile } from './utils'
 
 @Injectable()
 export class AuthService {
@@ -96,7 +97,7 @@ export class AuthService {
 
 		await this.tokenService.saveToDb(tokens.refreshToken, profile)
 
-		return { tokens, profile }
+		return { tokens, profile: formatProfile(profile) }
 	}
 
 	public async logout(refresh: string) {
@@ -131,7 +132,7 @@ export class AuthService {
 
 		await this.tokenService.saveToDb(tokens.refreshToken, user)
 
-		return { tokens, user }
+		return { tokens, user: formatProfile(user) }
 	}
 
 	public async login({ password, email }: TAuthDto) {
@@ -151,6 +152,6 @@ export class AuthService {
 
 		await this.tokenService.saveToDb(tokens.refreshToken, profile)
 
-		return { tokens, user: profile }
+		return { tokens, user: formatProfile(profile) }
 	}
 }
