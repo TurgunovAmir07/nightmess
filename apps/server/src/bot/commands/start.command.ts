@@ -13,7 +13,7 @@ export class BotStartCommand extends Command {
 
 	public handle(): void {
 		this.bot.onText(/\/start/, async msg => {
-			await this.authService.registration(String(msg.from.id))
+			await this.authService.registrationTg(String(msg.from.id))
 
 			this.bot.sendMessage(
 				msg.chat.id,

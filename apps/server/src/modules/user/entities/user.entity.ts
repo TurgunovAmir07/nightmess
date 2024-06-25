@@ -48,4 +48,10 @@ export class UserEntity extends BaseEntity {
 
 	@OneToOne(() => UserAchievementEntity, achievement => achievement.user)
 	public readonly achievement: UserAchievementEntity
+
+	@Exclude()
+	@Column({
+		nullable: true
+	})
+	public readonly password: string
 }
