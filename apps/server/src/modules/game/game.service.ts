@@ -107,9 +107,10 @@ export class GameService {
 			.get(RATING_CACHE_KEY)
 			.then(res => (res ? new FormatMap(res).result : null))
 
-		if (!rating) {
-			rating = await this.setRating()
-		}
+		// FIX
+		// if (!rating) {
+		rating = await this.setRating()
+		// }
 
 		// eslint-disable-next-line
 		const formatRating = [...rating].slice(0, 3).reduce((acc, [_, value]) => {
@@ -204,6 +205,8 @@ export class GameService {
 				}
 			}
 		})
+
+		// console.log(users)
 
 		const ratingLiveTime = await this.settingsService.getSettingsParamByName(
 			ESettingsName.RATING_LIVE_TIME

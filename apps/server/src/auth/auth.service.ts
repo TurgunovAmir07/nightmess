@@ -122,10 +122,15 @@ export class AuthService {
 
 		const hash = await bcrypt.hash(password, 7)
 
-		const user = await this.userService.create({
-			email,
-			password: hash
-		})
+		const user = await this.userService
+			.create({
+				email,
+				password: hash
+			})
+			.then(async res => {
+				await this.userAchievementService.create(res)
+				return res
+			})
 
 		const tokens = this.tokenService.generateTokens(user)
 
