@@ -1,11 +1,11 @@
 import { UserService } from '@/modules/user/user.service'
-import { BadRequestException, Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { randomUUID } from 'crypto'
 import { TokenService } from './token.service'
 import { UserAchievementService } from '@/modules/game/user-achievement.service'
 import { CacheService } from '@/core/cache/cache.service'
-import { TUserOAuthDto, type TRegistrationDto } from './dto'
+import { TUserOAuthDto, type TAuthDto } from './dto'
 import * as bcrypt from 'bcrypt'
 
 @Injectable()
@@ -33,7 +33,7 @@ export class AuthService {
 		return user
 	}
 
-	public async login(userId: string) {
+	public async loginTg(userId: string) {
 		const user = await this.userService.getByTgId(userId)
 
 		if (!user) {
@@ -113,7 +113,7 @@ export class AuthService {
 		return this.userService.create(profile)
 	}
 
-	public async registration({ email, password }: TRegistrationDto) {
+	public async registration({ email, password }: TAuthDto) {
 		const candidate = await this.userService.getByEmail(email)
 
 		if (candidate) {
@@ -132,5 +132,13 @@ export class AuthService {
 		await this.tokenService.saveToDb(tokens.refreshToken, user)
 
 		return { tokens, user }
+	}
+
+	public async login({ password, email }: TAuthDto) {
+		const profile = await this.userService.getByEmail(email)
+
+		if (!profile) {
+			throw new NotFoundException('Логин или пароль неверен!')
+		}
 	}
 }

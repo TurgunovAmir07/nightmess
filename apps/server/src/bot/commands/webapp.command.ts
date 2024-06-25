@@ -23,7 +23,7 @@ export class WebappCommand extends Command {
 			// })
 
 			return this.authService
-				.login(String(msg.from.id))
+				.loginTg(String(msg.from.id))
 				.then(() => this.authService.getLink(String(msg.from.id), 'app'))
 				.then(async link => {
 					// DON'T TOUCH ONLY FOR DEV
