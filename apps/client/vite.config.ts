@@ -10,5 +10,13 @@ export default defineConfig({
 		alias: {
 			'@': path.resolve(__dirname, './src')
 		}
+	},
+	build: {
+		rollupOptions: {
+			output: {
+				entryFileNames: '[name].js',
+				chunkFileNames: '[name].js'
+			}
+		}
 	}
 })
