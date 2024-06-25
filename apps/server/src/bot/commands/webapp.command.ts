@@ -16,11 +16,11 @@ export class WebappCommand extends Command {
 
 	public handle(): void {
 		this.bot.onText(getCommandRegexp(WEBAPP_COMMAND), async msg => {
-			// this.bot.sendMessage(msg.chat.id, 'Ожидайте...', {
-			// 	reply_markup: {
-			// 		remove_keyboard: true
-			// 	}
-			// })
+			this.bot.sendMessage(msg.chat.id, 'Ожидайте...', {
+				reply_markup: {
+					remove_keyboard: true
+				}
+			})
 
 			return this.authService
 				.loginTg(String(msg.from.id))

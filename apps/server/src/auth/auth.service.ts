@@ -101,7 +101,9 @@ export class AuthService {
 	}
 
 	public async logout(refresh: string) {
-		await this.tokenService.removeSessionByToken(refresh)
+		if (refresh) {
+			await this.tokenService.removeSessionByToken(refresh)
+		}
 	}
 
 	public async validateUser(profile: TUserOAuthDto) {
