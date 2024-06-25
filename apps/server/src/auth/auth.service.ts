@@ -5,7 +5,8 @@ import { randomUUID } from 'crypto'
 import { TokenService } from './token.service'
 import { UserAchievementService } from '@/modules/game/user-achievement.service'
 import { CacheService } from '@/core/cache/cache.service'
-import { TUserOAuthDto } from './dto'
+import { TUserOAuthDto, type TRegistrationDto } from './dto'
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
 		private readonly cacheService: CacheService
 	) {}
 
-	public async registration(tg_id: string) {
+	public async registrationTg(tg_id: string) {
 		let user = await this.userService.getByTgId(tg_id)
 
 		if (!user) {
@@ -110,5 +111,26 @@ export class AuthService {
 		}
 
 		return this.userService.create(profile)
+	}
+
+	public async registration({ email, password }: TRegistrationDto) {
+		const candidate = await this.userService.getByEmail(email)
+
+		if (candidate) {
+			throw new BadRequestException('Почта занята')
+		}
+
+		const hash = await bcrypt.hash(password, 7)
+
+		const user = await this.userService.create({
+			email,
+			password: hash
+		})
+
+		const tokens = this.tokenService.generateTokens(user)
+
+		await this.tokenService.saveToDb(tokens.refreshToken, user)
+
+		return { tokens, user }
 	}
 }

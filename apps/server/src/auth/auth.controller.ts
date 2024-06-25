@@ -1,10 +1,12 @@
 import {
 	BadRequestException,
+	Body,
 	ClassSerializerInterceptor,
 	Controller,
 	Get,
 	HttpCode,
 	Param,
+	Post,
 	Query,
 	Res,
 	UnauthorizedException,
@@ -18,7 +20,7 @@ import { Cookie, User } from '@/common/decorators'
 import { ConfigService } from '@nestjs/config'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { ZodValidationPipe } from '@/common/pipes'
-import { confirmDto } from './dto'
+import { RegistrationDto, TRegistrationDto, confirmDto } from './dto'
 import { EZodPipeType } from '@/common/enums'
 
 @ApiTags('Авторизация')
@@ -123,5 +125,14 @@ export class AuthController {
 		await this.authService.logout(refresh)
 		res.clearCookie('refresh', { path: this.refreshCookieOptions.path })
 		return
+	}
+
+	@ApiOperation({
+		summary: 'Регистрация'
+	})
+	@UsePipes(new ZodValidationPipe(RegistrationDto, EZodPipeType.body))
+	@Post('registration')
+	public async registration(@Body() profile: TRegistrationDto) {
+		const { tokens, user } = await this.authService.registration(profile)
 	}
 }
