@@ -5,6 +5,7 @@ import {
 	Controller,
 	Get,
 	HttpCode,
+	HttpStatus,
 	Param,
 	Post,
 	Query,
@@ -127,13 +128,17 @@ export class AuthController {
 		return
 	}
 
-	@HttpCode(200)
 	@ApiOperation({
 		summary: 'Регистрация'
 	})
 	@UsePipes(new ZodValidationPipe(AuthDto, EZodPipeType.body))
+	@HttpCode(HttpStatus.OK)
+	@UseInterceptors(ClassSerializerInterceptor)
 	@Post('registration')
-	public async registration(@Body() profile: TAuthDto, @Res() res: Response) {
+	public async registration(
+		@Body() profile: TAuthDto,
+		@Res({ passthrough: true }) res: Response
+	) {
 		const {
 			tokens: { accessToken, refreshToken },
 			user
@@ -148,6 +153,17 @@ export class AuthController {
 		summary: 'Логин'
 	})
 	@UsePipes(new ZodValidationPipe(AuthDto, EZodPipeType.body))
+	@UseInterceptors(ClassSerializerInterceptor)
+	@HttpCode(HttpStatus.OK)
 	@Post('login')
-	public async login(@Body() profile: TAuthDto, @Res() res: Response) {}
+	public async login(@Body() profile: TAuthDto, @Res({ passthrough: true }) res: Response) {
+		const {
+			tokens: { accessToken, refreshToken },
+			user
+		} = await this.authService.login(profile)
+
+		res.cookie('refresh', refreshToken, this.refreshCookieOptions)
+
+		return { accessToken, user }
+	}
 }

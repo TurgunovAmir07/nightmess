@@ -140,5 +140,17 @@ export class AuthService {
 		if (!profile) {
 			throw new NotFoundException('Логин или пароль неверен!')
 		}
+
+		const isPasswordValid = await bcrypt.compare(password, profile.password)
+
+		if (!isPasswordValid) {
+			throw new BadRequestException('Неверная почта или пароль')
+		}
+
+		const tokens = this.tokenService.generateTokens(profile)
+
+		await this.tokenService.saveToDb(tokens.refreshToken, profile)
+
+		return { tokens, user: profile }
 	}
 }
