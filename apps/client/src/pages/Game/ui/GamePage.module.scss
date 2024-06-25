@@ -17,26 +17,15 @@
 	}
 
 	&__noAuth {
+		margin-top: 60px;
 		display: flex;
-		justify-content: center;
-		z-index: 9;
-		margin-top: 40px;
-		flex-direction: column;
+		width: 100%;
 		align-items: center;
+		justify-content: center;
 
-		&_title {
-			padding: 20px 10px;
-			width: 290px;
-			font-size: 16px;
-			background-color: #fff;
-			text-align: center;
-		}
-
-		&_text {
-			padding: 20px 10px;
-			background-color: #fff;
-			text-align: center;
-			width: 290px;
+		&_img {
+			min-height: 372px;
+			max-height: 372px;
 		}
 	}
 
