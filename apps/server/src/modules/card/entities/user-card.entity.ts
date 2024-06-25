@@ -1,7 +1,7 @@
 import { Entity, ManyToOne } from 'typeorm'
 import { BaseEntity } from '@/core/database/entities'
 import { CardEntity } from './card.entity'
-import { UserAchievementEntity } from '@/modules/game/entities'
+import { UserAchievementEntity } from '@/modules/user/entities'
 
 @Entity('UserCard')
 export class UserCardEntity extends BaseEntity {

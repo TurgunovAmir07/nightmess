@@ -1,5 +1,5 @@
 import { UserCardEntity } from '../card/entities'
-import { UserAchievementEntity } from './entities'
+import { UserAchievementEntity } from '../user/entities'
 
 export type TGetInventoryItem = UserCardEntity & { count: number }
 

@@ -5,7 +5,7 @@ import { CardRepository } from './card.repository'
 import { cardGenerate } from '@/core/seeder/generate/card.generate'
 import { CardEntity } from './entities'
 import { UserCardService } from './user-card.service'
-import { UserAchievementEntity } from '../game/entities'
+import { UserAchievementEntity } from '@/modules/user/entities'
 
 @Injectable()
 export class CardService {

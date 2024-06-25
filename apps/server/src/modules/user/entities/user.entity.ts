@@ -1,7 +1,7 @@
 import { BaseEntity } from '@/core/database/entities'
 import { Column, Entity, OneToOne } from 'typeorm'
 import { Exclude } from 'class-transformer'
-import { UserAchievementEntity } from '@/modules/game/entities'
+import { UserAchievementEntity } from '@/modules/user/entities'
 
 @Entity('User')
 export class UserEntity extends BaseEntity {

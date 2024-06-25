@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm'
 import { CardEntity, UserCardEntity } from './entities'
 import { Repository } from 'typeorm'
-import { UserAchievementEntity } from '../game/entities'
+import { UserAchievementEntity } from '../user/entities'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
