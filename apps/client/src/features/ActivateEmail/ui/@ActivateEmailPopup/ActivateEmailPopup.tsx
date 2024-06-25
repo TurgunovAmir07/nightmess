@@ -2,7 +2,8 @@ import { GameButton, Input, LoaderSpinner, Popup } from '@/shared'
 import cl from './ActivateEmailPopup.module.scss'
 import { activateEmailData } from '../../model/data/activateEmail.data'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
-import { useRegisterUserMutation } from '@/store'
+import { useLoginUserMutation, useRegisterUserMutation } from '@/store'
+import { useState } from 'react'
 
 export const ActivateEmailPopup = ({
 	isOpen,
@@ -18,22 +19,38 @@ export const ActivateEmailPopup = ({
 		formState: { errors }
 	} = useForm()
 
+	const [isLogin, setIsLogin] = useState(true)
+
 	const [registerUser, { isLoading }] = useRegisterUserMutation()
+	const [loginUser] = useLoginUserMutation()
 
 	const onSubmit = (data: FieldValues) => {
-		registerUser({
-			email: data.email,
-			password: data.password
-		})
+		{
+			isLogin
+				? loginUser({
+						email: data.email,
+						password: data.password
+						// eslint-disable-next-line
+				  })
+				: registerUser({
+						email: data.email,
+						password: data.password
+						// eslint-disable-next-line
+				  })
+		}
 		reset()
+	}
+
+	const handleChangeAuth = () => {
+		setIsLogin(prev => !prev)
 	}
 
 	if (isLoading) return <LoaderSpinner />
 
 	return (
 		<Popup
-			title='РЕГИСТРАЦИЯ'
-			isLongTitle
+			title={isLogin ? 'ВХОД' : 'РЕГИСТРАЦИЯ'}
+			isLongTitle={!isLogin}
 			isOpen={isOpen}
 			setIsOpen={setIsOpen}
 		>
@@ -63,6 +80,15 @@ export const ActivateEmailPopup = ({
 						size='middle'
 						htmlType='submit'
 					/>
+				</div>
+				<div className={cl.root__account}>
+					{!isLogin ? 'Уже есть аккаунт?' : 'Ещё нет аккаунта?'}
+					<span
+						className={cl.root__account_link}
+						onClick={handleChangeAuth}
+					>
+						{!isLogin ? 'Логин' : 'Регистрация'}
+					</span>
 				</div>
 			</form>
 		</Popup>

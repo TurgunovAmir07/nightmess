@@ -75,6 +75,13 @@ export const authApi = createApi({
 			}),
 			invalidatesTags: ['Auth']
 		}),
+		loginUser: build.mutation<RefreshResponse, IRegistrationPayload>({
+			query: user => ({
+				url: 'login',
+				method: 'POST',
+				body: user
+			})
+		}),
 		refreshToken: build.query<RefreshResponse, void>({
 			query: () => ({
 				url: 'refresh'
@@ -87,5 +94,6 @@ export const authApi = createApi({
 export const {
 	useRefreshTokenQuery,
 	useLogoutUserQuery,
+	useLoginUserMutation,
 	useRegisterUserMutation
 } = authApi
