@@ -19,9 +19,7 @@ const initialState: IAuthInitialState = {
 export const authSlice = createSlice({
 	name: 'authSlice',
 	initialState,
-	reducers: {
-		logout: () => initialState
-	},
+	reducers: {},
 	extraReducers: builder => {
 		builder
 			.addMatcher(
@@ -32,15 +30,20 @@ export const authSlice = createSlice({
 					state.isAuth = true
 				}
 			)
-			.addMatcher(authApi.endpoints.loginUser.matchFulfilled, () => {
-				window.location.reload()
-			})
 			.addMatcher(
-				authApi.endpoints.loginUser.matchRejected,
+				authApi.endpoints.loginUser.matchFulfilled,
 				(state, { payload }) => {
-					// eslint-disable-next-line
-					// @ts-expect-error
-					state.error = (payload?.data?.message as string) || null
+					state.accessToken = payload.accessToken
+					state.user = payload.profile
+					state.isAuth = true
+				}
+			)
+			.addMatcher(
+				authApi.endpoints.registerUser.matchFulfilled,
+				(state, { payload }) => {
+					state.accessToken = payload.accessToken
+					state.user = payload.profile
+					state.isAuth = true
 				}
 			)
 			.addMatcher(

@@ -7,6 +7,5 @@ export interface IUser {
 	patronymic: string
 	phone: string
 	email: string
-	tg_id: number | string
-	link: string
+	isHasTelegram: boolean
 }

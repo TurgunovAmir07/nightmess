@@ -1,1 +1,1 @@
-export * from './ui/ActivateEmailButton'
+export * from './ui/ActivateEmail'

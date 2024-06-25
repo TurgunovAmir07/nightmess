@@ -10,7 +10,7 @@ import { OpenCaseStoreButton } from '@/features/OpenCaseStore'
 import { useTypedSelector } from '@/store'
 
 const GamePage = () => {
-	const isAuth = useTypedSelector(state => state.authSlice.isAuth)
+	const user = useTypedSelector(state => state.authSlice.user)
 
 	return (
 		<div className={cl.root}>
@@ -24,7 +24,7 @@ const GamePage = () => {
 			<GoToMainPageButton />
 			<Points />
 			<CartButton />
-			{isAuth ? (
+			{user && user.isHasTelegram ? (
 				<>
 					<CardSlider />
 					<div className={cl.root__footer}>
@@ -40,19 +40,14 @@ const GamePage = () => {
 					</div>
 				</>
 			) : (
-				<>
-					<div className={cl.root__noAuth}>
-						<h2 className={cl.root__noAuth_title}>
-							УПС (＃＞＜).. <br /> <br />
-							КАЖЕТСЯ ВЫ НЕ АВТОРИЗОВАНЫ
-						</h2>
-						<br />
-						<span className={cl.root__noAuth_text}>
-							АВТОРИЗУЙТЕСЬ ЧЕРЕЗ ТЕЛЕГРАМ <br /> ЧТОБЫ ХОРОШО
-							ПРОВЕСТИ ВРЕМЯ <br /> В НАШЕЙ ИГРЕ (*^.^*)
-						</span>
-					</div>
-				</>
+				<div className={cl.root__noAuth}>
+					<img
+						draggable={false}
+						className={cl.root__noAuth_img}
+						src='/illustration-card-non-auth.png'
+						alt='non-auth-card'
+					/>
+				</div>
 			)}
 		</div>
 	)
