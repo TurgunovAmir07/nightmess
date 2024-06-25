@@ -20,7 +20,7 @@ import { Cookie, User } from '@/common/decorators'
 import { ConfigService } from '@nestjs/config'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { ZodValidationPipe } from '@/common/pipes'
-import { RegistrationDto, TRegistrationDto, confirmDto } from './dto'
+import { AuthDto, type TAuthDto, confirmDto } from './dto'
 import { EZodPipeType } from '@/common/enums'
 
 @ApiTags('Авторизация')
@@ -127,12 +127,13 @@ export class AuthController {
 		return
 	}
 
+	@HttpCode(200)
 	@ApiOperation({
 		summary: 'Регистрация'
 	})
-	@UsePipes(new ZodValidationPipe(RegistrationDto, EZodPipeType.body))
+	@UsePipes(new ZodValidationPipe(AuthDto, EZodPipeType.body))
 	@Post('registration')
-	public async registration(@Body() profile: TRegistrationDto, @Res() res: Response) {
+	public async registration(@Body() profile: TAuthDto, @Res() res: Response) {
 		const {
 			tokens: { accessToken, refreshToken },
 			user
@@ -142,4 +143,11 @@ export class AuthController {
 
 		return { accessToken, user }
 	}
+
+	@ApiOperation({
+		summary: 'Логин'
+	})
+	@UsePipes(new ZodValidationPipe(AuthDto, EZodPipeType.body))
+	@Post('login')
+	public async login(@Body() profile: TAuthDto, @Res() res: Response) {}
 }

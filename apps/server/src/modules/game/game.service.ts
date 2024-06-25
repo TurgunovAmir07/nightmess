@@ -1,16 +1,16 @@
-import { UserAchievementService } from './user-achievement.service'
+import { UserAchievementService } from '../user/user-achievement.service'
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { SettingsService } from '../settings/settings.service'
 import { ECardRarity, ESettingsName } from '@/common/enums'
 import { CardService } from '../card/card.service'
 import type { TGetInventory, TGetInventoryItem } from './types'
 import { CraftDto } from './dto'
-import { UserCardService } from '../card/user-card.service'
 import { chanceByLevelDto } from '@/common/dto'
 import { UserService } from '../user/user.service'
 import { CacheService } from '@/core/cache/cache.service'
 import { FormatMap, getEnumItemIndex } from './utils'
 import { RATING_CACHE_KEY, CRAFT_COUNT } from './game.constants'
+import { UserCardService } from '../card/user-card.service'
 
 @Injectable()
 export class GameService {
@@ -171,7 +171,7 @@ export class GameService {
 			const isSuccess = Math.random() * 100 <= Number(levelChance.value)
 			successArray.push(isSuccess)
 		}
-		const message = `Успешно скрафчено: ${successArray.filter(Boolean).length}`
+		const message = `Успешно скрафчено	: ${successArray.filter(Boolean).length}`
 		const newCards = await this.userCardService.craft(userId, successArray, rarity, color)
 
 		const newCardStage = newCards.find(

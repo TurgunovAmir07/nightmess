@@ -1,12 +1,11 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Post, UsePipes } from '@nestjs/common'
 import { GameService } from './game.service'
 import { User } from '@/common/decorators'
-import { AccessGuard } from '@/auth/guards/access.guard'
 import { UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { CraftDto, craftSchema } from './dto'
 import { ZodValidationPipe } from '@/common/pipes'
-import { UserAuthNoRequiredGuard } from '@/auth/guards'
+import { UserAuthNoRequiredGuard, AccessGuard } from '@/auth/guards'
 
 @ApiTags('Игра')
 @Controller('game')

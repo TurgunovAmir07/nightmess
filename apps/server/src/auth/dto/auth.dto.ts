@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const RegistrationDto = z.object({
+export const AuthDto = z.object({
 	email: z.string({ message: 'Почта обязательна' }).email({ message: 'Невалидная почта' }),
 	password: z
 		.string({ message: 'Пароль обязателен' })
@@ -8,4 +8,4 @@ export const RegistrationDto = z.object({
 		.max(32, { message: 'Пароль должен быть не больше 32 символов' })
 })
 
-export type TRegistrationDto = z.infer<typeof RegistrationDto>
+export type TAuthDto = z.infer<typeof AuthDto>

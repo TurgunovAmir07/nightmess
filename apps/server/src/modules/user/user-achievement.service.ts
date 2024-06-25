@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
 import { UserAchievementRepository } from './user-achievement.repository'
 import { UserCardEntity } from '../card/entities'
-import { getEnumItemIndex } from './utils'
+import { getEnumItemIndex } from '../game/utils'
 import { ECardRarity } from '@/common/enums'
-import { UserEntity } from '../user/entities'
+import { UserEntity } from './entities'
 
 @Injectable()
 export class UserAchievementService {

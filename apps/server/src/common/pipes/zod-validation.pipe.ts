@@ -16,7 +16,10 @@ export class ZodValidationPipe implements PipeTransform {
 			}
 			return value
 		} catch (error) {
-			throw new BadRequestException('Validation failed')
+			const messages = []
+			const zodErrors = error.issues ?? []
+			zodErrors.forEach(el => messages.push(el.message))
+			throw new BadRequestException(messages)
 		}
 	}
 }

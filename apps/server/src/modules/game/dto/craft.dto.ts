@@ -3,8 +3,10 @@ import { z } from 'zod'
 
 export const craftSchema = z
 	.object({
-		color: z.nativeEnum(ECardColor),
-		count: z.number().min(1)
+		color: z.nativeEnum(ECardColor, { message: 'Невалидный enum' }),
+		count: z
+			.number({ message: 'Количество должно быть числом' })
+			.min(1, 'Минимальное количество 1')
 	})
 	.required()
 

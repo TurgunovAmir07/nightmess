@@ -1,11 +1,11 @@
 import { Inject, Injectable, forwardRef } from '@nestjs/common'
-import { UserAchievementEntity } from '../game/entities'
+import { UserAchievementEntity } from '@/modules/user/entities'
 import { CardEntity, UserCardEntity } from './entities'
 import { UserCardRepository } from './user-card.repository'
 import { DatabaseService } from '@/core/database/database.service'
 import { QueryRunner } from 'typeorm'
 import { ECardColor, ECardRarity } from '@/common/enums'
-import { UserAchievementService } from '../game/user-achievement.service'
+import { UserAchievementService } from '../user/user-achievement.service'
 import { CardService } from './card.service'
 
 @Injectable()
