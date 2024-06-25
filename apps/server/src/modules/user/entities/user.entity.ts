@@ -53,5 +53,5 @@ export class UserEntity extends BaseEntity {
 	@Column({
 		nullable: true
 	})
-	public readonly password: string
+	public readonly password: string | null
 }
